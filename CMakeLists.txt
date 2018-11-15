@@ -4,6 +4,8 @@ PROJECT(zond)
 INCLUDE(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
+ENABLE_TESTING()
+
 ADD_COMPILE_OPTIONS(-std=c++14 -O2 -fomit-frame-pointer -g0
 	-Wall -Wextra -Weffc++ -Wpedantic -Werror
 	-Wno-non-virtual-dtor)
@@ -17,4 +19,5 @@ ADD_CUSTOM_TARGET(
 	COMMAND ${CMAKE_SOURCE_DIR}/style.sh
 	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
-# @todo #1 add unittest
+
+ADD_SUBDIRECTORY(test)
