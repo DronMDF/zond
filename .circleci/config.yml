@@ -10,9 +10,10 @@ jobs:
           sudo apt-get install cmake cppcheck python3-pip
           sudo pip3 install cpplint conan
           gem install pdd
-          # conan remote add dronmdf https://api.bintray.com/conan/mdf/2out
+          conan remote add dronmdf https://api.bintray.com/conan/mdf/2out
           conan install . -s compiler.libcxx='libstdc++11' --build
           cmake .
+          make style
           make VERBOSE=1
           #make test
       - store_test_results:
