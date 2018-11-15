@@ -15,6 +15,6 @@ jobs:
           cmake .
           make style
           make VERBOSE=1
-          #make test
+          make test
       - store_test_results:
           path: .
