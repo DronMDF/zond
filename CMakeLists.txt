@@ -3,15 +3,29 @@ PROJECT(zond)
 
 INCLUDE(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
+SET(CMAKE_MODULE_PATH ${CONAN_CMAKE_MODULE_PATH} ${CMAKE_MODULE_PATH})
+
+FIND_PACKAGE(
+	Boost 1.67.0
+	REQUIRED COMPONENTS
+	asio
+	system
+)
 
 ENABLE_TESTING()
 
-ADD_COMPILE_OPTIONS(-std=c++14 -O2 -fomit-frame-pointer -g0
-	-Wall -Wextra -Weffc++ -Wpedantic -Werror
-	-Wno-non-virtual-dtor)
+ADD_COMPILE_OPTIONS(
+	-std=c++14 -O2 -fomit-frame-pointer -g0
+	-Wall -Wextra -Wpedantic -Werror -Wno-non-virtual-dtor
+)
 
 ADD_EXECUTABLE(zond
 	main.cpp
+)
+
+TARGET_LINK_LIBRARIES(
+	foo
+	${Boost_LIBRARIES}
 )
 
 ADD_CUSTOM_TARGET(
