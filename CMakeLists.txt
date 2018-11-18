@@ -1,17 +1,24 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(zond)
 
+FIND_PACKAGE(Threads)
+
 INCLUDE(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 ENABLE_TESTING()
 
 ADD_COMPILE_OPTIONS(-std=c++14 -O2 -fomit-frame-pointer -g0
-	-Wall -Wextra -Weffc++ -Wpedantic -Werror
+	-Wall -Wextra -Wpedantic -Werror
 	-Wno-non-virtual-dtor)
 
 ADD_EXECUTABLE(zond
 	main.cpp
+)
+
+TARGET_LINK_LIBRARIES(
+	zond
+	${CMAKE_THREAD_LIBS_INIT}
 )
 
 ADD_CUSTOM_TARGET(
