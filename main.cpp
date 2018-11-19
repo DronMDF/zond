@@ -10,11 +10,12 @@
 
 using namespace std;
 
+// @todo #15 Move Session to separate file
 class Session : public enable_shared_from_this<Session>
 {
 public:
 	explicit Session(asio::ip::tcp::socket socket)
-		: socket(move(socket))
+		: socket(move(socket)), data()
 	{
 	}
 
@@ -25,7 +26,6 @@ public:
 
 	void do_read()
 	{
-		// @todo Buffer not need, but i need to read something
 		socket.async_read_some(
 			asio::buffer(data, 4096),
 			bind(
@@ -43,6 +43,7 @@ public:
 			throw runtime_error(ec.message());
 		}
 
+		// @todo #15 Parse request and handle it
 		const string response =
 			"HTTP/1.1 404 Not Found\r\n"
 			"Content-Type: text/plain\r\n"
@@ -79,17 +80,18 @@ public:
 
 private:
 	asio::ip::tcp::socket socket;
-	char data[4096];
+	array<char, 4096> data;
 };
 
+// @todo #15 Move Listener to separate file
 class Listener : enable_shared_from_this<Listener>
 {
 	asio::ip::tcp::acceptor acceptor;
 	asio::ip::tcp::socket socket;
 
 public:
-	Listener(asio::io_context &ioc, asio::ip::tcp::endpoint endpoint)
-		: acceptor(ioc), socket(ioc)
+	Listener(asio::io_context *ioc, asio::ip::tcp::endpoint endpoint)
+		: acceptor(*ioc), socket(*ioc)
 	{
 		error_code ec;
 
@@ -136,10 +138,8 @@ public:
 			throw runtime_error(ec.message());
 		}
 
-		// Create the session and run it
 		make_shared<Session>(move(socket))->start();
 
-		// Accept another connection
 		do_accept();
 	}
 };
@@ -151,7 +151,7 @@ int main(int, char **)
 
 	asio::io_context ioc;
 
-	make_shared<Listener>(ioc, asio::ip::tcp::endpoint{address, port})->start();
+	make_shared<Listener>(&ioc, asio::ip::tcp::endpoint{address, port})->start();
 
 	ioc.run();
 
