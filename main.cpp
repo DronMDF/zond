@@ -4,6 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include <functional>
+#include <iostream>
 #include <memory>
 #include <asio/ts/internet.hpp>
 #include <asio/ts/buffer.hpp>
@@ -40,14 +41,16 @@ public:
 	void on_read(error_code ec, size_t bytes_transferred [[gnu::unused]])
 	{
 		if (ec) {
-			throw runtime_error(ec.message());
+			cerr << "Connecton " << this << " aborted: " << ec.message() << endl;
+			do_close();
+			return;
 		}
 
 		// @todo #15 Parse request and handle it
 		const string response =
 			"HTTP/1.1 404 Not Found\r\n"
 			"Content-Type: text/plain\r\n"
-			"Content-Length: 9"
+			"Content-Length: 9\r\n"
 			"\r\n"
 			"Not Found";
 
@@ -67,7 +70,7 @@ public:
 	void on_write(error_code ec, size_t bytes_transferred [[gnu::unused]])
 	{
 		if (ec) {
-			throw runtime_error(ec.message());
+			cerr << "Connecton " << this << " aborted: " << ec.message() << endl;
 		}
 
 		do_close();
@@ -135,11 +138,11 @@ public:
 
 	void on_accept(error_code ec)
 	{
-		if (ec) {
-			throw runtime_error(ec.message());
+		if (!ec) {
+			make_shared<Session>(move(socket))->start();
+		} else {
+			cerr << "Accept aborted: " << ec.message() << endl;
 		}
-
-		make_shared<Session>(move(socket))->start();
 
 		do_accept();
 	}
