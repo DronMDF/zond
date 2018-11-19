@@ -37,7 +37,7 @@ public:
 		);
 	}
 
-	void on_read(error_code ec, size_t bytes_transferred [[maybe_unused]])
+	void on_read(error_code ec, size_t bytes_transferred [[gnu::unused]])
 	{
 		if (ec) {
 			throw runtime_error(ec.message());
@@ -63,7 +63,8 @@ public:
 		);
 	}
 
-	void on_write(error_code ec, size_t bytes_transferred [[maybe_unused]])
+	// @todo #15 Use maybe_unused attrib when compiler is updated to version 7
+	void on_write(error_code ec, size_t bytes_transferred [[gnu::unused]])
 	{
 		if (ec) {
 			throw runtime_error(ec.message());
