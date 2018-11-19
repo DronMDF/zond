@@ -85,7 +85,7 @@ private:
 };
 
 // @todo #15 Move Listener to separate file
-class Listener : enable_shared_from_this<Listener>
+class Listener : public enable_shared_from_this<Listener>
 {
 	asio::ip::tcp::acceptor acceptor;
 	asio::ip::tcp::socket socket;
