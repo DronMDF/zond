@@ -1,8 +1,9 @@
 #!/bin/sh
 
 set -ue
+set -x
 
-cppcheck -I. --enable=all --quiet .
+cppcheck --enable=all --quiet .
 
 ./cpplint.py `find ./ -name *.cpp -o -name *.h`
 
