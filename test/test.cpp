@@ -9,14 +9,18 @@
 #include <2out/JUnitXmlReport.h>
 #include <2out/Result.h>
 #include <2out/TestEqual.h>
+#include <2out/TestSuite.h>
 
 using namespace std;
 using namespace oout;
 
 int main(int, char **)
 {
-	const shared_ptr<const Result> result = TestEqual(
-		"zond", "zond"
+	const shared_ptr<const Result> result = TestSuite(
+		list<shared_ptr<const Test>>(
+			1,
+			make_shared<TestEqual>("zond", "zond")
+		)
 	).result();
 
 	cout << JUnitXmlReport(result).asString() << endl;
