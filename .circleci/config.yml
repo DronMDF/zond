@@ -12,14 +12,17 @@ jobs:
           gem install pdd
           conan remote add dronmdf https://api.bintray.com/conan/mdf/2out
           conan remote add bincrafter https://api.bintray.com/conan/bincrafters/public-conan
-          conan install . -s compiler.libcxx='libstdc++11' --build
-          cmake -DCMAKE_CXX_FLAGS="--coverage" .
+          # Change directory for build
+          mkdir ~/build
+          cd ~/build
+          # Build etc
+          conan install ~/project -s compiler.libcxx='libstdc++11' --build
+          cmake -DCMAKE_CXX_FLAGS="--coverage" ~/project
           make style
           make VERBOSE=1
           make test
           lcov --directory . --capture --output-file coverage.info
           lcov --remove coverage.info '/usr/*' --output-file coverage.info
-          lcov --list coverage.info
           bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
       - store_test_results:
-          path: ./test-results
+          path: ~/build/test-results
