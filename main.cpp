@@ -8,84 +8,9 @@
 #include <memory>
 #include <asio/ts/internet.hpp>
 #include <asio/ts/buffer.hpp>
+#include "Session.h"
 
 using namespace std;
-
-// @todo #15 Move Session to separate file
-class Session : public enable_shared_from_this<Session>
-{
-public:
-	explicit Session(asio::ip::tcp::socket socket)
-		: socket(move(socket)), data()
-	{
-	}
-
-	void start()
-	{
-		do_read();
-	}
-
-	void do_read()
-	{
-		socket.async_read_some(
-			asio::buffer(data, 4096),
-			bind(
-				&Session::on_read,
-				shared_from_this(),
-				placeholders::_1,
-				placeholders::_2
-			)
-		);
-	}
-
-	void on_read(error_code ec, size_t bytes_transferred [[gnu::unused]])
-	{
-		if (ec) {
-			cerr << "Connecton " << this << " aborted: " << ec.message() << endl;
-			do_close();
-			return;
-		}
-
-		// @todo #15 Parse request and handle it
-		const string response =
-			"HTTP/1.1 404 Not Found\r\n"
-			"Content-Type: text/plain\r\n"
-			"Content-Length: 9\r\n"
-			"\r\n"
-			"Not Found";
-
-		asio::async_write(
-			socket,
-			asio::buffer(response),
-			bind(
-				&Session::on_write,
-				shared_from_this(),
-				placeholders::_1,
-				placeholders::_2
-			)
-		);
-	}
-
-	// @todo #15 Use maybe_unused attrib when compiler is updated to version 7
-	void on_write(error_code ec, size_t bytes_transferred [[gnu::unused]])
-	{
-		if (ec) {
-			cerr << "Connecton " << this << " aborted: " << ec.message() << endl;
-		}
-
-		do_close();
-	}
-
-	void do_close()
-	{
-		error_code ec;
-		socket.shutdown(asio::ip::tcp::socket::shutdown_send, ec);
-	}
-
-private:
-	asio::ip::tcp::socket socket;
-	array<char, 4096> data;
-};
 
 // @todo #15 Move Listener to separate file
 class Listener : public enable_shared_from_this<Listener>
