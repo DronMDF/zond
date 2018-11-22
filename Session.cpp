@@ -7,25 +7,30 @@
 #include <functional>
 #include <iostream>
 #include <asio/ts/buffer.hpp>
+#include "HttpHeader.h"
 
 using namespace std;
 
 Session::Session(asio::ip::tcp::socket socket)
-	: socket(move(socket)), data()
+	: socket(move(socket)), buffer()
 {
 }
 
 void Session::start()
 {
-	do_read();
+	do_read_header();
 }
 
-void Session::do_read()
+void Session::do_read_header()
 {
-	socket.async_read_some(
-		asio::buffer(data, 4096),
+	// @todo #18 Need to control asio::read time
+	//  Use deadline_timer for that
+	asio::async_read_until(
+		socket,
+		buffer,
+		"\r\n\r\n",
 		bind(
-			&Session::on_read,
+			&Session::on_read_header,
 			shared_from_this(),
 			placeholders::_1,
 			placeholders::_2
@@ -33,7 +38,7 @@ void Session::do_read()
 	);
 }
 
-void Session::on_read(error_code ec, size_t bytes_transferred [[gnu::unused]])
+void Session::on_read_header(error_code ec, size_t size)
 {
 	if (ec) {
 		cerr << "Connecton " << this << " aborted: " << ec.message() << endl;
@@ -41,7 +46,17 @@ void Session::on_read(error_code ec, size_t bytes_transferred [[gnu::unused]])
 		return;
 	}
 
-	// @todo #15 Parse request and handle it
+	const auto header = make_shared<HttpHeader>(
+		string(
+			asio::buffers_begin(buffer.data()),
+			asio::buffers_begin(buffer.data()) + size
+		)
+	);
+	buffer.consume(size);
+
+	// @todo #18 Read Http body
+	//  size of body keep in Content-Length header field
+
 	const string response =
 		"HTTP/1.1 404 Not Found\r\n"
 		"Content-Type: text/plain\r\n"

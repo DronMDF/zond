@@ -6,6 +6,7 @@
 #pragma once
 #include <memory>
 #include <asio/ts/internet.hpp>
+#include <asio/streambuf.hpp>
 
 class Session : public std::enable_shared_from_this<Session>
 {
@@ -14,13 +15,13 @@ public:
 
 	void start();
 
-	void do_read();
-	void do_close();
+	void do_read_header();
+	void on_read_header(std::error_code ec, size_t bytes_transferred);
 
-	void on_read(std::error_code ec, size_t bytes_transferred);
 	void on_write(std::error_code ec, size_t bytes_transferred);
 
+	void do_close();
 private:
 	asio::ip::tcp::socket socket;
-	std::array<char, 4096> data;
+	asio::streambuf buffer;
 };
