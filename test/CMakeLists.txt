@@ -3,6 +3,10 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 ADD_EXECUTABLE(
 	test-runner
 	test.cpp
+	HttpHeaderTest.cpp
+	# @todo #39 Filelist are copy pasted
+	#  this cause double compilation
+	../HttpHeader.cpp
 )
 
 TARGET_LINK_LIBRARIES(
