@@ -4,15 +4,21 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "HttpHeader.h"
+#include <regex>
 
 using namespace std;
 
-HttpHeader::HttpHeader(const string &header [[gnu::unused]])
+HttpHeader::HttpHeader(const string &header)
+	: header(header)
 {
 }
 
-string HttpHeader::getField(const string &name [[gnu::unused]]) const
+string HttpHeader::getField(const string &name, const string &default_value) const
 {
-	// @todo #35 Get field value from header content
-	return "0";
+	smatch match;
+	regex rx(R"(\r\n)" + name + R"(:\s+(.*)\s*\r\n)", regex_constants::icase);
+	if (regex_search(header, match, rx)) {
+		return match[1];
+	}
+	return default_value;
 }
