@@ -9,4 +9,6 @@
 class HttpHeader final {
 public:
 	explicit HttpHeader(const std::string &header);
+
+	std::string getField(const std::string &name) const;
 };

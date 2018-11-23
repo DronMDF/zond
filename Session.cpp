@@ -54,9 +54,33 @@ void Session::on_read_header(error_code ec, size_t size)
 	);
 	buffer.consume(size);
 
-	// @todo #18 Read Http body
-	//  size of body keep in Content-Length header field
+	asio::async_read(
+		socket,
+		buffer,
+		asio::transfer_at_least(stoi(header->getField("Content-Length"))),
+		bind(
+			&Session::on_read_body,
+			shared_from_this(),
+			placeholders::_1,
+			placeholders::_2,
+			header
+		)
+	);
+}
 
+void Session::on_read_body(
+	error_code ec,
+	size_t size [[gnu::unused]],
+	const shared_ptr<const HttpHeader> &header [[gnu::unused]]
+)
+{
+	if (ec) {
+		cerr << "Connecton " << this << " aborted: " << ec.message() << endl;
+		do_close();
+		return;
+	}
+
+	// @todo #35 Create HttpRequest With header and body
 	const string response =
 		"HTTP/1.1 404 Not Found\r\n"
 		"Content-Type: text/plain\r\n"
