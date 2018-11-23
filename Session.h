@@ -8,6 +8,8 @@
 #include <asio/ts/internet.hpp>
 #include <asio/streambuf.hpp>
 
+class HttpHeader;
+
 class Session : public std::enable_shared_from_this<Session>
 {
 public:
@@ -16,9 +18,14 @@ public:
 	void start();
 
 	void do_read_header();
-	void on_read_header(std::error_code ec, size_t bytes_transferred);
+	void on_read_header(std::error_code ec, size_t size);
+	void on_read_body(
+		std::error_code ec,
+		size_t size,
+		const std::shared_ptr<const HttpHeader> &header
+	);
 
-	void on_write(std::error_code ec, size_t bytes_transferred);
+	void on_write(std::error_code ec, size_t size);
 
 	void do_close();
 private:

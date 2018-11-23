@@ -10,3 +10,9 @@ using namespace std;
 HttpHeader::HttpHeader(const string &header [[gnu::unused]])
 {
 }
+
+string HttpHeader::getField(const string &name [[gnu::unused]]) const
+{
+	// @todo #35 Get field value from header content
+	return "0";
+}
