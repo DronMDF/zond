@@ -5,9 +5,9 @@
 
 #pragma once
 #include <string>
-#include "Entry.h"
 
-class NotFoundEntry final : public Entry {
+class HttpResponse {
 public:
-	std::unique_ptr<const HttpResponse> process() const override;
+	virtual ~HttpResponse() = default;
+	virtual std::string asString() const = 0;
 };

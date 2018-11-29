@@ -4,10 +4,12 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
+#include <memory>
+
+class HttpResponse;
 
 class Entry {
 public:
 	virtual ~Entry() = default;
-	// @todo #47 Entry::process should return HttpResponse
-	virtual std::string process() const = 0;
+	virtual std::unique_ptr<const HttpResponse> process() const = 0;
 };

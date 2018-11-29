@@ -4,14 +4,17 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "NotFoundEntry.h"
+#include "StringHttpResponse.h"
 
 using namespace std;
 
-string NotFoundEntry::process() const
+std::unique_ptr<const HttpResponse> NotFoundEntry::process() const
 {
-	return "HTTP/1.1 404 Not Found\r\n"
+	return make_unique<StringHttpResponse>(
+		"HTTP/1.1 404 Not Found\r\n"
 		"Content-Type: text/plain\r\n"
 		"Content-Length: 9\r\n"
 		"\r\n"
-		"Not Found";
+		"Not Found"
+	);
 }
