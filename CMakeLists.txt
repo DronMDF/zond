@@ -18,6 +18,7 @@ ADD_EXECUTABLE(zond
 	NotFoundEntry.cpp
 	Listener.cpp
 	Session.cpp
+	StringHttpResponse.cpp
 )
 
 TARGET_LINK_LIBRARIES(
