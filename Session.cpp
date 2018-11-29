@@ -8,6 +8,7 @@
 #include <iostream>
 #include <asio/ts/buffer.hpp>
 #include "HttpHeader.h"
+#include "NotFoundEntry.h"
 
 using namespace std;
 
@@ -81,12 +82,8 @@ void Session::on_read_body(
 	}
 
 	// @todo #35 Create HttpRequest With header and body
-	const string response =
-		"HTTP/1.1 404 Not Found\r\n"
-		"Content-Type: text/plain\r\n"
-		"Content-Length: 9\r\n"
-		"\r\n"
-		"Not Found";
+	// @todo #45 Entries tree should be create once and pass from top level
+	const string response = NotFoundEntry().process();
 
 	asio::async_write(
 		socket,
