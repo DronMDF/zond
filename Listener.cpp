@@ -11,8 +11,11 @@
 
 using namespace std;
 
-Listener::Listener(asio::io_context *ioc, asio::ip::tcp::endpoint endpoint)
-	: acceptor(*ioc), socket(*ioc)
+Listener::Listener(
+	asio::io_context *ioc,
+	asio::ip::tcp::endpoint endpoint,
+	const shared_ptr<const Entry> &entry
+) : acceptor(*ioc), socket(*ioc), entry(entry)
 {
 	error_code ec;
 
@@ -56,7 +59,7 @@ void Listener::do_accept()
 void Listener::on_accept(error_code ec)
 {
 	if (!ec) {
-		make_shared<Session>(move(socket))->start();
+		make_shared<Session>(move(socket), entry)->start();
 	} else {
 		cerr << "Accept aborted: " << ec.message() << endl;
 	}

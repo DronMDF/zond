@@ -8,12 +8,13 @@
 #include <asio/ts/internet.hpp>
 #include <asio/streambuf.hpp>
 
+class Entry;
 class HttpHeader;
 
 class Session : public std::enable_shared_from_this<Session>
 {
 public:
-	explicit Session(asio::ip::tcp::socket socket);
+	Session(asio::ip::tcp::socket socket, const std::shared_ptr<const Entry> &entry);
 
 	void start();
 
@@ -31,4 +32,5 @@ public:
 private:
 	asio::ip::tcp::socket socket;
 	asio::streambuf buffer;
+	const std::shared_ptr<const Entry> entry;
 };

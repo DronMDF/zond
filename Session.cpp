@@ -7,14 +7,14 @@
 #include <functional>
 #include <iostream>
 #include <asio/ts/buffer.hpp>
+#include "Entry.h"
 #include "HttpHeader.h"
 #include "HttpResponse.h"
-#include "NotFoundEntry.h"
 
 using namespace std;
 
-Session::Session(asio::ip::tcp::socket socket)
-	: socket(move(socket)), buffer()
+Session::Session(asio::ip::tcp::socket socket, const shared_ptr<const Entry> &entry)
+	: socket(move(socket)), buffer(), entry(entry)
 {
 }
 
@@ -59,7 +59,7 @@ void Session::on_read_header(error_code ec, size_t size)
 	asio::async_read(
 		socket,
 		buffer,
-		asio::transfer_at_least(stoi(header->getField("Content-Length"))),
+		asio::transfer_at_least(stoi(header->getField("Content-Length", "0"))),
 		bind(
 			&Session::on_read_body,
 			shared_from_this(),
@@ -83,8 +83,7 @@ void Session::on_read_body(
 	}
 
 	// @todo #35 Create HttpRequest With header and body
-	// @todo #45 Entries tree should be create once and pass from top level
-	const string response = NotFoundEntry().process()->asString();
+	const string response = entry->process()->asString();
 
 	asio::async_write(
 		socket,
