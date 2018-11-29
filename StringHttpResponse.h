@@ -9,7 +9,7 @@
 class StringHttpResponse final : public HttpResponse {
 public:
 	explicit StringHttpResponse(const std::string &reponse);
-	virtual std::string asString() const override;
+	std::string asString() const override;
 private:
 	const std::string response;
 };
