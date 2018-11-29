@@ -4,10 +4,10 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
-#include <string>
-#include "Entry.h"
 
-class NotFoundEntry final : public Entry {
+class Entry {
 public:
-	std::string process() const override;
+	virtual ~Entry() = default;
+	// @todo #47 Entry::process should return HttpResponse
+	virtual std::string process() const = 0;
 };
