@@ -14,9 +14,11 @@ ADD_COMPILE_OPTIONS(-std=c++14 -O2 -fomit-frame-pointer -g0
 
 ADD_EXECUTABLE(zond
 	main.cpp
+	GetVersionEntry.cpp
 	HttpHeader.cpp
-	NotFoundEntry.cpp
 	Listener.cpp
+	NotFoundEntry.cpp
+	SelectedEntry.cpp
 	Session.cpp
 	StringHttpResponse.cpp
 )

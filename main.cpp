@@ -6,7 +6,9 @@
 #include <memory>
 #include <asio/ts/internet.hpp>
 #include "Listener.h"
+#include "GetVersionEntry.h"
 #include "NotFoundEntry.h"
+#include "SelectedEntry.h"
 
 using namespace std;
 
@@ -20,7 +22,10 @@ int main(int, char **)
 	make_shared<Listener>(
 		&ioc,
 		asio::ip::tcp::endpoint{address, port},
-		make_shared<NotFoundEntry>()
+		make_shared<SelectedEntry>(
+			make_shared<GetVersionEntry>(),
+			make_shared<NotFoundEntry>()
+		)
 	)->start();
 
 	// @todo #18 Create multythreaded pool of workers
