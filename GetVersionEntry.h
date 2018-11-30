@@ -6,7 +6,8 @@
 #pragma once
 #include "Entry.h"
 
-class NotFoundEntry final : public Entry {
+// This class response by GET /version entry
+class GetVersionEntry final : public Entry {
 public:
 	std::unique_ptr<const HttpResponse> process() const override;
 };

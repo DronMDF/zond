@@ -6,7 +6,14 @@
 #pragma once
 #include "Entry.h"
 
-class NotFoundEntry final : public Entry {
+class SelectedEntry final : public Entry {
 public:
+	SelectedEntry(
+		const std::shared_ptr<const Entry> &entry1,
+		const std::shared_ptr<const Entry> &entry2
+	);
 	std::unique_ptr<const HttpResponse> process() const override;
+private:
+	const std::shared_ptr<const Entry> entry1;
+	const std::shared_ptr<const Entry> entry2;
 };
