@@ -85,7 +85,7 @@ void Session::on_read_body(
 
 	const string response = entry->process(
 		make_shared<HttpRequest>(
-			header, 
+			header,
 			string(
 				asio::buffers_begin(buffer.data()),
 				asio::buffers_begin(buffer.data()) + size
