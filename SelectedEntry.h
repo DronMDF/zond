@@ -12,7 +12,9 @@ public:
 		const std::shared_ptr<const Entry> &entry1,
 		const std::shared_ptr<const Entry> &entry2
 	);
-	std::unique_ptr<const HttpResponse> process() const override;
+	std::unique_ptr<const HttpResponse> process(
+		const std::shared_ptr<const HttpRequest> &request
+	) const override;
 private:
 	const std::shared_ptr<const Entry> entry1;
 	const std::shared_ptr<const Entry> entry2;

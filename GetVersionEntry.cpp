@@ -8,7 +8,9 @@
 
 using namespace std;
 
-unique_ptr<const HttpResponse> GetVersionEntry::process() const
+unique_ptr<const HttpResponse> GetVersionEntry::process(
+	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
+) const
 {
 	// @todo #53 Return right server version
 	return make_unique<StringHttpResponse>(

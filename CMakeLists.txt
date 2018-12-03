@@ -16,6 +16,7 @@ ADD_EXECUTABLE(zond
 	main.cpp
 	GetVersionEntry.cpp
 	HttpHeader.cpp
+	HttpRequest.cpp
 	Listener.cpp
 	NotFoundEntry.cpp
 	SelectedEntry.cpp

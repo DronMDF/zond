@@ -6,10 +6,13 @@
 #pragma once
 #include <memory>
 
+class HttpRequest;
 class HttpResponse;
 
 class Entry {
 public:
 	virtual ~Entry() = default;
-	virtual std::unique_ptr<const HttpResponse> process() const = 0;
+	virtual std::unique_ptr<const HttpResponse> process(
+		const std::shared_ptr<const HttpRequest> &request
+	) const = 0;
 };
