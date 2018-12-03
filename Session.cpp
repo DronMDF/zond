@@ -9,6 +9,7 @@
 #include <asio/ts/buffer.hpp>
 #include "Entry.h"
 #include "HttpHeader.h"
+#include "HttpRequest.h"
 #include "HttpResponse.h"
 
 using namespace std;
@@ -72,8 +73,8 @@ void Session::on_read_header(error_code ec, size_t size)
 
 void Session::on_read_body(
 	error_code ec,
-	size_t size [[gnu::unused]],
-	const shared_ptr<const HttpHeader> &header [[gnu::unused]]
+	size_t size,
+	const shared_ptr<const HttpHeader> &header
 )
 {
 	if (ec) {
@@ -82,8 +83,15 @@ void Session::on_read_body(
 		return;
 	}
 
-	// @todo #35 Create HttpRequest With header and body
-	const string response = entry->process()->asString();
+	const string response = entry->process(
+		make_shared<HttpRequest>(
+			header,
+			string(
+				asio::buffers_begin(buffer.data()),
+				asio::buffers_begin(buffer.data()) + size
+			)
+		)
+	)->asString();
 
 	asio::async_write(
 		socket,

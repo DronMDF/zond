@@ -9,5 +9,7 @@
 // This class response by GET /version entry
 class GetVersionEntry final : public Entry {
 public:
-	std::unique_ptr<const HttpResponse> process() const override;
+	std::unique_ptr<const HttpResponse> process(
+		const std::shared_ptr<const HttpRequest> &request
+	) const override;
 };

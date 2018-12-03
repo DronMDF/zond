@@ -15,8 +15,10 @@ SelectedEntry::SelectedEntry(
 {
 }
 
-unique_ptr<const HttpResponse> SelectedEntry::process() const
+unique_ptr<const HttpResponse> SelectedEntry::process(
+	const shared_ptr<const HttpRequest> &request
+) const
 {
 	// @todo #53 Select right entry by request
-	return entry1->process();
+	return entry1->process(request);
 }

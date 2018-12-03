@@ -8,7 +8,9 @@
 
 using namespace std;
 
-std::unique_ptr<const HttpResponse> NotFoundEntry::process() const
+unique_ptr<const HttpResponse> NotFoundEntry::process(
+	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
+) const
 {
 	return make_unique<StringHttpResponse>(
 		"HTTP/1.1 404 Not Found\r\n"
