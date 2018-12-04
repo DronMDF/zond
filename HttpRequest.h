@@ -12,6 +12,8 @@ class HttpHeader;
 class HttpRequest final {
 public:
 	HttpRequest(const std::shared_ptr<const HttpHeader> &header, const std::string &body);
+
+	std::string uri() const;
 private:
 	const std::shared_ptr<const HttpHeader> header;
 	const std::string body;

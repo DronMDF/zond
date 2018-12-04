@@ -4,9 +4,15 @@ ADD_EXECUTABLE(
 	test-runner
 	test.cpp
 	HttpHeaderTest.cpp
+	SelectedEntryTest.cpp
 	# @todo #39 Filelist are copy pasted
 	#  this cause double compilation
+	../GetVersionEntry.cpp
 	../HttpHeader.cpp
+	../HttpRequest.cpp
+	../NotFoundEntry.cpp
+	../SelectedEntry.cpp
+	../StringHttpResponse.cpp
 )
 
 TARGET_LINK_LIBRARIES(

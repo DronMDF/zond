@@ -11,6 +11,7 @@
 #include <2out/TestEqual.h>
 #include <2out/TestSuite.h>
 #include "HttpHeaderTest.h"
+#include "SelectedEntryTest.h"
 
 using namespace std;
 using namespace oout;
@@ -18,10 +19,8 @@ using namespace oout;
 int main(int, char **)
 {
 	const shared_ptr<const Result> result = TestSuite(
-		list<shared_ptr<const Test>>(
-			1,
-			make_shared<HttpHeaderTest>()
-		)
+		make_shared<HttpHeaderTest>(),
+		make_shared<SelectedEntryTest>()
 	).result();
 
 	cout << JUnitXmlReport(result).asString() << endl;
