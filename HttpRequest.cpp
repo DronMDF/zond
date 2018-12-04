@@ -11,3 +11,9 @@ HttpRequest::HttpRequest(const shared_ptr<const HttpHeader> &header, const strin
 	: header(header), body(body)
 {
 }
+
+string HttpRequest::uri() const
+{
+	// @todo #55 Get uri from HtttpRequestHeader
+	return "none";
+}
