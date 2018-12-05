@@ -35,7 +35,7 @@ private:
 
 class HttpHeaderUriRepr final : public Representation {
 public:
-	HttpHeaderUriRepr(const shared_ptr<const HttpHeader> &header)
+	explicit HttpHeaderUriRepr(const shared_ptr<const HttpHeader> &header)
 		: header(header)
 	{
 	}
