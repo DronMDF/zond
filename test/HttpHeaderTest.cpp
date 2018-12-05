@@ -93,7 +93,7 @@ HttpHeaderTest::HttpHeaderTest()
 			)
 		),
 		make_shared<TestNamed>(
-			"Httpheader get uri in trivial case",
+			"HttpHeader get uri in trivial case",
 			make_shared<TestEqual>(
 				make_shared<HttpHeaderUriRepr>(
 					make_shared<HttpHeader>(
