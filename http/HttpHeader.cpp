@@ -22,3 +22,13 @@ string HttpHeader::getField(const string &name, const string &default_value) con
 	}
 	return default_value;
 }
+
+string HttpHeader::uri() const
+{
+	smatch match;
+	regex rx(R"(^[A-Z]+\s+(.*)\s+HTTP/1.1\r\n)");
+	if (regex_search(header, match, rx)) {
+		return match[1];
+	}
+	throw runtime_error("Incorrect HTTP header format");
+}

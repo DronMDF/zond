@@ -4,6 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "HttpRequest.h"
+#include "HttpHeader.h"
 
 using namespace std;
 
@@ -14,6 +15,5 @@ HttpRequest::HttpRequest(const shared_ptr<const HttpHeader> &header, const strin
 
 string HttpRequest::uri() const
 {
-	// @todo #55 Get uri from HtttpRequestHeader
-	return "none";
+	return header->uri();
 }
