@@ -33,14 +33,29 @@ private:
 	const string default_value;
 };
 
+class HttpHeaderUriRepr final : public Representation {
+public:
+	explicit HttpHeaderUriRepr(const shared_ptr<const HttpHeader> &header)
+		: header(header)
+	{
+	}
+
+	string asString() const override
+	{
+		return header->uri();
+	}
+private:
+	const shared_ptr<const HttpHeader> header;
+};
+
 HttpHeaderTest::HttpHeaderTest()
 	: tests(
-		make_shared<const TestNamed>(
-			"Capital-Letter-Field",
-			make_shared<const TestEqual>(
-				make_shared<const HttpHeaderFieldRepr>(
-					make_shared<const HttpHeader>(
-						"HTTP/1.1 404 Not Found\r\n"
+		make_shared<TestNamed>(
+			"HttpHeader get Capital-Letter style field value",
+			make_shared<TestEqual>(
+				make_shared<HttpHeaderFieldRepr>(
+					make_shared<HttpHeader>(
+						"GET /version HTTP/1.1\r\n"
 						"Content-Length: 12345\r\n"
 						"\r\n"
 					),
@@ -49,12 +64,12 @@ HttpHeaderTest::HttpHeaderTest()
 				"12345"
 			)
 		),
-		make_shared<const TestNamed>(
-			"low-letter-field",
-			make_shared<const TestEqual>(
-				make_shared<const HttpHeaderFieldRepr>(
-					make_shared<const HttpHeader>(
-						"HTTP/1.1 404 Not Found\r\n"
+		make_shared<TestNamed>(
+			"HttpHeader get low-letter style field value",
+			make_shared<TestEqual>(
+				make_shared<HttpHeaderFieldRepr>(
+					make_shared<HttpHeader>(
+						"GET /version HTTP/1.1\r\n"
 						"content-length: 777\r\n"
 						"\r\n"
 					),
@@ -63,18 +78,30 @@ HttpHeaderTest::HttpHeaderTest()
 				"777"
 			)
 		),
-		make_shared<const TestNamed>(
-			"default-value",
-			make_shared<const TestEqual>(
-				make_shared<const HttpHeaderFieldRepr>(
-					make_shared<const HttpHeader>(
-						"HTTP/1.1 404 Not Found\r\n"
+		make_shared<TestNamed>(
+			"HttpHeader return refault field value if it not exist",
+			make_shared<TestEqual>(
+				make_shared<HttpHeaderFieldRepr>(
+					make_shared<HttpHeader>(
+						"GET /version HTTP/1.1\r\n"
 						"\r\n"
 					),
 					"Content-Length",
 					"0"
 				),
 				"0"
+			)
+		),
+		make_shared<TestNamed>(
+			"Httpheader get uri in trivial case",
+			make_shared<TestEqual>(
+				make_shared<HttpHeaderUriRepr>(
+					make_shared<HttpHeader>(
+						"GET /version HTTP/1.1\r\n"
+						"\r\n"
+					)
+				),
+				"/version"
 			)
 		)
 	)
