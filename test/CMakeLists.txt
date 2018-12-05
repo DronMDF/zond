@@ -1,32 +1,26 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+PROJECT(zond-test)
 
 ADD_EXECUTABLE(
-	test-runner
+	zond-test
 	test.cpp
 	HttpHeaderTest.cpp
 	SelectedEntryTest.cpp
-	# @todo #39 Filelist are copy pasted
-	#  this cause double compilation
-	../GetVersionEntry.cpp
-	../HttpHeader.cpp
-	../HttpRequest.cpp
-	../NotFoundEntry.cpp
-	../SelectedEntry.cpp
-	../StringHttpResponse.cpp
 )
 
 TARGET_LINK_LIBRARIES(
-	test-runner
+	zond-test
 	2out
+	zond-http
 )
 
 ADD_CUSTOM_COMMAND(
-	TARGET test-runner
+	TARGET zond-test
 	PRE_BUILD
 	COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/test-results/2out
 )
 
 ADD_TEST(
-	NAME test-runner
-	COMMAND sh -c "${CMAKE_BINARY_DIR}/bin/test-runner > ${CMAKE_BINARY_DIR}/test-results/2out/results.xml"
+	NAME zond-test
+	COMMAND sh -c "${CMAKE_BINARY_DIR}/bin/zond-test > ${CMAKE_BINARY_DIR}/test-results/2out/results.xml"
 )

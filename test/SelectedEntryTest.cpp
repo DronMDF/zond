@@ -9,12 +9,12 @@
 #include <2out/TestContainText.h>
 #include <2out/TestNamed.h>
 #include <2out/TestSkipped.h>
-#include "../GetVersionEntry.h"
-#include "../HttpHeader.h"
-#include "../HttpRequest.h"
-#include "../HttpResponse.h"
-#include "../NotFoundEntry.h"
-#include "../SelectedEntry.h"
+#include "../http/GetVersionEntry.h"
+#include "../http/HttpHeader.h"
+#include "../http/HttpRequest.h"
+#include "../http/HttpResponse.h"
+#include "../http/NotFoundEntry.h"
+#include "../http/SelectedEntry.h"
 
 using namespace std;
 using namespace oout;

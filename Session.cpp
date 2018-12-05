@@ -7,10 +7,10 @@
 #include <functional>
 #include <iostream>
 #include <asio/ts/buffer.hpp>
-#include "Entry.h"
-#include "HttpHeader.h"
-#include "HttpRequest.h"
-#include "HttpResponse.h"
+#include "http/Entry.h"
+#include "http/HttpHeader.h"
+#include "http/HttpRequest.h"
+#include "http/HttpResponse.h"
 
 using namespace std;
 
