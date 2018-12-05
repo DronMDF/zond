@@ -14,19 +14,14 @@ ADD_COMPILE_OPTIONS(-std=c++14 -O2 -fomit-frame-pointer -g0
 
 ADD_EXECUTABLE(zond
 	main.cpp
-	GetVersionEntry.cpp
-	HttpHeader.cpp
-	HttpRequest.cpp
 	Listener.cpp
-	NotFoundEntry.cpp
-	SelectedEntry.cpp
 	Session.cpp
-	StringHttpResponse.cpp
 )
 
 TARGET_LINK_LIBRARIES(
 	zond
 	${CMAKE_THREAD_LIBS_INIT}
+	zond-http
 )
 
 ADD_CUSTOM_TARGET(
@@ -35,4 +30,5 @@ ADD_CUSTOM_TARGET(
 	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
 
+ADD_SUBDIRECTORY(http)
 ADD_SUBDIRECTORY(test)

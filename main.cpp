@@ -6,9 +6,9 @@
 #include <memory>
 #include <asio/ts/internet.hpp>
 #include "Listener.h"
-#include "GetVersionEntry.h"
-#include "NotFoundEntry.h"
-#include "SelectedEntry.h"
+#include "http/GetVersionEntry.h"
+#include "http/NotFoundEntry.h"
+#include "http/SelectedEntry.h"
 
 using namespace std;
 

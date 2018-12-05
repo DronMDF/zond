@@ -8,7 +8,7 @@
 #include <2out/Result.h>
 #include <2out/TestEqual.h>
 #include <2out/TestNamed.h>
-#include "../HttpHeader.h"
+#include "../http/HttpHeader.h"
 
 using namespace std;
 using namespace oout;
