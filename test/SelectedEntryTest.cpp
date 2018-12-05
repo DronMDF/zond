@@ -40,29 +40,23 @@ private:
 SelectedEntryTest::SelectedEntryTest()
 	: tests(
 		make_shared<TestNamed>(
-			"Select first entry",
-			make_shared<TestSkipped>(
-				make_shared<TestContainText>(
-					make_shared<const EntryRepr>(
-						make_shared<const SelectedEntry>(
-							make_shared<GetVersionEntry>(),
-							make_shared<NotFoundEntry>()
-						),
-						// @todo #55 Construct HttpRequest with two string
-						make_shared<HttpRequest>(
-							make_shared<HttpHeader>(
-								"GET /version HTTP/1.1\r\n"
-								"\r\n"
-							),
-							""
-						)
+			"SelectedEntry select first entry by uri",
+			make_shared<TestContainText>(
+				make_shared<const EntryRepr>(
+					make_shared<const SelectedEntry>(
+						make_shared<GetVersionEntry>(),
+						make_shared<NotFoundEntry>()
 					),
-					"200 OK"
-				)
+					make_shared<HttpRequest>(
+						"GET /version HTTP/1.1\r\n"
+						"\r\n"
+					)
+				),
+				"200 Ok"
 			)
 		),
 		make_shared<const TestNamed>(
-			"Select last entry",
+			"SelectedEntry select last entry as fallback",
 			make_shared<const TestContainText>(
 				make_shared<const EntryRepr>(
 					make_shared<const SelectedEntry>(
@@ -70,11 +64,8 @@ SelectedEntryTest::SelectedEntryTest()
 						make_shared<NotFoundEntry>()
 					),
 					make_shared<HttpRequest>(
-						make_shared<HttpHeader>(
-							"GET /something HTTP/1.1\r\n"
-							"\r\n"
-						),
-						""
+						"GET /something HTTP/1.1\r\n"
+						"\r\n"
 					)
 				),
 				"404 Not Found"

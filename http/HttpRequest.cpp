@@ -13,6 +13,16 @@ HttpRequest::HttpRequest(const shared_ptr<const HttpHeader> &header, const strin
 {
 }
 
+HttpRequest::HttpRequest(const string &header, const string &body)
+	: HttpRequest(make_shared<HttpHeader>(header), body)
+{
+}
+
+HttpRequest::HttpRequest(const string &header)
+	: HttpRequest(make_shared<HttpHeader>(header), {})
+{
+}
+
 string HttpRequest::uri() const
 {
 	return header->uri();
