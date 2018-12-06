@@ -6,23 +6,34 @@
 #include "SelectedEntry.h"
 #include "HttpRequest.h"
 #include "HttpResponse.h"
+#include "NotFoundEntry.h"
 
 using namespace std;
 
 SelectedEntry::SelectedEntry(
-	const shared_ptr<const Entry> &entry1,
-	const shared_ptr<const Entry> &entry2
-) : entry1(entry1), entry2(entry2)
+	const string &method,
+	const string &uri_pattern,
+	const shared_ptr<const Entry> &entry,
+	const shared_ptr<const Entry> &fallback
+) : method(method), uri_pattern(uri_pattern), entry(entry), fallback(fallback)
 {
 }
 
+SelectedEntry::SelectedEntry(
+	const string &method,
+	const string &uri_pattern,
+	const shared_ptr<const Entry> &entry
+) : SelectedEntry(method, uri_pattern, entry, make_shared<NotFoundEntry>())
+{
+}
 unique_ptr<const HttpResponse> SelectedEntry::process(
 	const shared_ptr<const HttpRequest> &request
 ) const
 {
-	// @todo #55 Select entry from entries list by regex
-	if (request->uri() == "/version") {
-		return entry1->process(request);
+	// @todo #59 Select entry by method
+	// @todo #59 Select entry by uri by regexp
+	if (request->uri() == uri_pattern) {
+		return entry->process(request);
 	}
-	return entry2->process(request);
+	return fallback->process(request);
 }

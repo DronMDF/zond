@@ -9,13 +9,30 @@
 class SelectedEntry final : public Entry {
 public:
 	SelectedEntry(
-		const std::shared_ptr<const Entry> &entry1,
-		const std::shared_ptr<const Entry> &entry2
+		const std::string &method,
+		const std::string &uri_pattern,
+		const std::shared_ptr<const Entry> &entry,
+		const std::shared_ptr<const Entry> &fallback
 	);
+	SelectedEntry(
+		const std::string &method,
+		const std::string &uri_pattern,
+		const std::shared_ptr<const Entry> &entry
+	);
+	// @todo #59 Create chained ctor for SelectedEntry
+	//  Like this:
+	//  SelectedEntry(
+	//      "GET", "/version", entry1,
+	//      "PUT", "/wallet/, entry2,
+	//      ...
+	//  )
 	std::unique_ptr<const HttpResponse> process(
 		const std::shared_ptr<const HttpRequest> &request
 	) const override;
+
 private:
-	const std::shared_ptr<const Entry> entry1;
-	const std::shared_ptr<const Entry> entry2;
+	const std::string method;
+	const std::string uri_pattern;
+	const std::shared_ptr<const Entry> entry;
+	const std::shared_ptr<const Entry> fallback;
 };
