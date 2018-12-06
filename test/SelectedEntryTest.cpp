@@ -40,12 +40,13 @@ private:
 SelectedEntryTest::SelectedEntryTest()
 	: tests(
 		make_shared<TestNamed>(
-			"SelectedEntry select first entry by uri",
+			"SelectedEntry select entry by matched uri",
 			make_shared<TestContainText>(
 				make_shared<const EntryRepr>(
 					make_shared<const SelectedEntry>(
-						make_shared<GetVersionEntry>(),
-						make_shared<NotFoundEntry>()
+						"GET",
+						"/version",
+						make_shared<GetVersionEntry>()
 					),
 					make_shared<HttpRequest>(
 						"GET /version HTTP/1.1\r\n"
@@ -60,6 +61,8 @@ SelectedEntryTest::SelectedEntryTest()
 			make_shared<const TestContainText>(
 				make_shared<const EntryRepr>(
 					make_shared<const SelectedEntry>(
+						"GET",
+						"/version",
 						make_shared<GetVersionEntry>(),
 						make_shared<NotFoundEntry>()
 					),

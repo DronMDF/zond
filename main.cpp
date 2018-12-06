@@ -23,8 +23,7 @@ int main(int, char **)
 		&ioc,
 		asio::ip::tcp::endpoint{address, port},
 		make_shared<SelectedEntry>(
-			make_shared<GetVersionEntry>(),
-			make_shared<NotFoundEntry>()
+			"GET", "/version", make_shared<GetVersionEntry>()
 		)
 	)->start();
 
