@@ -22,10 +22,11 @@ public:
 	// @todo #59 Create chained ctor for SelectedEntry
 	//  Like this:
 	//  SelectedEntry(
-	//      "GET", "/version", entry1,
-	//      "PUT", "/wallet/, entry2,
-	//      ...
+	//  _"GET", "/version", entry1,
+	//  _"PUT", "/wallet/, entry2,
+	//  _...
 	//  )
+
 	std::unique_ptr<const HttpResponse> process(
 		const std::shared_ptr<const HttpRequest> &request
 	) const override;
