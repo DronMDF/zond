@@ -6,17 +6,17 @@
 #pragma once
 #include "Entry.h"
 
+class Criterion;
+
 class SelectedEntry final : public Entry {
 public:
 	SelectedEntry(
-		const std::string &method,
-		const std::string &uri_pattern,
+		const std::shared_ptr<const Criterion> &criterion,
 		const std::shared_ptr<const Entry> &entry,
 		const std::shared_ptr<const Entry> &fallback
 	);
 	SelectedEntry(
-		const std::string &method,
-		const std::string &uri_pattern,
+		const std::shared_ptr<const Criterion> &criterion,
 		const std::shared_ptr<const Entry> &entry
 	);
 	// @todo #59 Create chained ctor for SelectedEntry
@@ -32,8 +32,7 @@ public:
 	) const override;
 
 private:
-	const std::string method;
-	const std::string uri_pattern;
+	const std::shared_ptr<const Criterion> criterion;
 	const std::shared_ptr<const Entry> entry;
 	const std::shared_ptr<const Entry> fallback;
 };

@@ -8,8 +8,9 @@
 #include <2out/CountFailure.h>
 #include <2out/JUnitXmlReport.h>
 #include <2out/Result.h>
-#include <2out/TestEqual.h>
 #include <2out/TestSuite.h>
+#include <2out/TestTimed.h>
+#include "EqualCriterionTest.h"
 #include "HttpHeaderTest.h"
 #include "SelectedEntryTest.h"
 
@@ -18,9 +19,12 @@ using namespace oout;
 
 int main(int, char **)
 {
-	const shared_ptr<const Result> result = TestSuite(
-		make_shared<HttpHeaderTest>(),
-		make_shared<SelectedEntryTest>()
+	const shared_ptr<const Result> result = TestTimed(
+		make_shared<TestSuite>(
+			make_shared<EqualCriterionTest>(),
+			make_shared<HttpHeaderTest>(),
+			make_shared<SelectedEntryTest>()
+		)
 	).result();
 
 	cout << JUnitXmlReport(result).asString() << endl;

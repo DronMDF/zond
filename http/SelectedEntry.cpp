@@ -4,6 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "SelectedEntry.h"
+#include "Criterion.h"
 #include "HttpRequest.h"
 #include "HttpResponse.h"
 #include "NotFoundEntry.h"
@@ -11,19 +12,17 @@
 using namespace std;
 
 SelectedEntry::SelectedEntry(
-	const string &method,
-	const string &uri_pattern,
+	const shared_ptr<const Criterion> &criterion,
 	const shared_ptr<const Entry> &entry,
 	const shared_ptr<const Entry> &fallback
-) : method(method), uri_pattern(uri_pattern), entry(entry), fallback(fallback)
+) : criterion(criterion), entry(entry), fallback(fallback)
 {
 }
 
 SelectedEntry::SelectedEntry(
-	const string &method,
-	const string &uri_pattern,
+	const shared_ptr<const Criterion> &criterion,
 	const shared_ptr<const Entry> &entry
-) : SelectedEntry(method, uri_pattern, entry, make_shared<NotFoundEntry>())
+) : SelectedEntry(criterion, entry, make_shared<NotFoundEntry>())
 {
 }
 unique_ptr<const HttpResponse> SelectedEntry::process(
@@ -32,7 +31,7 @@ unique_ptr<const HttpResponse> SelectedEntry::process(
 {
 	// @todo #59 Select entry by method
 	// @todo #59 Select entry by uri by regexp
-	if (request->uri() == uri_pattern) {
+	if (criterion->suitable(request)) {
 		return entry->process(request);
 	}
 	return fallback->process(request);
