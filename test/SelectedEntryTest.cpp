@@ -8,7 +8,7 @@
 #include <2out/Result.h>
 #include <2out/TestContainText.h>
 #include <2out/TestNamed.h>
-#include <2out/TestSkipped.h>
+#include "../http/EqualCriterion.h"
 #include "../http/GetVersionEntry.h"
 #include "../http/HttpHeader.h"
 #include "../http/HttpRequest.h"
@@ -42,10 +42,9 @@ SelectedEntryTest::SelectedEntryTest()
 		make_shared<TestNamed>(
 			"SelectedEntry select entry by matched uri",
 			make_shared<TestContainText>(
-				make_shared<const EntryRepr>(
-					make_shared<const SelectedEntry>(
-						"GET",
-						"/version",
+				make_shared<EntryRepr>(
+					make_shared<SelectedEntry>(
+						make_shared<EqualCriterion>("/version"),
 						make_shared<GetVersionEntry>()
 					),
 					make_shared<HttpRequest>(
@@ -56,13 +55,12 @@ SelectedEntryTest::SelectedEntryTest()
 				"200 Ok"
 			)
 		),
-		make_shared<const TestNamed>(
+		make_shared<TestNamed>(
 			"SelectedEntry select last entry as fallback",
-			make_shared<const TestContainText>(
-				make_shared<const EntryRepr>(
-					make_shared<const SelectedEntry>(
-						"GET",
-						"/version",
+			make_shared<TestContainText>(
+				make_shared<EntryRepr>(
+					make_shared<SelectedEntry>(
+						make_shared<EqualCriterion>("/version"),
 						make_shared<GetVersionEntry>(),
 						make_shared<NotFoundEntry>()
 					),

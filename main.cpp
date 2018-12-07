@@ -6,6 +6,7 @@
 #include <memory>
 #include <asio/ts/internet.hpp>
 #include "Listener.h"
+#include "http/EqualCriterion.h"
 #include "http/GetVersionEntry.h"
 #include "http/NotFoundEntry.h"
 #include "http/SelectedEntry.h"
@@ -23,7 +24,7 @@ int main(int, char **)
 		&ioc,
 		asio::ip::tcp::endpoint{address, port},
 		make_shared<SelectedEntry>(
-			"GET", "/version", make_shared<GetVersionEntry>()
+			make_shared<EqualCriterion>("/version"), make_shared<GetVersionEntry>()
 		)
 	)->start();
 
