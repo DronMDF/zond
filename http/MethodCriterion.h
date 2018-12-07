@@ -6,10 +6,11 @@
 #pragma once
 #include "Criterion.h"
 
-class EqualCriterion final : public Criterion {
+class MethodCriterion final : public Criterion {
 public:
-	explicit EqualCriterion(const std::string &uri);
+	// @todo #74 MethodCriterion should wrap other Criterion
+	explicit MethodCriterion(const std::string &method);
 	bool suitable(const std::shared_ptr<const HttpRequest> &request) const override;
 private:
-	const std::string uri;
+	const std::string method;
 };

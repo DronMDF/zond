@@ -4,9 +4,11 @@ PROJECT(zond-test)
 ADD_EXECUTABLE(
 	zond-test
 	test.cpp
+	CriterionRepr.cpp
 	EqualCriterionTest.cpp
 	FakeEntry.cpp
 	HttpHeaderTest.cpp
+	MethodCriterionTest.cpp
 	SelectedEntryTest.cpp
 )
 

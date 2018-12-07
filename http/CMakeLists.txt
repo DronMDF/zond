@@ -11,6 +11,7 @@ ADD_LIBRARY(
 	GetVersionEntry.cpp
 	HttpHeader.cpp
 	HttpRequest.cpp
+	MethodCriterion.cpp
 	NotFoundEntry.cpp
 	SelectedEntry.cpp
 	StringHttpResponse.cpp
