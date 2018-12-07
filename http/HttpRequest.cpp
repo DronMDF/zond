@@ -25,8 +25,7 @@ HttpRequest::HttpRequest(const string &header)
 
 string HttpRequest::method() const
 {
-	// @todo #74 get method from HttpHeader
-	return "FAKE";
+	return header->method();
 }
 
 string HttpRequest::uri() const
