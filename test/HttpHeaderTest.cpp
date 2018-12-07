@@ -48,6 +48,21 @@ private:
 	const shared_ptr<const HttpHeader> header;
 };
 
+class HttpHeaderMethodRepr final : public Representation {
+public:
+	explicit HttpHeaderMethodRepr(const shared_ptr<const HttpHeader> &header)
+		: header(header)
+	{
+	}
+
+	string asString() const override
+	{
+		return header->method();
+	}
+private:
+	const shared_ptr<const HttpHeader> header;
+};
+
 HttpHeaderTest::HttpHeaderTest()
 	: tests(
 		make_shared<TestNamed>(
@@ -102,6 +117,18 @@ HttpHeaderTest::HttpHeaderTest()
 					)
 				),
 				"/version"
+			)
+		),
+		make_shared<TestNamed>(
+			"HttpHeader get method in trivial case",
+			make_shared<TestEqual>(
+				make_shared<HttpHeaderMethodRepr>(
+					make_shared<HttpHeader>(
+						"GET /version HTTP/1.1\r\n"
+						"\r\n"
+					)
+				),
+				"GET"
 			)
 		)
 	)

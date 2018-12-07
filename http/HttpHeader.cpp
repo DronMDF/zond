@@ -13,6 +13,26 @@ HttpHeader::HttpHeader(const string &header)
 {
 }
 
+string HttpHeader::method() const
+{
+	smatch match;
+	regex rx(R"(^([A-Z]+)\s+)");
+	if (regex_search(header, match, rx)) {
+		return match[1];
+	}
+	throw runtime_error("Incorrect HTTP header format");
+}
+
+string HttpHeader::uri() const
+{
+	smatch match;
+	regex rx(R"(^[A-Z]+\s+(.*)\s+HTTP/)");
+	if (regex_search(header, match, rx)) {
+		return match[1];
+	}
+	throw runtime_error("Incorrect HTTP header format");
+}
+
 string HttpHeader::getField(const string &name, const string &default_value) const
 {
 	smatch match;
@@ -21,14 +41,4 @@ string HttpHeader::getField(const string &name, const string &default_value) con
 		return match[1];
 	}
 	return default_value;
-}
-
-string HttpHeader::uri() const
-{
-	smatch match;
-	regex rx(R"(^[A-Z]+\s+(.*)\s+HTTP/\d.\d\r\n)");
-	if (regex_search(header, match, rx)) {
-		return match[1];
-	}
-	throw runtime_error("Incorrect HTTP header format");
 }
