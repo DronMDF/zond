@@ -26,7 +26,7 @@ string HttpHeader::getField(const string &name, const string &default_value) con
 string HttpHeader::uri() const
 {
 	smatch match;
-	regex rx(R"(^[A-Z]+\s+(.*)\s+HTTP/1.1\r\n)");
+	regex rx(R"(^[A-Z]+\s+(.*)\s+HTTP/\d.\d\r\n)");
 	if (regex_search(header, match, rx)) {
 		return match[1];
 	}

@@ -69,7 +69,7 @@ HttpHeaderTest::HttpHeaderTest()
 			make_shared<TestEqual>(
 				make_shared<HttpHeaderFieldRepr>(
 					make_shared<HttpHeader>(
-						"GET /version HTTP/1.1\r\n"
+						"GET /version HTTP/1.0\r\n"
 						"content-length: 777\r\n"
 						"\r\n"
 					),
