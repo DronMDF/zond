@@ -5,6 +5,7 @@ ADD_EXECUTABLE(
 	zond-test
 	test.cpp
 	EqualCriterionTest.cpp
+	FakeEntry.cpp
 	HttpHeaderTest.cpp
 	SelectedEntryTest.cpp
 )

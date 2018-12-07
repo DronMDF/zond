@@ -9,12 +9,11 @@
 #include <2out/TestContainText.h>
 #include <2out/TestNamed.h>
 #include "../http/EqualCriterion.h"
-#include "../http/GetVersionEntry.h"
 #include "../http/HttpHeader.h"
 #include "../http/HttpRequest.h"
 #include "../http/HttpResponse.h"
-#include "../http/NotFoundEntry.h"
 #include "../http/SelectedEntry.h"
+#include "FakeEntry.h"
 
 using namespace std;
 using namespace oout;
@@ -45,14 +44,14 @@ SelectedEntryTest::SelectedEntryTest()
 				make_shared<EntryRepr>(
 					make_shared<SelectedEntry>(
 						make_shared<EqualCriterion>("/version"),
-						make_shared<GetVersionEntry>()
+						make_shared<FakeEntry>("Wooho")
 					),
 					make_shared<HttpRequest>(
 						"GET /version HTTP/1.1\r\n"
 						"\r\n"
 					)
 				),
-				"200 Ok"
+				"Wooho"
 			)
 		),
 		make_shared<TestNamed>(
@@ -61,15 +60,34 @@ SelectedEntryTest::SelectedEntryTest()
 				make_shared<EntryRepr>(
 					make_shared<SelectedEntry>(
 						make_shared<EqualCriterion>("/version"),
-						make_shared<GetVersionEntry>(),
-						make_shared<NotFoundEntry>()
+						make_shared<FakeEntry>("Wow"),
+						make_shared<FakeEntry>("Failure")
 					),
 					make_shared<HttpRequest>(
 						"GET /something HTTP/1.1\r\n"
 						"\r\n"
 					)
 				),
-				"404 Not Found"
+				"Failure"
+			)
+		),
+		make_shared<TestNamed>(
+			"SelectedEntry chain entries",
+			make_shared<TestContainText>(
+				make_shared<EntryRepr>(
+					make_shared<SelectedEntry>(
+						make_shared<EqualCriterion>("/first"),
+						make_shared<FakeEntry>("First"),
+						make_shared<EqualCriterion>("/second"),
+						make_shared<FakeEntry>("Second"),
+						make_shared<FakeEntry>("Last")
+					),
+					make_shared<HttpRequest>(
+						"GET /second HTTP/1.1\r\n"
+						"\r\n"
+					)
+				),
+				"Second"
 			)
 		)
 	)
