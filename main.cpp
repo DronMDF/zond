@@ -24,6 +24,7 @@ int main(int, char **)
 		&ioc,
 		asio::ip::tcp::endpoint{address, port},
 		make_shared<SelectedEntry>(
+			// @todo #74 Match requests by method
 			make_shared<EqualCriterion>("/version"), make_shared<GetVersionEntry>()
 		)
 	)->start();

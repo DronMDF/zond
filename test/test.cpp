@@ -12,6 +12,7 @@
 #include <2out/TestTimed.h>
 #include "EqualCriterionTest.h"
 #include "HttpHeaderTest.h"
+#include "MethodCriterionTest.h"
 #include "SelectedEntryTest.h"
 
 using namespace std;
@@ -23,6 +24,7 @@ int main(int, char **)
 		make_shared<TestSuite>(
 			make_shared<EqualCriterionTest>(),
 			make_shared<HttpHeaderTest>(),
+			make_shared<MethodCriterionTest>(),
 			make_shared<SelectedEntryTest>()
 		)
 	).result();

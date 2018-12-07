@@ -15,6 +15,7 @@ public:
 	HttpRequest(const std::string &header, const std::string &body);
 	explicit HttpRequest(const std::string &header);
 
+	std::string method() const;
 	std::string uri() const;
 private:
 	const std::shared_ptr<const HttpHeader> header;
