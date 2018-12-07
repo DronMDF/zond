@@ -10,22 +10,29 @@ class Criterion;
 
 class SelectedEntry final : public Entry {
 public:
+	// Primary ctor
 	SelectedEntry(
 		const std::shared_ptr<const Criterion> &criterion,
 		const std::shared_ptr<const Entry> &entry,
 		const std::shared_ptr<const Entry> &fallback
 	);
+
+	// Secondary ctor with 404 at fallback
 	SelectedEntry(
 		const std::shared_ptr<const Criterion> &criterion,
 		const std::shared_ptr<const Entry> &entry
 	);
-	// @todo #59 Create chained ctor for SelectedEntry
-	//  Like this:
-	//  SelectedEntry(
-	//  _"GET", "/version", entry1,
-	//  _"PUT", "/wallet/, entry2,
-	//  _...
-	//  )
+
+	// Secondary ctor for chaining
+	template<class ... T>
+	SelectedEntry(
+		const std::shared_ptr<const Criterion> &criterion,
+		const std::shared_ptr<const Entry> &entry,
+		const std::shared_ptr<const Criterion> &criterion2,
+		T ... args
+	) : SelectedEntry(criterion, entry, std::make_shared<SelectedEntry>(criterion2, args...))
+	{
+	}
 
 	std::unique_ptr<const HttpResponse> process(
 		const std::shared_ptr<const HttpRequest> &request
