@@ -9,8 +9,9 @@
 #include <2out/TestNamed.h>
 #include <2out/TestEqual.h>
 #include <2out/TestSkipped.h>
-#include "../http/MethodCriterion.h"
+#include "../http/EqualCriterion.h"
 #include "../http/HttpRequest.h"
+#include "../http/MethodCriterion.h"
 #include "CriterionRepr.h"
 
 using namespace std;
@@ -42,6 +43,38 @@ MethodCriterionTest::MethodCriterionTest()
 					make_shared<MethodCriterion>("HEAD"),
 					make_shared<HttpRequest>(
 						"GET /something HTTP/1.1\r\n"
+						"\r\n"
+					)
+				),
+				"unsuitable"
+			)
+		),
+		make_shared<TestNamed>(
+			"MethodCriterion should wrap other criterion",
+			make_shared<TestEqual>(
+				make_shared<CriterionRepr>(
+					make_shared<MethodCriterion>(
+						"GET",
+						make_shared<EqualCriterion>("/uri")
+					),
+					make_shared<HttpRequest>(
+						"GET /uri HTTP/1.1\r\n"
+						"\r\n"
+					)
+				),
+				"suitable"
+			)
+		),
+		make_shared<TestNamed>(
+			"MethodCriterion should wrap other criterion and fail",
+			make_shared<TestEqual>(
+				make_shared<CriterionRepr>(
+					make_shared<MethodCriterion>(
+						"GET",
+						make_shared<EqualCriterion>("/something")
+					),
+					make_shared<HttpRequest>(
+						"GET /uri HTTP/1.1\r\n"
 						"\r\n"
 					)
 				),
