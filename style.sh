@@ -9,3 +9,5 @@ cppcheck --enable=all --quiet .
 
 # Scan sources for wrong pdd tokens
 pdd > /dev/null
+
+echo "Success"
