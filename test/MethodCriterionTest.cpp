@@ -8,7 +8,6 @@
 #include <2out/Result.h>
 #include <2out/TestNamed.h>
 #include <2out/TestEqual.h>
-#include <2out/TestSkipped.h>
 #include "../http/EqualCriterion.h"
 #include "../http/HttpRequest.h"
 #include "../http/MethodCriterion.h"
@@ -21,19 +20,15 @@ MethodCriterionTest::MethodCriterionTest()
 	: tests(
 		make_shared<TestNamed>(
 			"MethodCriterion consider the request as suitable by method",
-			// @todo #74 Unskip MethodCriterion success test
-			//  after HttpRequest return method
-			make_shared<TestSkipped>(
-				make_shared<TestEqual>(
-					make_shared<CriterionRepr>(
-						make_shared<MethodCriterion>("GET"),
-						make_shared<HttpRequest>(
-							"GET /version HTTP/1.1\r\n"
-							"\r\n"
-						)
-					),
-					"suitable"
-				)
+			make_shared<TestEqual>(
+				make_shared<CriterionRepr>(
+					make_shared<MethodCriterion>("GET"),
+					make_shared<HttpRequest>(
+						"GET /version HTTP/1.1\r\n"
+						"\r\n"
+					)
+				),
+				"suitable"
 			)
 		),
 		make_shared<TestNamed>(
