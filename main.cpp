@@ -8,7 +8,7 @@
 #include "Listener.h"
 #include "http/EqualCriterion.h"
 #include "http/GetVersionEntry.h"
-#include "http/NotFoundEntry.h"
+#include "http/MethodCriterion.h"
 #include "http/SelectedEntry.h"
 
 using namespace std;
@@ -24,8 +24,11 @@ int main(int, char **)
 		&ioc,
 		asio::ip::tcp::endpoint{address, port},
 		make_shared<SelectedEntry>(
-			// @todo #74 Match requests by method
-			make_shared<EqualCriterion>("/version"), make_shared<GetVersionEntry>()
+			make_shared<MethodCriterion>(
+				"GET",
+				make_shared<EqualCriterion>("/version")
+			),
+			make_shared<GetVersionEntry>()
 		)
 	)->start();
 
