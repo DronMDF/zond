@@ -4,16 +4,22 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "MethodCriterion.h"
+#include "AlwaysCriterion.h"
 #include "HttpRequest.h"
 
 using namespace std;
 
+MethodCriterion::MethodCriterion(const string &method, const shared_ptr<const Criterion> &criterion)
+	: method(method), criterion(criterion)
+{
+}
+
 MethodCriterion::MethodCriterion(const string &method)
-	: method(method)
+	: MethodCriterion(method, make_shared<AlwaysCriterion>())
 {
 }
 
 bool MethodCriterion::suitable(const shared_ptr<const HttpRequest> &request) const
 {
-	return request->method() == method;
+	return request->method() == method && criterion->suitable(request);
 }
