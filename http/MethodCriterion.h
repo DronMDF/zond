@@ -8,8 +8,6 @@
 
 class MethodCriterion final : public Criterion {
 public:
-	// @todo #74 MethodCriterion should wrap other Criterion
-
 	// Primary ctor
 	MethodCriterion(
 		const std::string &method,
