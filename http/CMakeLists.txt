@@ -9,6 +9,7 @@ ADD_LIBRARY(
 	zond-http
 	AlwaysCriterion.cpp
 	EqualCriterion.cpp
+	GetInfoEntry.cpp
 	GetVersionEntry.cpp
 	HttpHeader.cpp
 	HttpRequest.cpp
