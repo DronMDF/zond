@@ -7,6 +7,7 @@
 #include <asio/ts/internet.hpp>
 #include "Listener.h"
 #include "http/EqualCriterion.h"
+#include "http/GetInfoEntry.h"
 #include "http/GetVersionEntry.h"
 #include "http/MethodCriterion.h"
 #include "http/SelectedEntry.h"
@@ -24,11 +25,22 @@ int main(int, char **)
 		&ioc,
 		asio::ip::tcp::endpoint{address, port},
 		make_shared<SelectedEntry>(
+			// Server statistin entry
+			make_shared<MethodCriterion>(
+				"GET",
+				make_shared<EqualCriterion>("/")
+			),
+			make_shared<GetInfoEntry>(),
+			// Server version entry
 			make_shared<MethodCriterion>(
 				"GET",
 				make_shared<EqualCriterion>("/version")
 			),
 			make_shared<GetVersionEntry>()
+			// @todo #82 Add GET /remotes entry
+			// @todo #82 Add GET /wallet/xxx entry
+			// @todo #83 Add GET /wallet/xxx/balance entry
+			// @todo #82 Add PUT /wallet/xxx entry
 		)
 	)->start();
 
