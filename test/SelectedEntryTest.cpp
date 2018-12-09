@@ -12,6 +12,7 @@
 #include "../http/HttpHeader.h"
 #include "../http/HttpRequest.h"
 #include "../http/HttpResponse.h"
+#include "../http/MethodCriterion.h"
 #include "../http/SelectedEntry.h"
 #include "FakeEntry.h"
 
@@ -88,6 +89,30 @@ SelectedEntryTest::SelectedEntryTest()
 					)
 				),
 				"Second"
+			)
+		),
+		make_shared<TestNamed>(
+			"SelectedEntry check by method too",
+			make_shared<TestContainText>(
+				make_shared<EntryRepr>(
+					make_shared<SelectedEntry>(
+						make_shared<MethodCriterion>(
+							"GET",
+							make_shared<EqualCriterion>("/uri")
+						),
+						make_shared<FakeEntry>("Get"),
+						make_shared<MethodCriterion>(
+							"POST",
+							make_shared<EqualCriterion>("/uri")
+						),
+						make_shared<FakeEntry>("Post")
+					),
+					make_shared<HttpRequest>(
+						"POST /uri HTTP/1.1\r\n"
+						"\r\n"
+					)
+				),
+				"Post"
 			)
 		)
 	)
