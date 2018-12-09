@@ -29,7 +29,6 @@ unique_ptr<const HttpResponse> SelectedEntry::process(
 	const shared_ptr<const HttpRequest> &request
 ) const
 {
-	// @todo #59 Select entry by method
 	// @todo #59 Select entry by uri by regexp
 	if (criterion->suitable(request)) {
 		return entry->process(request);
