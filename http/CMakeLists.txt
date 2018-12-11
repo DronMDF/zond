@@ -10,6 +10,7 @@ ADD_LIBRARY(
 	AlwaysCriterion.cpp
 	EqualCriterion.cpp
 	GetInfoEntry.cpp
+	GetRemotesEntry.cpp
 	GetVersionEntry.cpp
 	HttpHeader.cpp
 	HttpRequest.cpp

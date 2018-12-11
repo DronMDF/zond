@@ -8,6 +8,7 @@
 #include "Listener.h"
 #include "http/EqualCriterion.h"
 #include "http/GetInfoEntry.h"
+#include "http/GetRemotesEntry.h"
 #include "http/GetVersionEntry.h"
 #include "http/MethodCriterion.h"
 #include "http/SelectedEntry.h"
@@ -36,8 +37,13 @@ int main(int, char **)
 				"GET",
 				make_shared<EqualCriterion>("/version")
 			),
-			make_shared<GetVersionEntry>()
-			// @todo #82 Add GET /remotes entry
+			make_shared<GetVersionEntry>(),
+			// List of remotes entry
+			make_shared<MethodCriterion>(
+				"GET",
+				make_shared<EqualCriterion>("/remotes")
+			),
+			make_shared<GetRemotesEntry>()
 			// @todo #82 Add GET /wallet/xxx entry
 			// @todo #83 Add GET /wallet/xxx/balance entry
 			// @todo #82 Add PUT /wallet/xxx entry
