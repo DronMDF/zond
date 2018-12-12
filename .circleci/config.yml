@@ -7,7 +7,11 @@ jobs:
     steps:
       - checkout
       - run: |
-          sudo apt-get install cmake cppcheck lcov python3-pip
+          # get latest cmake
+          wget https://cmake.org/files/v3.13/cmake-3.13.1-Linux-x86_64.sh
+          sudo bash cmake-3.13.1-Linux-x86_64.sh --skip-license --prefix=/usr
+          # Prerequesties
+          sudo apt-get install cppcheck lcov python3-pip
           sudo pip3 install cpplint conan
           gem install pdd
           conan remote add dronmdf https://api.bintray.com/conan/mdf/2out

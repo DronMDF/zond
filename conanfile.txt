@@ -4,3 +4,4 @@ cmake
 [requires]
 2out/0.5@dronmdf/stable
 asio/1.12.0@bincrafters/stable
+jsonformoderncpp/3.4.0@vthiery/stable
