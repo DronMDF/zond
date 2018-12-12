@@ -4,6 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "GetRemotesEntry.h"
+#include <nlohmann/json.hpp>
 #include "StringHttpResponse.h"
 
 using namespace std;
@@ -18,6 +19,6 @@ unique_ptr<const HttpResponse> GetRemotesEntry::process(
 		"Content-Length: 2\r\n"
 		"\r\n"
 		// @todo #92 Fill /remotes response
-		"{}"
+		+ nlohmann::json::object().dump()
 	);
 }
