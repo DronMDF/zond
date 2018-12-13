@@ -8,6 +8,7 @@ ADD_COMPILE_OPTIONS(-std=c++14 -O2 -fomit-frame-pointer -g0
 ADD_LIBRARY(
 	zond-http
 	AlwaysCriterion.cpp
+	ContentResponse.cpp
 	EqualCriterion.cpp
 	GetInfoEntry.cpp
 	GetRemotesEntry.cpp

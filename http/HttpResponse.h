@@ -6,6 +6,7 @@
 #pragma once
 #include <string>
 
+// @todo #100 Rename HttpResponse to Response
 class HttpResponse {
 public:
 	virtual ~HttpResponse() = default;
