@@ -5,7 +5,7 @@
 
 #include "GetRemotesEntry.h"
 #include <nlohmann/json.hpp>
-#include "StringHttpResponse.h"
+#include "ContentResponse.h"
 
 using namespace std;
 
@@ -13,12 +13,6 @@ unique_ptr<const HttpResponse> GetRemotesEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
-	return make_unique<StringHttpResponse>(
-		"HTTP/1.1 200 Ok\r\n"
-		"Content-Type: application/json\r\n"
-		"Content-Length: 2\r\n"
-		"\r\n"
-		// @todo #92 Fill /remotes response
-		+ nlohmann::json::object().dump()
-	);
+	// @todo #92 Fill /remotes response
+	return make_unique<ContentResponse>(nlohmann::json::object());
 }

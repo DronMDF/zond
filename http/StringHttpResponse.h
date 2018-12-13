@@ -6,6 +6,7 @@
 #pragma once
 #include "HttpResponse.h"
 
+// @todo #100 Rename StringHttpResponse to RawResponse
 class StringHttpResponse final : public HttpResponse {
 public:
 	explicit StringHttpResponse(const std::string &reponse);
