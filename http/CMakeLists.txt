@@ -19,4 +19,5 @@ ADD_LIBRARY(
 	NotFoundEntry.cpp
 	SelectedEntry.cpp
 	StringHttpResponse.cpp
+	ZoldProtocolEntry.cpp
 )
