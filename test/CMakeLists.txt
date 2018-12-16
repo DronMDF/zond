@@ -11,6 +11,7 @@ ADD_EXECUTABLE(
 	HttpHeaderTest.cpp
 	MethodCriterionTest.cpp
 	SelectedEntryTest.cpp
+	ZoldProtocolEntryTest.cpp
 )
 
 TARGET_LINK_LIBRARIES(

@@ -15,6 +15,7 @@
 #include "HttpHeaderTest.h"
 #include "MethodCriterionTest.h"
 #include "SelectedEntryTest.h"
+#include "ZoldProtocolEntryTest.h"
 
 using namespace std;
 using namespace oout;
@@ -27,7 +28,8 @@ int main(int, char **)
 			make_shared<EqualCriterionTest>(),
 			make_shared<HttpHeaderTest>(),
 			make_shared<MethodCriterionTest>(),
-			make_shared<SelectedEntryTest>()
+			make_shared<SelectedEntryTest>(),
+			make_shared<ZoldProtocolEntryTest>()
 		)
 	).result();
 
