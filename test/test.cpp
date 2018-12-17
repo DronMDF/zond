@@ -23,7 +23,7 @@ using namespace oout;
 int main(int, char **)
 {
 	const shared_ptr<const Result> result = TestTimed(
-		make_shared<TestSuite>(
+		make_shared<oout::TestSuite>(
 			make_shared<ContentResponseTest>(),
 			make_shared<EqualCriterionTest>(),
 			make_shared<HttpHeaderTest>(),

@@ -4,16 +4,9 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include <memory>
-#include <2out/Test.h>
-#include <2out/TestSuite.h>
+#include "TestSuite.h"
 
-class ZoldProtocolEntryTest final : public oout::Test {
+class ZoldProtocolEntryTest final : public TestSuite {
 public:
 	ZoldProtocolEntryTest();
-	// @todo #105 need share result method
-	//  This is not acceptable for 2out library,
-	//  but acceptable for project, tested with 2out
-	std::unique_ptr<const oout::Result> result() const override;
-private:
-	const oout::TestSuite tests;
 };

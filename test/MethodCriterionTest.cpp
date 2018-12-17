@@ -16,7 +16,7 @@ using namespace std;
 using namespace oout;
 
 MethodCriterionTest::MethodCriterionTest()
-	: tests(
+	: TestSuite(
 		make_shared<TestNamed>(
 			"MethodCriterion consider the request as suitable by method",
 			make_shared<TestEqual>(
@@ -77,9 +77,4 @@ MethodCriterionTest::MethodCriterionTest()
 		)
 	)
 {
-}
-
-unique_ptr<const Result> MethodCriterionTest::result() const
-{
-	return tests.result();
 }

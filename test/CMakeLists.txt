@@ -12,6 +12,7 @@ ADD_EXECUTABLE(
 	HttpHeaderTest.cpp
 	MethodCriterionTest.cpp
 	SelectedEntryTest.cpp
+	TestSuite.cpp
 	ZoldProtocolEntryTest.cpp
 )
 

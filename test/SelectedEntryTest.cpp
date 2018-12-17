@@ -20,7 +20,7 @@ using namespace std;
 using namespace oout;
 
 SelectedEntryTest::SelectedEntryTest()
-	: tests(
+	: TestSuite(
 		make_shared<TestNamed>(
 			"SelectedEntry select entry by matched uri",
 			make_shared<TestContainText>(
@@ -99,9 +99,4 @@ SelectedEntryTest::SelectedEntryTest()
 		)
 	)
 {
-}
-
-unique_ptr<const Result> SelectedEntryTest::result() const
-{
-	return tests.result();
 }
