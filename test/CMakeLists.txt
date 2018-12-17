@@ -6,6 +6,7 @@ ADD_EXECUTABLE(
 	test.cpp
 	ContentResponseTest.cpp
 	CriterionRepr.cpp
+	EntryRepr.cpp
 	EqualCriterionTest.cpp
 	FakeEntry.cpp
 	HttpHeaderTest.cpp
