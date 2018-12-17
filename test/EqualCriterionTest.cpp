@@ -16,7 +16,7 @@ using namespace std;
 using namespace oout;
 
 EqualCriterionTest::EqualCriterionTest()
-	: tests(
+	: TestSuite(
 		make_shared<TestNamed>(
 			"EqualCriterion consider the request as suitable by uri",
 			make_shared<TestEqual>(
@@ -45,9 +45,4 @@ EqualCriterionTest::EqualCriterionTest()
 		)
 	)
 {
-}
-
-unique_ptr<const Result> EqualCriterionTest::result() const
-{
-	return tests.result();
 }

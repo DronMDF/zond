@@ -4,13 +4,9 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include <memory>
-#include <2out/Test.h>
-#include <2out/TestSuite.h>
+#include "TestSuite.h"
 
-class HttpHeaderTest final : public oout::Test {
+class HttpHeaderTest final : public TestSuite {
 public:
 	HttpHeaderTest();
-	std::unique_ptr<const oout::Result> result() const override;
-private:
-	const oout::TestSuite tests;
 };

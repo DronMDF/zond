@@ -18,7 +18,7 @@ using namespace std;
 using namespace oout;
 
 ZoldProtocolEntryTest::ZoldProtocolEntryTest()
-	: tests(
+	: TestSuite(
 		make_shared<TestNamed>(
 			"ZoldProtocolEntry should add Zold-Score into reply",
 			make_shared<TestContainText>(
@@ -36,9 +36,4 @@ ZoldProtocolEntryTest::ZoldProtocolEntryTest()
 		)
 	)
 {
-}
-
-unique_ptr<const Result> ZoldProtocolEntryTest::result() const
-{
-	return tests.result();
 }

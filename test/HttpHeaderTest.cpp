@@ -64,7 +64,7 @@ private:
 };
 
 HttpHeaderTest::HttpHeaderTest()
-	: tests(
+	: TestSuite(
 		make_shared<TestNamed>(
 			"HttpHeader get Capital-Letter style field value",
 			make_shared<TestEqual>(
@@ -133,9 +133,4 @@ HttpHeaderTest::HttpHeaderTest()
 		)
 	)
 {
-}
-
-unique_ptr<const Result> HttpHeaderTest::result() const
-{
-	return tests.result();
 }

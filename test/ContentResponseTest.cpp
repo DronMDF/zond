@@ -29,7 +29,7 @@ private:
 };
 
 ContentResponseTest::ContentResponseTest()
-	: tests(
+	: TestSuite(
 		make_shared<TestNamed>(
 			"ContentResponse should fill Content-Length",
 			make_shared<TestContainText>(
@@ -60,9 +60,3 @@ ContentResponseTest::ContentResponseTest()
 	)
 {
 }
-
-unique_ptr<const Result> ContentResponseTest::result() const
-{
-	return tests.result();
-}
-
