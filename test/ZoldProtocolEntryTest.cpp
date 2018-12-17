@@ -4,7 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ZoldProtocolEntryTest.h"
-#include <2out/Representation.h>
 #include <2out/Result.h>
 #include <2out/TestContainText.h>
 #include <2out/TestNamed.h>
@@ -12,30 +11,11 @@
 #include "../http/HttpRequest.h"
 #include "../http/HttpResponse.h"
 #include "../http/ZoldProtocolEntry.h"
+#include "EntryRepr.h"
 #include "FakeEntry.h"
 
 using namespace std;
 using namespace oout;
-
-// @todo #105 EntryRepr copypasted from SelectedEntryTest
-//  Need to extract this class
-class EntryRepr final : public Representation {
-public:
-	EntryRepr(
-		const shared_ptr<const Entry> &entry,
-		const shared_ptr<const HttpRequest> &request
-	) : entry(entry), request(request)
-	{
-	}
-
-	string asString() const override
-	{
-		return entry->process(request)->asString();
-	}
-private:
-	const shared_ptr<const Entry> entry;
-	const shared_ptr<const HttpRequest> request;
-};
 
 ZoldProtocolEntryTest::ZoldProtocolEntryTest()
 	: tests(
