@@ -13,7 +13,7 @@ ZoldProtocolEntry::ZoldProtocolEntry(const shared_ptr<const Entry> &entry)
 {
 }
 
-unique_ptr<const HttpResponse> ZoldProtocolEntry::process(
+unique_ptr<const Response> ZoldProtocolEntry::process(
 	const shared_ptr<const HttpRequest> &request
 ) const
 {

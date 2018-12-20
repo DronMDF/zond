@@ -5,9 +5,9 @@
 
 #pragma once
 #include <nlohmann/json.hpp>
-#include "HttpResponse.h"
+#include "Response.h"
 
-class ContentResponse final : public HttpResponse {
+class ContentResponse final : public Response {
 public:
 	explicit ContentResponse(const nlohmann::json &content);
 

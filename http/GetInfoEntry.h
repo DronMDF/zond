@@ -8,7 +8,7 @@
 
 class GetInfoEntry final : public Entry {
 public:
-	std::unique_ptr<const HttpResponse> process(
+	std::unique_ptr<const Response> process(
 		const std::shared_ptr<const HttpRequest> &request
 	) const override;
 };

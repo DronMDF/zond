@@ -8,7 +8,7 @@
 using namespace std;
 
 ParamResponse::ParamResponse(
-	const shared_ptr<const HttpResponse> &response,
+	const shared_ptr<const Response> &response,
 	const string &name,
 	const string &value
 ) : response(response), name(name), value(value)

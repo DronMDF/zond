@@ -6,9 +6,8 @@
 #pragma once
 #include <string>
 
-// @todo #100 Rename HttpResponse to Response
-class HttpResponse {
+class Response {
 public:
-	virtual ~HttpResponse() = default;
+	virtual ~Response() = default;
 	virtual std::string asString() const = 0;
 };

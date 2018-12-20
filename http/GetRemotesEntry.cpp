@@ -9,7 +9,7 @@
 
 using namespace std;
 
-unique_ptr<const HttpResponse> GetRemotesEntry::process(
+unique_ptr<const Response> GetRemotesEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {

@@ -13,7 +13,7 @@ FakeEntry::FakeEntry(const string text)
 {
 }
 
-unique_ptr<const HttpResponse> FakeEntry::process(
+unique_ptr<const Response> FakeEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {

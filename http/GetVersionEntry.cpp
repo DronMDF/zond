@@ -8,7 +8,7 @@
 
 using namespace std;
 
-unique_ptr<const HttpResponse> GetVersionEntry::process(
+unique_ptr<const Response> GetVersionEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
