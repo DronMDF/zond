@@ -5,18 +5,18 @@
 
 #pragma once
 #include <memory>
-#include "HttpResponse.h"
+#include "Response.h"
 
-class ParamResponse final : public HttpResponse {
+class ParamResponse final : public Response {
 public:
 	ParamResponse(
-		const std::shared_ptr<const HttpResponse> &response,
+		const std::shared_ptr<const Response> &response,
 		const std::string &name,
 		const std::string &value
 	);
 	std::string asString() const override;
 private:
-	const std::shared_ptr<const HttpResponse> response;
+	const std::shared_ptr<const Response> response;
 	const std::string name;
 	const std::string value;
 };

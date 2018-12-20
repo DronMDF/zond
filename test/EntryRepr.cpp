@@ -5,7 +5,7 @@
 
 #include "EntryRepr.h"
 #include "../http/Entry.h"
-#include "../http/HttpResponse.h"
+#include "../http/Response.h"
 
 using namespace std;
 

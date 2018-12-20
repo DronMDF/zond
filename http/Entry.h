@@ -7,12 +7,12 @@
 #include <memory>
 
 class HttpRequest;
-class HttpResponse;
+class Response;
 
 class Entry {
 public:
 	virtual ~Entry() = default;
-	virtual std::unique_ptr<const HttpResponse> process(
+	virtual std::unique_ptr<const Response> process(
 		const std::shared_ptr<const HttpRequest> &request
 	) const = 0;
 };

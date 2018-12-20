@@ -15,7 +15,7 @@ using namespace oout;
 
 class ResponseRepr final : public Representation {
 public:
-	explicit ResponseRepr(const shared_ptr<const HttpResponse> &response)
+	explicit ResponseRepr(const shared_ptr<const Response> &response)
 		: response(response)
 	{
 	}
@@ -25,7 +25,7 @@ public:
 		return response->asString();
 	}
 private:
-	const shared_ptr<const HttpResponse> response;
+	const shared_ptr<const Response> response;
 };
 
 ContentResponseTest::ContentResponseTest()

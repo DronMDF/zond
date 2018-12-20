@@ -4,10 +4,10 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
-#include "HttpResponse.h"
+#include "Response.h"
 
 // @todo #100 Rename StringHttpResponse to RawResponse
-class StringHttpResponse final : public HttpResponse {
+class StringHttpResponse final : public Response {
 public:
 	explicit StringHttpResponse(const std::string &reponse);
 	std::string asString() const override;

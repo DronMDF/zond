@@ -8,7 +8,7 @@
 
 using namespace std;
 
-unique_ptr<const HttpResponse> NotFoundEntry::process(
+unique_ptr<const Response> NotFoundEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {

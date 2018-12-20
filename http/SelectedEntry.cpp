@@ -6,7 +6,7 @@
 #include "SelectedEntry.h"
 #include "Criterion.h"
 #include "HttpRequest.h"
-#include "HttpResponse.h"
+#include "Response.h"
 #include "NotFoundEntry.h"
 
 using namespace std;
@@ -25,7 +25,7 @@ SelectedEntry::SelectedEntry(
 ) : SelectedEntry(criterion, entry, make_shared<NotFoundEntry>())
 {
 }
-unique_ptr<const HttpResponse> SelectedEntry::process(
+unique_ptr<const Response> SelectedEntry::process(
 	const shared_ptr<const HttpRequest> &request
 ) const
 {

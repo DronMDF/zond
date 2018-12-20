@@ -9,7 +9,7 @@
 #include <2out/TestNamed.h>
 #include "../http/HttpHeader.h"
 #include "../http/HttpRequest.h"
-#include "../http/HttpResponse.h"
+#include "../http/Response.h"
 #include "../http/ZoldProtocolEntry.h"
 #include "EntryRepr.h"
 #include "FakeEntry.h"
