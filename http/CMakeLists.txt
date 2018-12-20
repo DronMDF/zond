@@ -17,6 +17,7 @@ ADD_LIBRARY(
 	HttpRequest.cpp
 	MethodCriterion.cpp
 	NotFoundEntry.cpp
+	ParamResponse.cpp
 	SelectedEntry.cpp
 	StringHttpResponse.cpp
 	ZoldProtocolEntry.cpp
