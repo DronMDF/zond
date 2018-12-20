@@ -4,7 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ZoldProtocolEntry.h"
-#include "StringHttpResponse.h"
+#include "ParamResponse.h"
 
 using namespace std;
 
@@ -17,10 +17,5 @@ unique_ptr<const HttpResponse> ZoldProtocolEntry::process(
 	const shared_ptr<const HttpRequest> &request
 ) const
 {
-	// @todo #105 Add header field to Response - this is common patten.
-	//  Need to extract this code to new class
-	auto response = entry->process(request)->asString();
-	return make_unique<StringHttpResponse>(
-		response.insert(response.find("\r\n\r\n"), "\r\nZold-Score: todo")
-	);
+	return make_unique<ParamResponse>(entry->process(request), "X-Zold-Score", "todo");
 }
