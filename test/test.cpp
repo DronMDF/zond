@@ -14,6 +14,7 @@
 #include "EqualCriterionTest.h"
 #include "HttpHeaderTest.h"
 #include "MethodCriterionTest.h"
+#include "ParamResponseTest.h"
 #include "SelectedEntryTest.h"
 #include "ZoldProtocolEntryTest.h"
 
@@ -28,6 +29,7 @@ int main(int, char **)
 			make_shared<EqualCriterionTest>(),
 			make_shared<HttpHeaderTest>(),
 			make_shared<MethodCriterionTest>(),
+			make_shared<ParamResponseTest>(),
 			make_shared<SelectedEntryTest>(),
 			make_shared<ZoldProtocolEntryTest>()
 		)

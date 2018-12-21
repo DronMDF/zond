@@ -11,6 +11,7 @@ ADD_EXECUTABLE(
 	FakeEntry.cpp
 	HttpHeaderTest.cpp
 	MethodCriterionTest.cpp
+	ParamResponseTest.cpp
 	SelectedEntryTest.cpp
 	TestSuite.cpp
 	ZoldProtocolEntryTest.cpp
