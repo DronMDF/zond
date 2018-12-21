@@ -17,5 +17,13 @@ unique_ptr<const Response> ZoldProtocolEntry::process(
 	const shared_ptr<const HttpRequest> &request
 ) const
 {
-	return make_unique<ParamResponse>(entry->process(request), "X-Zold-Score", "todo");
+	return make_unique<ParamResponse>(
+		entry->process(request),
+		"X-Zold-Protocol", "2",
+		// @todo #111 Set server version
+		"X-Zold-Version", "0.0.0",
+		"X-Zold-Repo", "DronMDF/zond",
+		// @todo #111 Set current server score
+		"X-Zold-Score", "todo"
+	);
 }
