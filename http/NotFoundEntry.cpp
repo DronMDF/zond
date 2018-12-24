@@ -4,7 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "NotFoundEntry.h"
-#include "StringHttpResponse.h"
+#include "RawResponse.h"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ unique_ptr<const Response> NotFoundEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
-	return make_unique<StringHttpResponse>(
+	return make_unique<RawResponse>(
 		"HTTP/1.1 404 Not Found\r\n"
 		"Content-Type: text/plain\r\n"
 		"Content-Length: 9\r\n"

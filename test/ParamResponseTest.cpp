@@ -8,7 +8,7 @@
 #include <2out/TestContainText.h>
 #include <2out/TestNamed.h>
 #include "../http/ParamResponse.h"
-#include "../http/StringHttpResponse.h"
+#include "../http/RawResponse.h"
 
 using namespace std;
 using namespace oout;
@@ -36,7 +36,7 @@ ParamResponseTest::ParamResponseTest()
 			make_shared<TestContainText>(
 				make_shared<ResponseRepr>(
 					make_shared<ParamResponse>(
-						make_shared<StringHttpResponse>(
+						make_shared<RawResponse>(
 							"HTTP/1.1 200 Ok\r\n"
 							"\r\n"
 						),
