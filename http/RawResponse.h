@@ -6,7 +6,6 @@
 #pragma once
 #include "Response.h"
 
-// @todo #100 Rename RawResponse to RawResponse
 class RawResponse final : public Response {
 public:
 	explicit RawResponse(const std::string &reponse);
