@@ -3,16 +3,16 @@
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
 
-#include "StringHttpResponse.h"
+#include "RawResponse.h"
 
 using namespace std;
 
-StringHttpResponse::StringHttpResponse(const string &response)
+RawResponse::RawResponse(const string &response)
 	: response(response)
 {
 }
 
-string StringHttpResponse::asString() const
+string RawResponse::asString() const
 {
 	return response;
 }

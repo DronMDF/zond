@@ -4,7 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "FakeEntry.h"
-#include "../http/StringHttpResponse.h"
+#include "../http/RawResponse.h"
 
 using namespace std;
 
@@ -17,5 +17,5 @@ unique_ptr<const Response> FakeEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
-	return make_unique<StringHttpResponse>(text);
+	return make_unique<RawResponse>(text);
 }

@@ -6,10 +6,10 @@
 #pragma once
 #include "Response.h"
 
-// @todo #100 Rename StringHttpResponse to RawResponse
-class StringHttpResponse final : public Response {
+// @todo #100 Rename RawResponse to RawResponse
+class RawResponse final : public Response {
 public:
-	explicit StringHttpResponse(const std::string &reponse);
+	explicit RawResponse(const std::string &reponse);
 	std::string asString() const override;
 private:
 	const std::string response;
