@@ -18,7 +18,7 @@ ADD_LIBRARY(
 	MethodCriterion.cpp
 	NotFoundEntry.cpp
 	ParamResponse.cpp
-	SelectedEntry.cpp
 	RawResponse.cpp
+	SelectedEntry.cpp
 	ZoldProtocolEntry.cpp
 )
