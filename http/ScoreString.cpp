@@ -15,5 +15,5 @@ ScoreString::ScoreString(const shared_ptr<const Score> &score)
 string ScoreString::value() const
 {
 	// @todo #118 Create string representation of score
-	return "TODO";
+	return "unknown score";
 }

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-FakeEntry::FakeEntry(const string text)
+FakeEntry::FakeEntry(const string &text)
 	: text(text)
 {
 }
