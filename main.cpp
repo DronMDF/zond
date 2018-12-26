@@ -49,7 +49,9 @@ int main(int, char **)
 				// @todo #82 Add GET /wallet/xxx entry
 				// @todo #83 Add GET /wallet/xxx/balance entry
 				// @todo #82 Add PUT /wallet/xxx entry
-			)
+			),
+			// @todo #118 Pass StrongestScores to ZoldProtocolEntry
+			shared_ptr<Scores>()
 		)
 	)->start();
 

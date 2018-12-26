@@ -5,11 +5,15 @@
 
 #include "ZoldProtocolEntry.h"
 #include "ParamResponse.h"
+#include "Scores.h"
+#include "ScoreString.h"
 
 using namespace std;
 
-ZoldProtocolEntry::ZoldProtocolEntry(const shared_ptr<const Entry> &entry)
-	: entry(entry)
+ZoldProtocolEntry::ZoldProtocolEntry(
+	const shared_ptr<const Entry> &entry,
+	const shared_ptr<const Scores> &scores
+) : entry(entry), scores(scores)
 {
 }
 
@@ -23,7 +27,6 @@ unique_ptr<const Response> ZoldProtocolEntry::process(
 		// @todo #111 Set server version
 		"X-Zold-Version", "0.0.0",
 		"X-Zold-Repo", "DronMDF/zond",
-		// @todo #111 Set current server score
-		"X-Zold-Score", "todo"
+		"X-Zold-Score", ScoreString(scores->front()).value()
 	);
 }

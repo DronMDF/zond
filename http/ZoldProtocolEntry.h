@@ -6,10 +6,15 @@
 #pragma once
 #include "Entry.h"
 
+class Scores;
+
 class ZoldProtocolEntry final : public Entry {
 public:
 	// Primary ctor
-	explicit ZoldProtocolEntry(const std::shared_ptr<const Entry> &entry);
+	ZoldProtocolEntry(
+		const std::shared_ptr<const Entry> &entry,
+		const std::shared_ptr<const Scores> &scores
+	);
 
 	std::unique_ptr<const Response> process(
 		const std::shared_ptr<const HttpRequest> &request
@@ -17,4 +22,5 @@ public:
 
 private:
 	const std::shared_ptr<const Entry> entry;
+	const std::shared_ptr<const Scores> scores;
 };

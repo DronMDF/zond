@@ -10,12 +10,21 @@
 #include "../http/HttpHeader.h"
 #include "../http/HttpRequest.h"
 #include "../http/Response.h"
+#include "../http/Scores.h"
 #include "../http/ZoldProtocolEntry.h"
 #include "EntryRepr.h"
 #include "FakeEntry.h"
 
 using namespace std;
 using namespace oout;
+
+class FakeScores final : public Scores {
+public:
+	shared_ptr<const Score> front() const override
+	{
+		return {};
+	}
+};
 
 ZoldProtocolEntryTest::ZoldProtocolEntryTest()
 	: TestSuite(
@@ -27,7 +36,8 @@ ZoldProtocolEntryTest::ZoldProtocolEntryTest()
 						make_shared<FakeEntry>(
 							"HTTP/1.1 200 Ok\r\n"
 							"\r\n"
-						)
+						),
+						make_shared<FakeScores>()
 					),
 					make_shared<HttpRequest>("")
 				),
