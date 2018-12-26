@@ -7,7 +7,7 @@
 
 class FakeEntry final : public Entry {
 public:
-	explicit FakeEntry(const std::string text);
+	explicit FakeEntry(const std::string &text);
 	std::unique_ptr<const Response> process(
 		const std::shared_ptr<const HttpRequest> &request
 	) const override;

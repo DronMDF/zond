@@ -19,6 +19,7 @@ ADD_LIBRARY(
 	NotFoundEntry.cpp
 	ParamResponse.cpp
 	RawResponse.cpp
+	ScoreString.cpp
 	SelectedEntry.cpp
 	ZoldProtocolEntry.cpp
 )
