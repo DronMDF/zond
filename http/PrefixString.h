@@ -6,12 +6,12 @@
 #pragma once
 #include <memory>
 
-class Score;
+class Prefix;
 
-class ScoreString final {
+class PrefixString final {
 public:
-	explicit ScoreString(const std::shared_ptr<const Score> &score);
+	explicit PrefixString(const std::shared_ptr<const Prefix> &prefix);
 	std::string value() const;
 private:
-	const std::shared_ptr<const Score> score;
+	const std::shared_ptr<const Prefix> prefix;
 };

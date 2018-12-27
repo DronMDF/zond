@@ -18,6 +18,7 @@ ADD_LIBRARY(
 	MethodCriterion.cpp
 	NotFoundEntry.cpp
 	ParamResponse.cpp
+	PrefixString.cpp
 	RawResponse.cpp
 	ScoreString.cpp
 	SelectedEntry.cpp

@@ -10,6 +10,7 @@
 #include "../http/HttpHeader.h"
 #include "../http/HttpRequest.h"
 #include "../http/Response.h"
+#include "../http/Score.h"
 #include "../http/Scores.h"
 #include "../http/ZoldProtocolEntry.h"
 #include "EntryRepr.h"
@@ -18,11 +19,24 @@
 using namespace std;
 using namespace oout;
 
+class FakeScore final : public Score {
+public:
+	shared_ptr<const Prefix> prefix() const override
+	{
+		return {};
+	}
+
+	list<string> suffixes() const override
+	{
+		return {};
+	}
+};
+
 class FakeScores final : public Scores {
 public:
 	shared_ptr<const Score> front() const override
 	{
-		return {};
+		return make_shared<FakeScore>();
 	}
 };
 
