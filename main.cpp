@@ -12,6 +12,7 @@
 #include "http/GetVersionEntry.h"
 #include "http/MethodCriterion.h"
 #include "http/SelectedEntry.h"
+#include "http/StrongestScores.h"
 #include "http/ZoldProtocolEntry.h"
 
 using namespace std;
@@ -50,8 +51,7 @@ int main(int, char **)
 				// @todo #83 Add GET /wallet/xxx/balance entry
 				// @todo #82 Add PUT /wallet/xxx entry
 			),
-			// @todo #118 Pass StrongestScores to ZoldProtocolEntry
-			shared_ptr<Scores>()
+			shared_ptr<StrongestScores>()
 		)
 	)->start();
 

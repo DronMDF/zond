@@ -22,5 +22,6 @@ ADD_LIBRARY(
 	RawResponse.cpp
 	ScoreString.cpp
 	SelectedEntry.cpp
+	StrongestScores.cpp
 	ZoldProtocolEntry.cpp
 )
