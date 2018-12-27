@@ -4,6 +4,9 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ScoreString.h"
+#include <sstream>
+#include "PrefixString.h"
+#include "Score.h"
 
 using namespace std;
 
@@ -14,6 +17,10 @@ ScoreString::ScoreString(const shared_ptr<const Score> &score)
 
 string ScoreString::value() const
 {
-	// @todo #118 Create string representation of score
-	return "unknown score";
+	ostringstream repr;
+	repr << PrefixString(score->prefix()).value();
+	for (const auto &suffix : score->suffixes()) {
+		repr << " " << suffix;
+	}
+	return repr.str();
 }

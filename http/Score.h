@@ -4,14 +4,13 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
-#include <memory>
+#include <list>
 
-class Score;
+class Prefix;
 
-class ScoreString final {
+class Score {
 public:
-	explicit ScoreString(const std::shared_ptr<const Score> &score);
-	std::string value() const;
-private:
-	const std::shared_ptr<const Score> score;
+	virtual ~Score() = default;
+	virtual std::shared_ptr<const Prefix> prefix() const = 0;
+	virtual std::list<std::string> suffixes() const = 0;
 };
