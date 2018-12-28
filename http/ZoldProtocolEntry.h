@@ -7,10 +7,19 @@
 #include "Entry.h"
 
 class Scores;
+class Options;
 
 class ZoldProtocolEntry final : public Entry {
 public:
 	// Primary ctor
+	ZoldProtocolEntry(
+		const std::shared_ptr<const Entry> &entry,
+		const std::shared_ptr<const Scores> &scores,
+		const std::shared_ptr<const Options> &options
+	);
+
+	// Ctor without options
+	// All extension are disabled
 	ZoldProtocolEntry(
 		const std::shared_ptr<const Entry> &entry,
 		const std::shared_ptr<const Scores> &scores
@@ -23,4 +32,5 @@ public:
 private:
 	const std::shared_ptr<const Entry> entry;
 	const std::shared_ptr<const Scores> scores;
+	const std::shared_ptr<const Options> options;
 };
