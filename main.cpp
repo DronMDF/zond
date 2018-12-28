@@ -52,6 +52,8 @@ int main(int, char **)
 				// @todo #82 Add PUT /wallet/xxx entry
 			),
 			shared_ptr<StrongestScores>()
+			// @todo #129 Get server options from comandline/config
+			//  pass it to ZoldProtocolEntry
 		)
 	)->start();
 
