@@ -5,6 +5,7 @@
 
 #pragma once
 #include <memory>
+#include "ScoreIterator.h"
 
 class Score;
 
@@ -12,4 +13,6 @@ class Scores {
 public:
 	virtual ~Scores() = default;
 	virtual std::shared_ptr<const Score> front() const = 0;
+	virtual ScoreIterator begin() const = 0;
+	virtual ScoreIterator end() const = 0;
 };

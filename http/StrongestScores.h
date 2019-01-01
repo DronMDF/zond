@@ -8,5 +8,10 @@
 
 class StrongestScores final : public Scores {
 public:
+	explicit StrongestScores(const std::shared_ptr<const Scores> &scores);
 	std::shared_ptr<const Score> front() const override;
+	ScoreIterator begin() const override;
+	ScoreIterator end() const override;
+private:
+	const std::shared_ptr<const Scores> scores;
 };

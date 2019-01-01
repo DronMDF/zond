@@ -9,10 +9,13 @@ ADD_EXECUTABLE(
 	EntryRepr.cpp
 	EqualCriterionTest.cpp
 	FakeEntry.cpp
+	FakeScore.cpp
+	FakeScores.cpp
 	HttpHeaderTest.cpp
 	MethodCriterionTest.cpp
 	ParamResponseTest.cpp
 	SelectedEntryTest.cpp
+	StrongestScoresTest.cpp
 	TestSuite.cpp
 	ZoldProtocolEntryTest.cpp
 )
