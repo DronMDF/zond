@@ -6,6 +6,8 @@
 #include <memory>
 #include <asio/ts/internet.hpp>
 #include "Listener.h"
+#include "http/ActiveScores.h"
+#include "http/CommandlineOptions.h"
 #include "http/EqualCriterion.h"
 #include "http/GetInfoEntry.h"
 #include "http/GetRemotesEntry.h"
@@ -17,7 +19,7 @@
 
 using namespace std;
 
-int main(int, char **)
+int main(int argc, char **argv)
 {
 	const auto address = asio::ip::make_address("0.0.0.0");
 	const auto port = 4096;
@@ -51,9 +53,8 @@ int main(int, char **)
 				// @todo #83 Add GET /wallet/xxx/balance entry
 				// @todo #82 Add PUT /wallet/xxx entry
 			),
-			shared_ptr<StrongestScores>()
-			// @todo #129 Get server options from comandline/config
-			//  pass it to ZoldProtocolEntry
+			make_shared<StrongestScores>(make_shared<ActiveScores>()),
+			make_shared<CommandlineOptions>(list<string>(argv + 1, argv + argc))
 		)
 	)->start();
 

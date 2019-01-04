@@ -4,6 +4,7 @@ PROJECT(zond-test)
 ADD_EXECUTABLE(
 	zond-test
 	test.cpp
+	CommandlineOptionsTest.cpp
 	ContentResponseTest.cpp
 	CriterionRepr.cpp
 	EntryRepr.cpp
