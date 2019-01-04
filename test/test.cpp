@@ -10,6 +10,7 @@
 #include <2out/Result.h>
 #include <2out/TestSuite.h>
 #include <2out/TestTimed.h>
+#include "CommandlineOptionsTest.h"
 #include "ContentResponseTest.h"
 #include "EqualCriterionTest.h"
 #include "HttpHeaderTest.h"
@@ -26,6 +27,7 @@ int main(int, char **)
 {
 	const shared_ptr<const Result> result = TestTimed(
 		make_shared<oout::TestSuite>(
+			make_shared<CommandlineOptionsTest>(),
 			make_shared<ContentResponseTest>(),
 			make_shared<EqualCriterionTest>(),
 			make_shared<HttpHeaderTest>(),
