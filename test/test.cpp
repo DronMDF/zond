@@ -16,6 +16,7 @@
 #include "MethodCriterionTest.h"
 #include "ParamResponseTest.h"
 #include "SelectedEntryTest.h"
+#include "StrongestScoresTest.h"
 #include "ZoldProtocolEntryTest.h"
 
 using namespace std;
@@ -30,6 +31,7 @@ int main(int, char **)
 			make_shared<HttpHeaderTest>(),
 			make_shared<MethodCriterionTest>(),
 			make_shared<ParamResponseTest>(),
+			make_shared<StrongestScoresTest>(),
 			make_shared<SelectedEntryTest>(),
 			make_shared<ZoldProtocolEntryTest>()
 		)

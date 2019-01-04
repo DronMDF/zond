@@ -15,30 +15,10 @@
 #include "../http/ZoldProtocolEntry.h"
 #include "EntryRepr.h"
 #include "FakeEntry.h"
+#include "FakeScores.h"
 
 using namespace std;
 using namespace oout;
-
-class FakeScore final : public Score {
-public:
-	shared_ptr<const Prefix> prefix() const override
-	{
-		return {};
-	}
-
-	list<string> suffixes() const override
-	{
-		return {};
-	}
-};
-
-class FakeScores final : public Scores {
-public:
-	shared_ptr<const Score> front() const override
-	{
-		return make_shared<FakeScore>();
-	}
-};
 
 ZoldProtocolEntryTest::ZoldProtocolEntryTest()
 	: TestSuite(

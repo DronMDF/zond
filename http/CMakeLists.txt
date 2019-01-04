@@ -21,6 +21,7 @@ ADD_LIBRARY(
 	ParamResponse.cpp
 	PrefixString.cpp
 	RawResponse.cpp
+	ScoreIterator.cpp
 	ScoreString.cpp
 	SelectedEntry.cpp
 	StrongestScores.cpp
