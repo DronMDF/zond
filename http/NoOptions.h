@@ -8,5 +8,6 @@
 
 class NoOptions final : public Options {
 public:
+	std::string value(const std::string &name) const override;
 	bool enabled(const std::string &name) const override;
 };

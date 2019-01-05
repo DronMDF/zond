@@ -5,12 +5,23 @@
 
 #include "CommandlineOptions.h"
 #include <algorithm>
+#include <stdexcept>
 
 using namespace std;
 
 CommandlineOptions::CommandlineOptions(const list<string> &options)
 	: options(options)
 {
+}
+
+string CommandlineOptions::value(const string &name) const
+{
+	auto nit = find(options.begin(), options.end(), "--" + name);
+	if (nit == options.end()) {
+		throw runtime_error("CommandlineOptions: Unspecified options '" + name + "'");
+	}
+	++nit;
+	return *nit;
 }
 
 bool CommandlineOptions::enabled(const string &name) const

@@ -9,5 +9,6 @@
 class Options {
 public:
 	virtual ~Options() = default;
+	virtual std::string value(const std::string &name) const = 0;
 	virtual bool enabled(const std::string &name) const = 0;
 };
