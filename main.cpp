@@ -21,6 +21,7 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
+	const auto options = make_shared<CommandlineOptions>(list<string>(argv + 1, argv + argc));
 	const auto address = asio::ip::make_address("0.0.0.0");
 	const auto port = 4096;
 
@@ -53,8 +54,8 @@ int main(int argc, char **argv)
 				// @todo #83 Add GET /wallet/xxx/balance entry
 				// @todo #82 Add PUT /wallet/xxx entry
 			),
-			make_shared<StrongestScores>(make_shared<ActiveScores>()),
-			make_shared<CommandlineOptions>(list<string>(argv + 1, argv + argc))
+			make_shared<StrongestScores>(make_shared<ActiveScores>(options)),
+			options
 		)
 	)->start();
 

@@ -6,12 +6,19 @@
 #pragma once
 #include "Scores.h"
 
+class Options;
+
 class ActiveScores final : public Scores {
 public:
+	explicit ActiveScores(const std::shared_ptr<const Options> &options);
+
 	std::shared_ptr<const Score> front() const override;
 	ScoreIterator begin() const override;
 	ScoreIterator end() const override;
+private:
+	const std::shared_ptr<const Options> options;
+	std::shared_ptr<const Score> active;
 
-	// @todo #134 ActiveScores should keep scores for mining
-	//  This class should drop old scores
+	// @todo #136 ActiveScores need method for extent existing score with new suffixes
+	// @todo #136 ActiveScores need to periodically renew, replace old score to new score
 };

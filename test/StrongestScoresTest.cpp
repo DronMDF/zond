@@ -4,31 +4,15 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "StrongestScoresTest.h"
-#include <2out/Representation.h>
 #include <2out/TestNamed.h>
 #include <2out/TestContainText.h>
-#include "../http/ScoreString.h"
 #include "../http/StrongestScores.h"
 #include "FakeScore.h"
 #include "FakeScores.h"
+#include "ScoresFrontRepr.h"
 
 using namespace oout;
 using namespace std;
-
-class ScoresFrontRepr final : public Representation {
-public:
-	explicit ScoresFrontRepr(const shared_ptr<const Scores> &scores)
-		: scores(scores)
-	{
-	}
-
-	string asString() const override
-	{
-		return ScoreString(scores->front()).value();
-	}
-private:
-	const shared_ptr<const Scores> scores;
-};
 
 StrongestScoresTest::StrongestScoresTest()
 	: TestSuite(

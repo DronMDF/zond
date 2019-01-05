@@ -4,6 +4,7 @@ PROJECT(zond-test)
 ADD_EXECUTABLE(
 	zond-test
 	test.cpp
+	ActiveScoresTest.cpp
 	CommandlineOptionsTest.cpp
 	ContentResponseTest.cpp
 	CriterionRepr.cpp
@@ -15,6 +16,7 @@ ADD_EXECUTABLE(
 	HttpHeaderTest.cpp
 	MethodCriterionTest.cpp
 	ParamResponseTest.cpp
+	ScoresFrontRepr.cpp
 	SelectedEntryTest.cpp
 	StrongestScoresTest.cpp
 	TestSuite.cpp

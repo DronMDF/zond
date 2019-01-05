@@ -28,6 +28,7 @@ ADD_LIBRARY(
 	ScoreString.cpp
 	SelectedEntry.cpp
 	ServerPrefix.cpp
+	ServerScore.cpp
 	StrongestScores.cpp
 	ZoldProtocolEntry.cpp
 )
