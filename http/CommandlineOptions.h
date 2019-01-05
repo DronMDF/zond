@@ -10,6 +10,7 @@
 class CommandlineOptions final : public Options {
 public:
 	explicit CommandlineOptions(const std::list<std::string> &options);
+	std::string value(const std::string &name) const override;
 	bool enabled(const std::string &name) const override;
 private:
 	const std::list<std::string> options;

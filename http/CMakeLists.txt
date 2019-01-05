@@ -21,11 +21,13 @@ ADD_LIBRARY(
 	NoOptions.cpp
 	NotFoundEntry.cpp
 	ParamResponse.cpp
+	PredefinedOptions.cpp
 	PrefixString.cpp
 	RawResponse.cpp
 	ScoreIterator.cpp
 	ScoreString.cpp
 	SelectedEntry.cpp
+	ServerPrefix.cpp
 	StrongestScores.cpp
 	ZoldProtocolEntry.cpp
 )
