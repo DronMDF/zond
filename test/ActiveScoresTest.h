@@ -5,7 +5,7 @@
 
 #include "TestSuite.h"
 
-class ZoldProtocolEntryTest final : public TestSuite {
+class ActiveScoresTest final : public TestSuite {
 public:
-	ZoldProtocolEntryTest();
+	ActiveScoresTest();
 };

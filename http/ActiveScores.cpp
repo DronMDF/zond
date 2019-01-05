@@ -4,17 +4,23 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ActiveScores.h"
+#include "ServerScore.h"
 
 using namespace std;
 
+ActiveScores::ActiveScores(const shared_ptr<const Options> &options)
+	: options(options), active(make_shared<ServerScore>(options))
+{
+}
+
 shared_ptr<const Score> ActiveScores::front() const
 {
-	return {};
+	return active;
 }
 
 ScoreIterator ActiveScores::begin() const
 {
-	return {};
+	return ScoreIterator(active);
 }
 
 ScoreIterator ActiveScores::end() const
