@@ -12,6 +12,11 @@ PredefinedOptions::PredefinedOptions(const map<string, string> &options)
 {
 }
 
+PredefinedOptions::PredefinedOptions()
+	: PredefinedOptions(map<string, string>{})
+{
+}
+
 string PredefinedOptions::value(const string &name) const
 {
 	const auto it = options.find(name);

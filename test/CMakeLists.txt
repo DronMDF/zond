@@ -15,6 +15,7 @@ ADD_EXECUTABLE(
 	FakeScores.cpp
 	HttpHeaderTest.cpp
 	MethodCriterionTest.cpp
+	MultipleSourcesOptionsTest.cpp
 	ParamResponseTest.cpp
 	ScoresFrontRepr.cpp
 	SelectedEntryTest.cpp

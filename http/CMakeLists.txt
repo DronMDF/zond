@@ -18,6 +18,7 @@ ADD_LIBRARY(
 	HttpHeader.cpp
 	HttpRequest.cpp
 	MethodCriterion.cpp
+	MultipleSourcesOptions.cpp
 	NoOptions.cpp
 	NotFoundEntry.cpp
 	ParamResponse.cpp

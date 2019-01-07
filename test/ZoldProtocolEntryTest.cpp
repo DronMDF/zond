@@ -8,6 +8,7 @@
 #include <2out/TestNamed.h>
 #include "../http/HttpHeader.h"
 #include "../http/HttpRequest.h"
+#include "../http/PredefinedOptions.h"
 #include "../http/Response.h"
 #include "../http/Score.h"
 #include "../http/Scores.h"
@@ -30,7 +31,13 @@ ZoldProtocolEntryTest::ZoldProtocolEntryTest()
 							"HTTP/1.1 200 Ok\r\n"
 							"\r\n"
 						),
-						make_shared<FakeScores>()
+						make_shared<FakeScores>(),
+						make_shared<PredefinedOptions>(
+							"protocol", "2",
+							"server-version", "0",
+							"server-repo", "repo",
+							"score-in-reply", "no"
+						)
 					),
 					make_shared<HttpRequest>("")
 				),
