@@ -16,6 +16,7 @@
 #include "EqualCriterionTest.h"
 #include "HttpHeaderTest.h"
 #include "MethodCriterionTest.h"
+#include "MultipleSourcesOptionsTest.h"
 #include "ParamResponseTest.h"
 #include "SelectedEntryTest.h"
 #include "StrongestScoresTest.h"
@@ -34,6 +35,7 @@ int main(int, char **)
 			make_shared<EqualCriterionTest>(),
 			make_shared<HttpHeaderTest>(),
 			make_shared<MethodCriterionTest>(),
+			make_shared<MultipleSourcesOptionsTest>(),
 			make_shared<ParamResponseTest>(),
 			make_shared<StrongestScoresTest>(),
 			make_shared<SelectedEntryTest>(),

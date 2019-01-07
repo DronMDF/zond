@@ -20,6 +20,7 @@ public:
 
 	// Ctor without options
 	// All extension are disabled
+	// @todo #117 ZoldProtocolEntry without Options is not work
 	ZoldProtocolEntry(
 		const std::shared_ptr<const Entry> &entry,
 		const std::shared_ptr<const Scores> &scores

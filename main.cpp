@@ -13,6 +13,8 @@
 #include "http/GetRemotesEntry.h"
 #include "http/GetVersionEntry.h"
 #include "http/MethodCriterion.h"
+#include "http/MultipleSourcesOptions.h"
+#include "http/PredefinedOptions.h"
 #include "http/SelectedEntry.h"
 #include "http/StrongestScores.h"
 #include "http/ZoldProtocolEntry.h"
@@ -21,9 +23,24 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-	const auto options = make_shared<CommandlineOptions>(list<string>(argv + 1, argv + argc));
-	const auto address = asio::ip::make_address("0.0.0.0");
-	const auto port = 4096;
+	const auto options = make_shared<MultipleSourcesOptions>(
+		make_shared<CommandlineOptions>(list<string>(argv + 1, argv + argc)),
+		// @todo #117 Get options from config file
+		make_shared<PredefinedOptions>(
+			"port", "4096",
+			"listen-address", "0.0.0.0",
+			"score-livetime", "86400",
+			"score-miningtime", "43200",
+			"server-version", "0.1.0",
+			"server-repo", "dronmdf/zond",
+			"protocol", "2",
+			"default-network", "zold",
+			"score-in-reply", "yes"
+		)
+	);
+
+	const auto address = asio::ip::make_address(options->value("listen-address"));
+	const in_port_t port = atoi(options->value("port").c_str());
 
 	asio::io_context ioc;
 

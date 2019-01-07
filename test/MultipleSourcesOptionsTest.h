@@ -5,7 +5,8 @@
 
 #include "TestSuite.h"
 
-class CommandlineOptionsTest final : public TestSuite {
+class MultipleSourcesOptionsTest final : public TestSuite {
 public:
-	CommandlineOptionsTest();
+	MultipleSourcesOptionsTest();
 };
+

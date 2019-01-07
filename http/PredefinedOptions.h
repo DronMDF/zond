@@ -13,6 +13,9 @@ public:
 	// Primary ctor
 	explicit PredefinedOptions(const std::map<std::string, std::string> &options);
 
+	// Empty options ctor
+	PredefinedOptions();
+
 	template<class ... T>
 	PredefinedOptions(const std::pair<std::string, std::string> &vp, T ... args)
 		: PredefinedOptions(std::map<std::string, std::string>{vp, args...})

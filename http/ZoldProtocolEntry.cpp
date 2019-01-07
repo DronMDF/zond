@@ -32,10 +32,9 @@ unique_ptr<const Response> ZoldProtocolEntry::process(
 {
 	return make_unique<ParamResponse>(
 		entry->process(request),
-		"X-Zold-Protocol", "2",
-		// @todo #111 Set server version
-		"X-Zold-Version", "0.0.0",
-		"X-Zold-Repo", "DronMDF/zond",
+		"X-Zold-Protocol", options->value("protocol"),
+		"X-Zold-Version", options->value("server-version"),
+		"X-Zold-Repo", options->value("server-repo"),
 		"X-Zold-Score", options->enabled("score-in-reply")
 			? ScoreString(scores->front()).value()
 			: "Under construction"
