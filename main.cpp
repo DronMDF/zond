@@ -6,6 +6,7 @@
 #include <memory>
 #include <asio/ts/internet.hpp>
 #include "Listener.h"
+#include "Periodic.h"
 #include "http/ActiveScores.h"
 #include "http/CommandlineOptions.h"
 #include "http/EqualCriterion.h"
@@ -39,10 +40,14 @@ int main(int argc, char **argv)
 		)
 	);
 
-	const auto address = asio::ip::make_address(options->value("listen-address"));
-	const in_port_t port = atoi(options->value("port").c_str());
+	const auto scores = make_shared<ActiveScores>(options);
 
 	asio::io_context ioc;
+
+	make_shared<Periodic>(&ioc, bind(&ActiveScores::renew, scores), 1h)->start();
+
+	const auto address = asio::ip::make_address(options->value("listen-address"));
+	const in_port_t port = atoi(options->value("port").c_str());
 
 	make_shared<Listener>(
 		&ioc,
@@ -71,7 +76,7 @@ int main(int argc, char **argv)
 				// @todo #83 Add GET /wallet/xxx/balance entry
 				// @todo #82 Add PUT /wallet/xxx entry
 			),
-			make_shared<StrongestScores>(make_shared<ActiveScores>(options)),
+			make_shared<StrongestScores>(scores),
 			options
 		)
 	)->start();

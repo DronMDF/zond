@@ -27,3 +27,7 @@ ScoreIterator ActiveScores::end() const
 {
 	return {};
 }
+
+void ActiveScores::renew()
+{
+}
