@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 
 	asio::io_context ioc;
 
-	make_shared<Periodic>(&ioc, bind(&ActiveScores::renew, scores), 1h)->start();
+	make_shared<Periodic>(&ioc, bind(&ActiveScores::renew, scores), 1min)->start();
 
 	const auto address = asio::ip::make_address(options->value("listen-address"));
 	const in_port_t port = atoi(options->value("port").c_str());
