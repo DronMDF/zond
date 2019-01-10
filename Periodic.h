@@ -17,6 +17,8 @@ public:
 		const std::function<void ()> &func,
 		const std::chrono::system_clock::duration &interval
 	);
+	// @todo #142 Periodic should have ctor for construct from option value
+	//   like this: Periodic(..., options, "score-miningtime")
 
 	void start();
 

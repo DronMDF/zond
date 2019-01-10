@@ -16,11 +16,11 @@ public:
 	ScoreIterator begin() const override;
 	ScoreIterator end() const override;
 
-	// @todo #136 ActiveScores need to periodically renew, replace old score to new score
 	void renew();
 private:
 	const std::shared_ptr<const Options> options;
 	std::shared_ptr<const Score> active;
+	std::shared_ptr<const Score> mined;
 
 	// @todo #136 ActiveScores need method for extent existing score with new suffixes
 };
