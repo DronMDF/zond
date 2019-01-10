@@ -6,6 +6,7 @@
 #include "Periodic.h"
 #include <iostream>
 #include <asio/placeholders.hpp>
+#include "http/Options.h"
 
 using namespace std;
 
