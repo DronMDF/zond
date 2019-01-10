@@ -11,8 +11,7 @@
 class Entry;
 class HttpHeader;
 
-class Session : public std::enable_shared_from_this<Session>
-{
+class Session final : public std::enable_shared_from_this<Session> {
 public:
 	Session(asio::ip::tcp::socket socket, const std::shared_ptr<const Entry> &entry);
 

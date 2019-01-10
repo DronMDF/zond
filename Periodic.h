@@ -10,7 +10,7 @@
 #include <asio/ts/internet.hpp>
 #include <asio/ts/timer.hpp>
 
-class Periodic : public std::enable_shared_from_this<Periodic> {
+class Periodic final : public std::enable_shared_from_this<Periodic> {
 public:
 	Periodic(
 		asio::io_context *ioc,
