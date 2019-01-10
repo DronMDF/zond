@@ -6,6 +6,7 @@
 #include "Periodic.h"
 #include <iostream>
 #include <asio/placeholders.hpp>
+#include "http/Options.h"
 
 using namespace std;
 
@@ -14,6 +15,15 @@ Periodic::Periodic(
 	const function<void ()> &func,
 	const chrono::system_clock::duration &interval
 ) : timer(*ioc, interval), func(func), interval(interval)
+{
+}
+
+Periodic::Periodic(
+	asio::io_context *ioc,
+	const function<void ()> &func,
+	const shared_ptr<const Options> &options,
+	const string &name
+) : Periodic(ioc, func, chrono::seconds(atoi(options->value(name).c_str())))
 {
 }
 

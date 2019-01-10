@@ -10,6 +10,8 @@
 #include <asio/ts/internet.hpp>
 #include <asio/ts/timer.hpp>
 
+class Options;
+
 class Periodic final : public std::enable_shared_from_this<Periodic> {
 public:
 	Periodic(
@@ -17,8 +19,14 @@ public:
 		const std::function<void ()> &func,
 		const std::chrono::system_clock::duration &interval
 	);
-	// @todo #142 Periodic should have ctor for construct from option value
-	//  like this: Periodic(..., options, "score-miningtime")
+
+	// Get interval from options (as second)
+	Periodic(
+		asio::io_context *ioc,
+		const std::function<void ()> &func,
+		const std::shared_ptr<const Options> &options,
+		const std::string &name
+	);
 
 	void start();
 
