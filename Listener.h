@@ -9,8 +9,7 @@
 
 class Entry;
 
-class Listener : public std::enable_shared_from_this<Listener>
-{
+class Listener final : public std::enable_shared_from_this<Listener> {
 public:
 	Listener(
 		asio::io_context *ioc,
