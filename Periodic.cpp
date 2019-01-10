@@ -17,6 +17,15 @@ Periodic::Periodic(
 {
 }
 
+Periodic::Periodic(
+	asio::io_context *ioc,
+	const function<void ()> &func,
+	const shared_ptr<const Options> &options,
+	const string &name
+) : Periodic(ioc, func, chrono::seconds(atoi(options->value(name).c_str())))
+{
+}
+
 void Periodic::start()
 {
 	timer.async_wait(bind(&Periodic::handler, shared_from_this(), placeholders::_1));
