@@ -4,6 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ServerPrefix.h"
+#include "IntOption.h"
 #include "Options.h"
 
 using namespace std;
@@ -11,7 +12,7 @@ using namespace std;
 ServerPrefix::ServerPrefix(const shared_ptr<const Options> &options)
 	: _time(chrono::system_clock::now()),
 	  _host(options->value("host")),
-	  _port(atoi(options->value("port").c_str())),
+	  _port(IntOption(options, "port")),
 	  // @todo #136 Create invoice class
 	  _invoice(options->value("pubkey").substr(0, 8) + "@" + options->value("wallet"))
 {
