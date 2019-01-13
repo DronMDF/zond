@@ -9,8 +9,6 @@
 class Options {
 public:
 	virtual ~Options() = default;
-	// @todo #142 Option should have method for string/int values
-	//  as_int/as_string?
 	virtual std::string value(const std::string &name) const = 0;
 	virtual bool enabled(const std::string &name) const = 0;
 };
