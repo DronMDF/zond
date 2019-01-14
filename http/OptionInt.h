@@ -9,10 +9,10 @@
 
 class Options;
 
-// @todo #152 Now, by analogy with IntOption, need to introduce StringOption, EnableOption
-class IntOption final {
+// @todo #152 Now, by analogy with OptionInt, need to introduce StringOption, EnableOption
+class OptionInt final {
 public:
-	IntOption(const std::shared_ptr<const Options> &options, const std::string &name);
+	OptionInt(const std::shared_ptr<const Options> &options, const std::string &name);
 	operator int() const;
 private:
 	const std::shared_ptr<const Options> options;

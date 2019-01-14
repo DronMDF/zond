@@ -3,17 +3,17 @@
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
 
-#include "IntOption.h"
+#include "OptionInt.h"
 #include "Options.h"
 
 using namespace std;
 
-IntOption::IntOption(const shared_ptr<const Options> &options, const string &name)
+OptionInt::OptionInt(const shared_ptr<const Options> &options, const string &name)
 	: options(options), name(name)
 {
 }
 
-IntOption::operator int() const
+OptionInt::operator int() const
 {
 	return atoi(options->value(name).c_str());
 }
