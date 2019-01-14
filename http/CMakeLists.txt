@@ -20,6 +20,8 @@ ADD_LIBRARY(
 	OptionInt.cpp
 	OptionSeconds.cpp
 	MethodCriterion.cpp
+	MiningPool.cpp
+	MiningThread.cpp
 	MultipleSourcesOptions.cpp
 	NoOptions.cpp
 	NotFoundEntry.cpp

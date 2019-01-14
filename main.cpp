@@ -13,9 +13,10 @@
 #include "http/GetInfoEntry.h"
 #include "http/GetRemotesEntry.h"
 #include "http/GetVersionEntry.h"
-#include "http/OptionInt.h"
 #include "http/MethodCriterion.h"
+#include "http/MiningPool.h"
 #include "http/MultipleSourcesOptions.h"
+#include "http/OptionInt.h"
 #include "http/PredefinedOptions.h"
 #include "http/SelectedEntry.h"
 #include "http/StrongestScores.h"
@@ -33,10 +34,13 @@ int main(int argc, char **argv)
 			"listen-address", "0.0.0.0",
 			"score-livetime", "86400",
 			"score-miningtime", "43200",
+			"mining-threads", "0",
+			"mining-interval", "10",
 			"server-version", "0.1.0",
 			"server-repo", "dronmdf/zond",
 			"protocol", "2",
 			"default-network", "zold",
+			// Features
 			"score-in-reply", "yes"
 		)
 	);
@@ -51,6 +55,8 @@ int main(int argc, char **argv)
 		options,
 		"score-miningtime"
 	)->start();
+
+	MiningPool mining_pool(options, scores);
 
 	const auto address = asio::ip::make_address(options->value("listen-address"));
 	const in_port_t port = OptionInt(options, "port");
