@@ -13,7 +13,7 @@
 #include "http/GetInfoEntry.h"
 #include "http/GetRemotesEntry.h"
 #include "http/GetVersionEntry.h"
-#include "http/IntOption.h"
+#include "http/OptionInt.h"
 #include "http/MethodCriterion.h"
 #include "http/MultipleSourcesOptions.h"
 #include "http/PredefinedOptions.h"
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 	)->start();
 
 	const auto address = asio::ip::make_address(options->value("listen-address"));
-	const in_port_t port = IntOption(options, "port");
+	const in_port_t port = OptionInt(options, "port");
 
 	make_shared<Listener>(
 		&ioc,

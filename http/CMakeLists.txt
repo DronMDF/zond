@@ -17,7 +17,7 @@ ADD_LIBRARY(
 	GetVersionEntry.cpp
 	HttpHeader.cpp
 	HttpRequest.cpp
-	IntOption.cpp
+	OptionInt.cpp
 	MethodCriterion.cpp
 	MultipleSourcesOptions.cpp
 	NoOptions.cpp
