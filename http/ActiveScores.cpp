@@ -5,7 +5,7 @@
 
 #include "ActiveScores.h"
 #include <iostream>
-#include "OptionInt.h"
+#include "OptionSeconds.h"
 #include "Prefix.h"
 #include "ScoreString.h"
 #include "ServerScore.h"
@@ -34,15 +34,14 @@ ScoreIterator ActiveScores::end() const
 
 void ActiveScores::renew()
 {
-	// @todo #157 Create OptionSeconds for evaluate option value as sec
-	const auto score_livetime = chrono::seconds(OptionInt(options, "score-livetime"));
-	if (active->prefix()->time() + score_livetime < chrono::system_clock::now()) {
+	const chrono::system_clock::duration ttl = OptionSeconds(options, "score-livetime");
+	if (active->prefix()->time() + ttl < chrono::system_clock::now()) {
 		cout << "ActiveScores: expired score: " << ScoreString(active).value() << endl;
 		active = mined;
 	}
 
-	const auto score_miningtime = chrono::seconds(OptionInt(options, "score-miningtime"));
-	if (mined->prefix()->time() + score_miningtime < chrono::system_clock::now()) {
+	const chrono::system_clock::duration ttm = OptionSeconds(options, "score-miningtime");
+	if (mined->prefix()->time() + ttm < chrono::system_clock::now()) {
 		mined = make_shared<ServerScore>(options);
 		cout << "ActiveScores: new score for mining: " << ScoreString(mined).value() << endl;
 	}
