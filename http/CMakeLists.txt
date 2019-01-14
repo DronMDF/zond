@@ -18,6 +18,7 @@ ADD_LIBRARY(
 	HttpHeader.cpp
 	HttpRequest.cpp
 	OptionInt.cpp
+	OptionSeconds.cpp
 	MethodCriterion.cpp
 	MultipleSourcesOptions.cpp
 	NoOptions.cpp

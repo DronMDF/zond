@@ -6,7 +6,7 @@
 #include "Periodic.h"
 #include <iostream>
 #include <asio/placeholders.hpp>
-#include "http/OptionInt.h"
+#include "http/OptionSeconds.h"
 
 using namespace std;
 
@@ -23,7 +23,7 @@ Periodic::Periodic(
 	const function<void ()> &func,
 	const shared_ptr<const Options> &options,
 	const string &name
-) : Periodic(ioc, func, chrono::seconds(OptionInt(options, name)))
+) : Periodic(ioc, func, OptionSeconds(options, name))
 {
 }
 
