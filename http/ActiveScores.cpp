@@ -22,6 +22,11 @@ shared_ptr<const Score> ActiveScores::front() const
 	return active;
 }
 
+shared_ptr<const Score> ActiveScores::back() const
+{
+	return mined;
+}
+
 ScoreIterator ActiveScores::begin() const
 {
 	return ScoreIterator(active, make_shared<ScoreIterator>(mined));
@@ -45,4 +50,9 @@ void ActiveScores::renew()
 		mined = make_shared<ServerScore>(options);
 		cout << "ActiveScores: new score for mining: " << ScoreString(mined).value() << endl;
 	}
+}
+
+void ActiveScores::extend(const string &suffix [[gnu::unused]])
+{
+	// @todo #136 ActiveScores need method for extent existing score with new suffixes
 }
