@@ -4,6 +4,7 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
+#include <atomic>
 #include <memory>
 #include <thread>
 
@@ -22,5 +23,8 @@ public:
 private:
 	const std::shared_ptr<ActiveScores> scores;
 	const std::shared_ptr<const Options> options;
+	std::atomic_bool go;
 	std::thread thread;
+
+	void routine() const;
 };
