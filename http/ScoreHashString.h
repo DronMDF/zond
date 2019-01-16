@@ -7,16 +7,14 @@
 #include <memory>
 
 class Score;
-class Options;
 
-class ScoreValid {
+class ScoreHashString final {
 public:
-	ScoreValid(
-		const std::shared_ptr<const Score> &score,
-		const std::shared_ptr<const Options> &options
-	);
-	operator bool() const;
+	// @todo #170 ScoreValid should check strength on each hash level
+	//  Need make ScoreStringHash ctor with intermediate data
+	explicit ScoreHashString(const std::shared_ptr<const Score> &score);
+
+	operator std::string() const;
 private:
 	const std::shared_ptr<const Score> score;
-	const std::shared_ptr<const Options> options;
 };

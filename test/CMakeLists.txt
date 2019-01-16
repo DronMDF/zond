@@ -1,6 +1,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(zond-test)
 
+FIND_PACKAGE(OpenSSL REQUIRED)
+
 ADD_EXECUTABLE(
 	zond-test
 	test.cpp
@@ -28,6 +30,7 @@ TARGET_LINK_LIBRARIES(
 	zond-test
 	2out
 	zond-http
+	${OPENSSL_LIBRARIES}
 )
 
 ADD_CUSTOM_COMMAND(
