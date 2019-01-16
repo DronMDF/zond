@@ -57,7 +57,7 @@ void ActiveScores::renew()
 void ActiveScores::extend(const string &suffix)
 {
 	const auto next = make_shared<SuffixScore>(mined, suffix);
-	if (ScoreValid(next)) {
+	if (ScoreValid(next, options)) {
 		mined = next;
 	}
 }

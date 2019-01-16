@@ -29,12 +29,14 @@ ADD_LIBRARY(
 	PredefinedOptions.cpp
 	PrefixString.cpp
 	RawResponse.cpp
+	ScoreHashString.cpp
 	ScoreIterator.cpp
 	ScoreString.cpp
 	ScoreValid.cpp
 	SelectedEntry.cpp
 	ServerPrefix.cpp
 	ServerScore.cpp
+	Strength.cpp
 	StrongestScores.cpp
 	SuffixScore.cpp
 	ZoldProtocolEntry.cpp
