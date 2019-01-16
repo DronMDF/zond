@@ -31,9 +31,11 @@ ADD_LIBRARY(
 	RawResponse.cpp
 	ScoreIterator.cpp
 	ScoreString.cpp
+	ScoreValid.cpp
 	SelectedEntry.cpp
 	ServerPrefix.cpp
 	ServerScore.cpp
 	StrongestScores.cpp
+	SuffixScore.cpp
 	ZoldProtocolEntry.cpp
 )

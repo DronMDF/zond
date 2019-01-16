@@ -41,6 +41,7 @@ void MiningThread::routine() const
 		uint64_t nonce = rn(re);
 
 		const auto score = scores->back();
+		// @todo #141 ScoreString is wrong base for mining new
 		const auto base = ScoreString(score).value() + " ";
 
 		SHA256_CTX ctx;

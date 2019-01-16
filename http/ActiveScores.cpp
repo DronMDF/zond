@@ -8,7 +8,9 @@
 #include "OptionSeconds.h"
 #include "Prefix.h"
 #include "ScoreString.h"
+#include "ScoreValid.h"
 #include "ServerScore.h"
+#include "SuffixScore.h"
 
 using namespace std;
 
@@ -52,7 +54,10 @@ void ActiveScores::renew()
 	}
 }
 
-void ActiveScores::extend(const string &suffix [[gnu::unused]])
+void ActiveScores::extend(const string &suffix)
 {
-	// @todo #136 ActiveScores need method for extent existing score with new suffixes
+	const auto next = make_shared<SuffixScore>(mined, suffix);
+	if (ScoreValid(next)) {
+		mined = next;
+	}
 }
