@@ -5,7 +5,6 @@
 
 #include "MiningThread.h"
 #include <algorithm>
-#include <iostream>
 #include <random>
 #include <openssl/sha.h>
 #include "ActiveScores.h"
@@ -30,7 +29,6 @@ MiningThread::~MiningThread()
 
 void MiningThread::routine() const
 {
-	cout << "Start mining thread: " << this_thread::get_id() << endl;
 	const chrono::system_clock::duration mining_interval = OptionSeconds(options, "mining-interval");
 	const auto strength = OptionInt(options, "strength");
 
@@ -51,6 +49,7 @@ void MiningThread::routine() const
 
 		while (chrono::system_clock::now() < ct) {
 			SHA256_CTX lctx = ctx;
+			// @todo #165 to_string is ugly in scode string
 			const auto suffix = to_string(nonce);
 			SHA256_Update(&lctx, suffix.data(), suffix.size());
 			array<uint8_t, SHA256_DIGEST_LENGTH> hash;
@@ -61,8 +60,8 @@ void MiningThread::routine() const
 				hash.rend(),
 				[](uint8_t v){ return v == 0; }
 			);
-			const auto zeroes = distance(hash.rbegin(), nz)
-				+ ((nz != hash.rend() && (*nz & 0xf0) == 0) ? 1 : 0);
+			const auto zeroes = distance(hash.rbegin(), nz) * 2
+				+ ((nz != hash.rend() && (*nz & 0xf) == 0) ? 1 : 0);
 
 			if (zeroes >= strength) {
 				scores->extend(suffix);
