@@ -20,6 +20,7 @@ ADD_EXECUTABLE(
 	MultipleSourcesOptionsTest.cpp
 	ParamResponseTest.cpp
 	ScoresFrontRepr.cpp
+	ScoreValidTest.cpp
 	SelectedEntryTest.cpp
 	StrongestScoresTest.cpp
 	TestSuite.cpp

@@ -27,6 +27,10 @@ ScoreValid::operator bool() const
 		return false;
 	}
 
+	if (score->suffixes().empty()) {
+		return true;
+	}
+
 	// @todo #170 ScoreValid check only last level of hash - this is wrong
 	if (Strength(ScoreHashString(score)) < OptionInt(options, "strength")) {
 		return false;

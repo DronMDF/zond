@@ -6,7 +6,7 @@
 #pragma once
 #include "TestSuite.h"
 
-class ContentResponseTest final : public TestSuite {
+class ScoreValidTest final : public TestSuite {
 public:
-	ContentResponseTest();
+	ScoreValidTest();
 };
