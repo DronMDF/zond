@@ -9,7 +9,8 @@
 #include <2out/TestEqual.h>
 #include "../http/PredefinedOptions.h"
 #include "../http/ScoreValid.h"
-#include "../http/ServerScore.h"
+#include "../http/StringScore.h"
+#include "FakeScore.h"
 
 using namespace oout;
 using namespace std;
@@ -38,20 +39,29 @@ ScoreValidTest::ScoreValidTest()
 			"ScoreValid is valid for new score without suffixes",
 			make_shared<TestEqual>(
 				make_shared<ScoreValidRepr>(
-					make_shared<ServerScore>(
-						make_shared<PredefinedOptions>(
-							"host", "host",
-							"port", "222",
-							"pubkey", "publickey",
-							"wallet", "1234567812345678"
-						)
-					),
+					make_shared<FakeScore>(0),
 					make_shared<PredefinedOptions>(
 						"score-livetime", "600",
 						"strength", "8"
 					)
 				),
 				"valid"
+			)
+		),
+		make_shared<TestNamed>(
+			"ScoreValid is invalid for outdated Score",
+			make_shared<TestEqual>(
+				make_shared<ScoreValidRepr>(
+					make_shared<StringScore>(
+						"2019-01-19T17:20:53Z b2.zold.io "
+						"4096 DpTOG8hC@912ecc24b32dbe74"
+					),
+					make_shared<PredefinedOptions>(
+						"score-livetime", "600",
+						"strength", "8"
+					)
+				),
+				"invalid"
 			)
 		)
 	)

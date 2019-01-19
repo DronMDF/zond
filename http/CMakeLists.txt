@@ -38,6 +38,8 @@ ADD_LIBRARY(
 	ServerScore.cpp
 	Strength.cpp
 	StrongestScores.cpp
+	StringPrefix.cpp
+	StringScore.cpp
 	SuffixScore.cpp
 	ZoldProtocolEntry.cpp
 )
