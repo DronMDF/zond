@@ -50,7 +50,6 @@ void MiningThread::routine() const
 
 		while (chrono::system_clock::now() < ct) {
 			SHA256_CTX lctx = ctx;
-			// @todo #165 to_string is ugly in scode string
 			const auto suffix = to_string(nonce);
 			SHA256_Update(&lctx, suffix.data(), suffix.size());
 			array<uint8_t, SHA256_DIGEST_LENGTH> hash;

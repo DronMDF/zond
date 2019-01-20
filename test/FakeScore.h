@@ -8,9 +8,14 @@
 
 class FakeScore final : public Score {
 public:
-	explicit FakeScore(size_t strength = 0);
+	explicit FakeScore(int rank = 0);
 	std::shared_ptr<const Prefix> prefix() const override;
 	std::list<std::string> suffixes() const override;
 private:
-	const size_t strength;
+	std::shared_ptr<const Score> score;
+
+	std::shared_ptr<const Score> make_score(
+		const std::shared_ptr<const Score> &score,
+		int rank
+	) const;
 };

@@ -10,6 +10,7 @@
 #include "../http/PredefinedOptions.h"
 #include "../http/ScoreValid.h"
 #include "../http/StringScore.h"
+#include "../http/SuffixScore.h"
 #include "FakeScore.h"
 
 using namespace oout;
@@ -59,6 +60,40 @@ ScoreValidTest::ScoreValidTest()
 					make_shared<PredefinedOptions>(
 						"score-livetime", "600",
 						"strength", "8"
+					)
+				),
+				"invalid"
+			)
+		),
+		make_shared<TestNamed>(
+			"ScoreValid is valid for score with walid suffixes",
+			make_shared<TestEqual>(
+				make_shared<ScoreValidRepr>(
+					make_shared<FakeScore>(2),
+					make_shared<PredefinedOptions>(
+						"score-livetime", "600",
+						"strength", "3"
+					)
+				),
+				"valid"
+			)
+		),
+		make_shared<TestNamed>(
+			"ScoreValid is invalid for score with wrong suffix in middle",
+			make_shared<TestEqual>(
+				make_shared<ScoreValidRepr>(
+					make_shared<SuffixScore>(
+						make_shared<SuffixScore>(
+							make_shared<FakeScore>(0),
+							"fakesuffix"
+						),
+						make_shared<PredefinedOptions>(
+							"strength", "3"
+						)
+					),
+					make_shared<PredefinedOptions>(
+						"score-livetime", "600",
+						"strength", "3"
 					)
 				),
 				"invalid"
