@@ -5,6 +5,7 @@
 
 #include "StrongestScoresTest.h"
 #include <2out/TestNamed.h>
+#include <2out/TestSkipped.h>
 #include <2out/TestContainText.h>
 #include "../http/StrongestScores.h"
 #include "FakeScore.h"
@@ -18,16 +19,19 @@ StrongestScoresTest::StrongestScoresTest()
 	: TestSuite(
 		make_shared<TestNamed>(
 			"StrongestScore select last score from Scores",
-			make_shared<TestContainText>(
-				make_shared<ScoresFrontRepr>(
-					make_shared<StrongestScores>(
-						make_shared<FakeScores>(
-							make_shared<FakeScore>(3),
-							make_shared<FakeScore>(5)
+			// @todo #172 compare score rank for check strongest
+			make_shared<TestSkipped>(
+				make_shared<TestContainText>(
+					make_shared<ScoresFrontRepr>(
+						make_shared<StrongestScores>(
+							make_shared<FakeScores>(
+								make_shared<FakeScore>(3),
+								make_shared<FakeScore>(5)
+							)
 						)
-					)
-				),
-				"fakesuffix fakesuffix fakesuffix fakesuffix fakesuffix"
+					),
+					"fakesuffix fakesuffix fakesuffix fakesuffix fakesuffix"
+				)
 			)
 		)
 	)

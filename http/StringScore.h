@@ -4,18 +4,13 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
-#include "../http/Score.h"
+#include "Score.h"
 
-class FakeScore final : public Score {
+class StringScore final : public Score {
 public:
-	explicit FakeScore(int rank = 0);
+	explicit StringScore(const std::string &score);
 	std::shared_ptr<const Prefix> prefix() const override;
 	std::list<std::string> suffixes() const override;
 private:
-	std::shared_ptr<const Score> score;
-
-	std::shared_ptr<const Score> make_score(
-		const std::shared_ptr<const Score> &score,
-		int rank
-	) const;
+	const std::string score;
 };
