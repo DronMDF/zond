@@ -4,15 +4,14 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #pragma once
-#include <memory>
+#include <string>
 
-class Score;
-
-class ScoreHashString final {
+class HashString final {
 public:
-	explicit ScoreHashString(const std::shared_ptr<const Score> &score);
+	explicit HashString(const std::string &str);
+	HashString(const std::string &base, const std::string &suffix);
 
 	operator std::string() const;
 private:
-	const std::shared_ptr<const Score> score;
+	const std::string str;
 };
