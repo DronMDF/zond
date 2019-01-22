@@ -15,6 +15,7 @@ ADD_LIBRARY(
 	GetInfoEntry.cpp
 	GetRemotesEntry.cpp
 	GetVersionEntry.cpp
+	HashString.cpp
 	HttpHeader.cpp
 	HttpRequest.cpp
 	OptionInt.cpp

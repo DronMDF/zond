@@ -4,15 +4,12 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ScoreValid.h"
-#include <sstream>
-#include <iomanip>
-#include <openssl/sha.h>
+#include "HashString.h"
 #include "OptionInt.h"
 #include "OptionSeconds.h"
 #include "Prefix.h"
 #include "PrefixString.h"
 #include "Score.h"
-#include "ScoreHashString.h"
 #include "Strength.h"
 
 using namespace std;
@@ -33,18 +30,7 @@ ScoreValid::operator bool() const
 
 	string base = PrefixString(score->prefix()).value();
 	for (const auto &s : score->suffixes()) {
-		string line = base + " " + s;
-		SHA256_CTX ctx;
-		SHA256_Init(&ctx);
-		SHA256_Update(&ctx, line.data(), line.size());
-		array<uint8_t, SHA256_DIGEST_LENGTH> hash;
-		SHA256_Final(&hash[0], &ctx);
-
-		ostringstream hl;
-		for (const auto &h : hash) {
-			hl << hex << setw(2) << setfill('0') << int(h);
-		}
-		base = hl.str();
+		base = HashString(base, s);
 		if (Strength(base) < OptionInt(options, "strength")) {
 			return false;
 		}
