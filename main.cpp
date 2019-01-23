@@ -40,9 +40,8 @@ int main(int argc, char **argv)
 			"server-repo", "dronmdf/zond",
 			"protocol", "2",
 			"default-network", "zold",
-			"strength", "6",
+			"strength", "6"
 			// Features
-			"score-in-reply", "yes"
 		)
 	);
 

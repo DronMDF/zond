@@ -35,8 +35,6 @@ unique_ptr<const Response> ZoldProtocolEntry::process(
 		"X-Zold-Protocol", options->value("protocol"),
 		"X-Zold-Version", options->value("server-version"),
 		"X-Zold-Repo", options->value("server-repo"),
-		"X-Zold-Score", options->enabled("score-in-reply")
-			? ScoreString(scores->front()).value()
-			: "Under construction"
+		"X-Zold-Score", ScoreString(scores->front()).value()
 	);
 }
