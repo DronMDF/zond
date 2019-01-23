@@ -15,6 +15,7 @@
 #include "../http/ZoldProtocolEntry.h"
 #include "EntryRepr.h"
 #include "FakeEntry.h"
+#include "FakeScore.h"
 #include "FakeScores.h"
 
 using namespace std;
@@ -31,12 +32,11 @@ ZoldProtocolEntryTest::ZoldProtocolEntryTest()
 							"HTTP/1.1 200 Ok\r\n"
 							"\r\n"
 						),
-						make_shared<FakeScores>(),
+						make_shared<FakeScores>(make_shared<FakeScore>()),
 						make_shared<PredefinedOptions>(
 							"protocol", "2",
 							"server-version", "0",
-							"server-repo", "repo",
-							"score-in-reply", "no"
+							"server-repo", "repo"
 						)
 					),
 					make_shared<HttpRequest>("")
