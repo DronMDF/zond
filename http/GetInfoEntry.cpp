@@ -6,17 +6,24 @@
 #include "GetInfoEntry.h"
 #include <nlohmann/json.hpp>
 #include "ContentResponse.h"
+#include "ScoreJson.h"
+#include "Scores.h"
 
 using namespace std;
+
+GetInfoEntry::GetInfoEntry(const shared_ptr<const Scores> &scores)
+	: scores(scores)
+{
+}
 
 unique_ptr<const Response> GetInfoEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
+	nlohmann::json score = ScoreJson(scores->front());
 	return make_unique<ContentResponse>(
 		nlohmann::json{
-			// @todo #91 Convert Score to json
-			{"score", nlohmann::json::object()}
+			{"score", score}
 		}
 	);
 }

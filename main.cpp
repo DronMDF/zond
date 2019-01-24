@@ -71,7 +71,9 @@ int main(int argc, char **argv)
 					"GET",
 					make_shared<EqualCriterion>("/")
 				),
-				make_shared<GetInfoEntry>(),
+				make_shared<GetInfoEntry>(
+					make_shared<StrongestScores>(scores)
+				),
 				// Server version entry
 				make_shared<MethodCriterion>(
 					"GET",
