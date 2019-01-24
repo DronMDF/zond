@@ -13,6 +13,10 @@ unique_ptr<const Response> GetInfoEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
-	// @todo #82 Add Score to Info response
-	return make_unique<ContentResponse>(nlohmann::json::object());
+	return make_unique<ContentResponse>(
+		nlohmann::json{
+			// @todo #91 Convert Score to json
+			{"score", nlohmann::json::object()}
+		}
+	);
 }
