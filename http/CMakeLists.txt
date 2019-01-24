@@ -28,10 +28,12 @@ ADD_LIBRARY(
 	NotFoundEntry.cpp
 	ParamResponse.cpp
 	PredefinedOptions.cpp
+	PrefixJson.cpp
 	PrefixString.cpp
 	RawResponse.cpp
 	ScoreHashString.cpp
 	ScoreIterator.cpp
+	ScoreJson.cpp
 	ScoreString.cpp
 	ScoreValid.cpp
 	SelectedEntry.cpp

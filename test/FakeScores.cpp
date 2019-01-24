@@ -14,7 +14,7 @@ FakeScores::FakeScores(const shared_ptr<const ScoreIterator> &scores)
 }
 
 FakeScores::FakeScores()
-	: FakeScores(make_shared<ScoreIterator>())
+	: FakeScores(make_shared<FakeScore>())
 {
 }
 
