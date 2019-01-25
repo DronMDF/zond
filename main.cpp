@@ -85,7 +85,9 @@ int main(int argc, char **argv)
 					"GET",
 					make_shared<EqualCriterion>("/remotes")
 				),
-				make_shared<GetRemotesEntry>()
+				make_shared<GetRemotesEntry>(
+					make_shared<StrongestScores>(scores)
+				)
 				// @todo #82 Add GET /wallet/xxx entry
 				// @todo #83 Add GET /wallet/xxx/balance entry
 				// @todo #82 Add PUT /wallet/xxx entry
