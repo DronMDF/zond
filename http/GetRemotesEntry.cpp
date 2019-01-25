@@ -6,6 +6,7 @@
 #include "GetRemotesEntry.h"
 #include <nlohmann/json.hpp>
 #include "ContentResponse.h"
+#include "Options.h"
 #include "ScoreJson.h"
 #include "Scores.h"
 
@@ -26,6 +27,7 @@ unique_ptr<const Response> GetRemotesEntry::process(
 	nlohmann::json score = ScoreJson(scores->front(), options);
 	return make_unique<ContentResponse>(
 		nlohmann::json{
+			{"version", options->value("version")},
 			{"score", score},
 			{"all", nlohmann::json::array()}
 		}

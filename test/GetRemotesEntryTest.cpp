@@ -23,11 +23,30 @@ GetRemotesEntryTest::GetRemotesEntryTest()
 				make_shared<EntryRepr>(
 					make_shared<GetRemotesEntry>(
 						make_shared<FakeScores>(),
-						make_shared<PredefinedOptions>("strength", "8")
+						make_shared<PredefinedOptions>(
+							"strength", "8",
+							"version", "3.2.1"
+						)
 					),
 					make_shared<HttpRequest>("")
 				),
 				R"("score":{)"
+			)
+		),
+		make_shared<TestNamed>(
+			"GetRemotesEntry reply contain version field",
+			make_shared<TestContainText>(
+				make_shared<EntryRepr>(
+					make_shared<GetRemotesEntry>(
+						make_shared<FakeScores>(),
+						make_shared<PredefinedOptions>(
+							"strength", "8",
+							"version", "1.2.3"
+						)
+					),
+					make_shared<HttpRequest>("")
+				),
+				R"("version":"1.2.3")"
 			)
 		)
 	)
