@@ -15,6 +15,7 @@
 #include "ContentResponseTest.h"
 #include "EqualCriterionTest.h"
 #include "GetInfoEntryTest.h"
+#include "GetRemotesEntryTest.h"
 #include "HttpHeaderTest.h"
 #include "MethodCriterionTest.h"
 #include "MultipleSourcesOptionsTest.h"
@@ -36,6 +37,7 @@ int main(int, char **)
 			make_shared<ContentResponseTest>(),
 			make_shared<EqualCriterionTest>(),
 			make_shared<GetInfoEntryTest>(),
+			make_shared<GetRemotesEntryTest>(),
 			make_shared<HttpHeaderTest>(),
 			make_shared<MethodCriterionTest>(),
 			make_shared<MultipleSourcesOptionsTest>(),
