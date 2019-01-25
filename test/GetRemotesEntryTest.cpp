@@ -8,6 +8,7 @@
 #include <2out/TestNamed.h>
 #include "../http/GetRemotesEntry.h"
 #include "../http/HttpRequest.h"
+#include "../http/PredefinedOptions.h"
 #include "EntryRepr.h"
 #include "FakeScores.h"
 
@@ -21,7 +22,8 @@ GetRemotesEntryTest::GetRemotesEntryTest()
 			make_shared<TestContainText>(
 				make_shared<EntryRepr>(
 					make_shared<GetRemotesEntry>(
-						make_shared<FakeScores>()
+						make_shared<FakeScores>(),
+						make_shared<PredefinedOptions>("strength", "8")
 					),
 					make_shared<HttpRequest>("")
 				),

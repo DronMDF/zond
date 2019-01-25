@@ -72,7 +72,8 @@ int main(int argc, char **argv)
 					make_shared<EqualCriterion>("/")
 				),
 				make_shared<GetInfoEntry>(
-					make_shared<StrongestScores>(scores)
+					make_shared<StrongestScores>(scores),
+					options
 				),
 				// Server version entry
 				make_shared<MethodCriterion>(
@@ -86,7 +87,8 @@ int main(int argc, char **argv)
 					make_shared<EqualCriterion>("/remotes")
 				),
 				make_shared<GetRemotesEntry>(
-					make_shared<StrongestScores>(scores)
+					make_shared<StrongestScores>(scores),
+					options
 				)
 				// @todo #82 Add GET /wallet/xxx entry
 				// @todo #83 Add GET /wallet/xxx/balance entry

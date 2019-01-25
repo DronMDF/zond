@@ -4,21 +4,24 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ScoreJson.h"
+#include "OptionInt.h"
 #include "PrefixJson.h"
 #include "Score.h"
 
 using namespace std;
 
-ScoreJson::ScoreJson(const shared_ptr<const Score> &score)
-	: score(score)
+ScoreJson::ScoreJson(const shared_ptr<const Score> &score, const shared_ptr<const Options> &options)
+	: score(score), options(options)
 {
 }
 
 ScoreJson::operator nlohmann::json() const
 {
 	nlohmann::json json = PrefixJson(score->prefix());
+	int strength = OptionInt(options, "strength");
 	json.merge_patch({
-		{"suffixes", score->suffixes()}
+		{"suffixes", score->suffixes()},
+		{"strength", strength}
 	});
 	return json;
 }
