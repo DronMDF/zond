@@ -23,7 +23,8 @@ GetInfoEntryTest::GetInfoEntryTest()
 			make_shared<TestContainText>(
 				make_shared<EntryRepr>(
 					make_shared<GetInfoEntry>(
-						make_shared<FakeScores>()
+						make_shared<FakeScores>(),
+						make_shared<PredefinedOptions>("strength", "8")
 					),
 					make_shared<HttpRequest>("")
 				),
@@ -45,7 +46,8 @@ GetInfoEntryTest::GetInfoEntryTest()
 								)
 
 							)
-						)
+						),
+						make_shared<PredefinedOptions>("strength", "8")
 					),
 					make_shared<HttpRequest>("")
 				),

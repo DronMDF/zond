@@ -11,8 +11,10 @@
 
 using namespace std;
 
-GetInfoEntry::GetInfoEntry(const shared_ptr<const Scores> &scores)
-	: scores(scores)
+GetInfoEntry::GetInfoEntry(
+	const shared_ptr<const Scores> &scores,
+	const shared_ptr<const Options> &options
+) : scores(scores), options(options)
 {
 }
 
@@ -20,7 +22,7 @@ unique_ptr<const Response> GetInfoEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
-	nlohmann::json score = ScoreJson(scores->front());
+	nlohmann::json score = ScoreJson(scores->front(), options);
 	return make_unique<ContentResponse>(
 		nlohmann::json{
 			{"score", score}

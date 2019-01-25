@@ -8,11 +8,16 @@
 #include <nlohmann/json.hpp>
 
 class Score;
+class Options;
 
 class ScoreJson final {
 public:
-	explicit ScoreJson(const std::shared_ptr<const Score> &score);
+	ScoreJson(
+		const std::shared_ptr<const Score> &score,
+		const std::shared_ptr<const Options> &options
+	);
 	operator nlohmann::json() const;
 private:
 	const std::shared_ptr<const Score> score;
+	const std::shared_ptr<const Options> options;
 };

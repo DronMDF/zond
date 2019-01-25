@@ -20,6 +20,7 @@
 #include "MethodCriterionTest.h"
 #include "MultipleSourcesOptionsTest.h"
 #include "ParamResponseTest.h"
+#include "ScoreJsonTest.h"
 #include "ScoreValidTest.h"
 #include "SelectedEntryTest.h"
 #include "StrongestScoresTest.h"
@@ -42,6 +43,7 @@ int main(int, char **)
 			make_shared<MethodCriterionTest>(),
 			make_shared<MultipleSourcesOptionsTest>(),
 			make_shared<ParamResponseTest>(),
+			make_shared<ScoreJsonTest>(),
 			make_shared<ScoreValidTest>(),
 			make_shared<SelectedEntryTest>(),
 			make_shared<StrongestScoresTest>(),

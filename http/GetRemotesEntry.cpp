@@ -11,8 +11,10 @@
 
 using namespace std;
 
-GetRemotesEntry::GetRemotesEntry(const shared_ptr<const Scores> &scores)
-	: scores(scores)
+GetRemotesEntry::GetRemotesEntry(
+	const shared_ptr<const Scores> &scores,
+	const shared_ptr<const Options> &options
+) : scores(scores), options(options)
 {
 }
 
@@ -21,7 +23,7 @@ unique_ptr<const Response> GetRemotesEntry::process(
 ) const
 {
 	// @todo #92 Fill /remotes response
-	nlohmann::json score = ScoreJson(scores->front());
+	nlohmann::json score = ScoreJson(scores->front(), options);
 	return make_unique<ContentResponse>(
 		nlohmann::json{
 			{"score", score},
