@@ -23,7 +23,9 @@ unique_ptr<const Response> GetInfoEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
-	nlohmann::json score = ScoreJson(scores->front(), options);
+	const int protocol = OptionInt(options, "protocol");
+	const int threads = OptionInt(options, "mining-threads");
+	const nlohmann::json score = ScoreJson(scores->front(), options);
 	return make_unique<ContentResponse>(
 		nlohmann::json{
 			{"age", 1},
@@ -35,12 +37,12 @@ unique_ptr<const Response> GetInfoEntry::process(
 			{"nscore", 0},
 			{"platform", "null"},
 			{"processes", 1},
-			{"protocol", int(OptionInt(options, "protocol"))},
+			{"protocol", protocol},
 			// @todo #185 GetInfo should contain real remotes counts
 			{"remotes", 0},
 			{"score", score},
 			{"speed", 0},
-			{"threads", int(OptionInt(options, "mining-threads"))},
+			{"threads", threads},
 			{"total_mem", 4 * 1024 * 1024},
 			// @todo #185 GetInfo should contain real wallet counts
 			{"wallets", 0}
