@@ -18,12 +18,13 @@ ScoreJson::ScoreJson(const shared_ptr<const Score> &score, const shared_ptr<cons
 ScoreJson::operator nlohmann::json() const
 {
 	const int strength = OptionInt(options, "strength");
+	const int value = score->suffixes().size();
 	nlohmann::json json = PrefixJson(score->prefix());
-	// @todo #185 Score json should have 'value' field
 	// @todo #185 Score json should have 'expired' field
 	json.merge_patch({
+		{"strength", strength},
 		{"suffixes", score->suffixes()},
-		{"strength", strength}
+		{"value", value}
 	});
 	return json;
 }
