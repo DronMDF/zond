@@ -48,6 +48,18 @@ ScoreJsonTest::ScoreJsonTest()
 			)
 		),
 		make_shared<TestNamed>(
+			"ScoreJson should contain expired flag",
+			make_shared<TestContainText>(
+				make_shared<ScoreJsonRepr>(
+					make_shared<FakeScore>(0),
+					make_shared<PredefinedOptions>(
+						"strength", "8"
+					)
+				),
+				R"("expired":false)"
+			)
+		),
+		make_shared<TestNamed>(
 			"ScoreJson should contain value",
 			make_shared<TestContainText>(
 				make_shared<ScoreJsonRepr>(
