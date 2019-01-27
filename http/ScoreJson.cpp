@@ -20,8 +20,8 @@ ScoreJson::operator nlohmann::json() const
 	const int strength = OptionInt(options, "strength");
 	const int value = score->suffixes().size();
 	nlohmann::json json = PrefixJson(score->prefix());
-	// @todo #185 Score json should have 'expired' field
 	json.merge_patch({
+		{"expired", false},
 		{"strength", strength},
 		{"suffixes", score->suffixes()},
 		{"value", value}
