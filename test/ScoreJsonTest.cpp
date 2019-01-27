@@ -46,6 +46,18 @@ ScoreJsonTest::ScoreJsonTest()
 				),
 				R"("strength":8)"
 			)
+		),
+		make_shared<TestNamed>(
+			"ScoreJson should contain value",
+			make_shared<TestContainText>(
+				make_shared<ScoreJsonRepr>(
+					make_shared<FakeScore>(2),
+					make_shared<PredefinedOptions>(
+						"strength", "3"
+					)
+				),
+				R"("value":2)"
+			)
 		)
 	)
 {
