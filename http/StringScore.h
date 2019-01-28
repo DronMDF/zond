@@ -6,6 +6,7 @@
 #pragma once
 #include "Score.h"
 
+// @todo #202 StringScore precessed invalid string without error
 class StringScore final : public Score {
 public:
 	explicit StringScore(const std::string &score);
