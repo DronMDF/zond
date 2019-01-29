@@ -21,10 +21,12 @@ ADD_EXECUTABLE(
 	MethodCriterionTest.cpp
 	MultipleSourcesOptionsTest.cpp
 	ParamResponseTest.cpp
-	ScoresFrontRepr.cpp
 	ScoreJsonTest.cpp
+	ScoreRepr.cpp
+	ScoresFrontRepr.cpp
 	ScoreValidTest.cpp
 	SelectedEntryTest.cpp
+	StringScoreTest.cpp
 	StrongestScoresTest.cpp
 	TestSuite.cpp
 	ZoldProtocolEntryTest.cpp

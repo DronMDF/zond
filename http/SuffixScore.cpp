@@ -44,8 +44,6 @@ list<string> SuffixScore::suffixes() const
 	return suffixes;
 }
 
-// @todo #202 Mined suffixes are wrong
-//  may be ScoreHashString have bug?
 string SuffixScore::make_suffix(
 	const shared_ptr<const Score> &score,
 	const shared_ptr<const Options> &options,

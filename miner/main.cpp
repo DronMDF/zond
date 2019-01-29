@@ -26,6 +26,6 @@ int main(int argc [[gnu::unused]], char **argv)
 			"mining-interval", "10"
 		)
 	);
-	cout << score->suffixes().back();
+	cout << score->suffixes().back() << endl;
 	return 0;
 }
