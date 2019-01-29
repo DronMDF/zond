@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 			"server-repo", "dronmdf/zond",
 			"protocol", "2",
 			"default-network", "zold",
-			"strength", "6",
+			"strength", "8",
 			"version", "0.1.0"
 			// Features
 		)

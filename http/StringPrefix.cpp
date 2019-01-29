@@ -16,10 +16,11 @@ StringPrefix::StringPrefix(const string &prefix)
 
 chrono::system_clock::time_point StringPrefix::time() const
 {
-	istringstream in(pfx);
 	tm tm;
-	in >> get_time(&tm, "%Y-%m-%dT%H:%M:%SZ");
-	return chrono::system_clock::from_time_t(mktime(&tm));
+	if (strptime(pfx.c_str(), "%FT%T%z", &tm) == nullptr) {
+		throw runtime_error("Wrong score time format");
+	}
+	return chrono::system_clock::from_time_t(timegm(&tm));
 }
 
 string StringPrefix::host() const
