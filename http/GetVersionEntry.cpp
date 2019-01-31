@@ -5,13 +5,18 @@
 
 #include "GetVersionEntry.h"
 #include "ContentResponse.h"
+#include "Options.h"
 
 using namespace std;
+
+GetVersionEntry::GetVersionEntry(const shared_ptr<const Options> &options)
+	: options(options)
+{
+}
 
 unique_ptr<const Response> GetVersionEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
-	// @todo #53 Return right server version
-	return make_unique<ContentResponse>("0.0.0");
+	return make_unique<ContentResponse>(options->value("version"));
 }

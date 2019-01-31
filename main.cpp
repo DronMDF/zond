@@ -81,7 +81,7 @@ int main(int argc, char **argv)
 					"GET",
 					make_shared<EqualCriterion>("/version")
 				),
-				make_shared<GetVersionEntry>(),
+				make_shared<GetVersionEntry>(options),
 				// List of remotes entry
 				make_shared<MethodCriterion>(
 					"GET",
