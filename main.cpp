@@ -93,9 +93,6 @@ int main(int argc, char **argv)
 					make_shared<StrongestScores>(scores),
 					options
 				),
-				// @todo #82 Add GET /wallet/xxx entry
-				// @todo #83 Add GET /wallet/xxx/balance entry
-				// @todo #82 Add PUT /wallet/xxx entry
 				// External tasks
 				make_shared<MethodCriterion>(
 					"GET",
@@ -108,6 +105,9 @@ int main(int argc, char **argv)
 					make_shared<EqualCriterion>("/score")
 				),
 				make_shared<PutScoreEntry>(scores)
+				// @todo #82 Add GET /wallet/xxx entry
+				// @todo #83 Add GET /wallet/xxx/balance entry
+				// @todo #82 Add PUT /wallet/xxx entry
 			),
 			make_shared<StrongestScores>(scores),
 			options
