@@ -4,8 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "StringScoreTest.h"
-#include <2out/TestNamed.h>
-#include <2out/TestStartsWith.h>
 #include "../http/StringScore.h"
 #include "ScoreRepr.h"
 

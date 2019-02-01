@@ -4,7 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "TestSuite.h"
-#include <2out/Result.h>
 
 using namespace std;
 

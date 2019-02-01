@@ -5,8 +5,7 @@
 
 #pragma once
 #include <memory>
-#include <2out/Test.h>
-#include <2out/TestSuite.h>
+#include <2out/2out.h>
 
 class TestSuite : public oout::Test {
 public:

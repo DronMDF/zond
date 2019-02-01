@@ -5,7 +5,7 @@
 
 #pragma once
 #include <memory>
-#include <2out/Representation.h>
+#include <2out/2out.h>
 
 class Scores;
 

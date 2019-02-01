@@ -4,9 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ScoreJsonTest.h"
-#include <2out/Representation.h>
-#include <2out/TestContainText.h>
-#include <2out/TestNamed.h>
 #include "../http/PredefinedOptions.h"
 #include "../http/ScoreJson.h"
 #include "FakeScore.h"

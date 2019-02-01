@@ -4,8 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ActiveScoresTest.h"
-#include <2out/TestContainText.h>
-#include <2out/TestNamed.h>
 #include "../http/ActiveScores.h"
 #include "../http/PredefinedOptions.h"
 #include "ScoresFrontRepr.h"

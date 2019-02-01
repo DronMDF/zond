@@ -4,9 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ParamResponseTest.h"
-#include <2out/Representation.h>
-#include <2out/TestContainText.h>
-#include <2out/TestNamed.h>
 #include "../http/ParamResponse.h"
 #include "../http/RawResponse.h"
 
