@@ -4,9 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "SelectedEntryTest.h"
-#include <2out/Result.h>
-#include <2out/TestContainText.h>
-#include <2out/TestNamed.h>
 #include "../http/EqualCriterion.h"
 #include "../http/HttpHeader.h"
 #include "../http/HttpRequest.h"

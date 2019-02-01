@@ -4,8 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "GetRemotesEntryTest.h"
-#include <2out/TestContainText.h>
-#include <2out/TestNamed.h>
 #include "../http/GetRemotesEntry.h"
 #include "../http/HttpRequest.h"
 #include "../http/PredefinedOptions.h"

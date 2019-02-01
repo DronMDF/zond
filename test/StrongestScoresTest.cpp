@@ -4,9 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "StrongestScoresTest.h"
-#include <2out/TestNamed.h>
-#include <2out/TestSkipped.h>
-#include <2out/TestContainText.h>
 #include "../http/StrongestScores.h"
 #include "FakeScore.h"
 #include "FakeScores.h"

@@ -4,12 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include <iostream>
-#include <2out/CountError.h>
-#include <2out/CountFailure.h>
-#include <2out/JUnitXmlReport.h>
-#include <2out/Result.h>
-#include <2out/TestSuite.h>
-#include <2out/TestTimed.h>
 #include "ActiveScoresTest.h"
 #include "CommandlineOptionsTest.h"
 #include "ContentResponseTest.h"

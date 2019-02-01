@@ -4,9 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "ScoreValidTest.h"
-#include <2out/Representation.h>
-#include <2out/TestNamed.h>
-#include <2out/TestEqual.h>
 #include "../http/PredefinedOptions.h"
 #include "../http/ScoreValid.h"
 #include "../http/StringScore.h"

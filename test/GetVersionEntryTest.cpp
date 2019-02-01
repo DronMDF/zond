@@ -4,8 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "GetVersionEntryTest.h"
-#include <2out/TestContainText.h>
-#include <2out/TestNamed.h>
 #include "../http/GetVersionEntry.h"
 #include "../http/HttpRequest.h"
 #include "../http/PredefinedOptions.h"
@@ -27,9 +25,8 @@ GetVersionEntryTest::GetVersionEntryTest()
 					),
 					make_shared<HttpRequest>("")
 				),
+				"Content-Length: 5\r\n",
 				"\r\n\r\n7.6.5"
-				// @todo #56 After update 2out to 0.6 - use multiple matching
-				//  "ContentLehgth: 5\r\n"
 			)
 		)
 	)

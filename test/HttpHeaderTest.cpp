@@ -4,10 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "HttpHeaderTest.h"
-#include <2out/Representation.h>
-#include <2out/Result.h>
-#include <2out/TestEqual.h>
-#include <2out/TestNamed.h>
 #include "../http/HttpHeader.h"
 
 using namespace std;

@@ -4,9 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "MultipleSourcesOptionsTest.h"
-#include <2out/Representation.h>
-#include <2out/TestNamed.h>
-#include <2out/TestEqual.h>
 #include "../http/MultipleSourcesOptions.h"
 #include "../http/PredefinedOptions.h"
 

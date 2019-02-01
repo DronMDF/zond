@@ -4,9 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "MethodCriterionTest.h"
-#include <2out/Result.h>
-#include <2out/TestNamed.h>
-#include <2out/TestEqual.h>
 #include "../http/EqualCriterion.h"
 #include "../http/HttpRequest.h"
 #include "../http/MethodCriterion.h"
