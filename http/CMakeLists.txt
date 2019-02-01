@@ -14,6 +14,7 @@ ADD_LIBRARY(
 	EqualCriterion.cpp
 	GetInfoEntry.cpp
 	GetRemotesEntry.cpp
+	GetTasksEntry.cpp
 	GetVersionEntry.cpp
 	HashString.cpp
 	HttpHeader.cpp
@@ -30,6 +31,7 @@ ADD_LIBRARY(
 	PredefinedOptions.cpp
 	PrefixJson.cpp
 	PrefixString.cpp
+	PutScoreEntry.cpp
 	RawResponse.cpp
 	ScoreHashString.cpp
 	ScoreIterator.cpp

@@ -12,12 +12,14 @@
 #include "http/EqualCriterion.h"
 #include "http/GetInfoEntry.h"
 #include "http/GetRemotesEntry.h"
+#include "http/GetTasksEntry.h"
 #include "http/GetVersionEntry.h"
 #include "http/MethodCriterion.h"
 #include "http/MiningPool.h"
 #include "http/MultipleSourcesOptions.h"
 #include "http/OptionInt.h"
 #include "http/PredefinedOptions.h"
+#include "http/PutScoreEntry.h"
 #include "http/SelectedEntry.h"
 #include "http/StrongestScores.h"
 #include "http/ZoldProtocolEntry.h"
@@ -90,10 +92,22 @@ int main(int argc, char **argv)
 				make_shared<GetRemotesEntry>(
 					make_shared<StrongestScores>(scores),
 					options
-				)
+				),
 				// @todo #82 Add GET /wallet/xxx entry
 				// @todo #83 Add GET /wallet/xxx/balance entry
 				// @todo #82 Add PUT /wallet/xxx entry
+				// External tasks
+				make_shared<MethodCriterion>(
+					"GET",
+					make_shared<EqualCriterion>("/tasks")
+				),
+				make_shared<GetTasksEntry>(scores),
+				// Post suffixes
+				make_shared<MethodCriterion>(
+					"PUT",
+					make_shared<EqualCriterion>("/score")
+				),
+				make_shared<PutScoreEntry>(scores)
 			),
 			make_shared<StrongestScores>(scores),
 			options

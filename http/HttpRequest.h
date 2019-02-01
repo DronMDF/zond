@@ -21,4 +21,3 @@ private:
 	const std::shared_ptr<const HttpHeader> header;
 	const std::string body;
 };
-
