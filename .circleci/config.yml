@@ -20,7 +20,7 @@ jobs:
           mkdir ~/build
           cd ~/build
           # Build etc
-          conan install ~/project -s compiler.libcxx='libstdc++11' --build
+          conan install ~/project -s compiler.libcxx='libstdc++11' --build=missing
           cmake -DCMAKE_CXX_FLAGS="--coverage" ~/project
           make style
           make VERBOSE=1

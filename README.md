@@ -11,7 +11,7 @@ Zold node
 # Building
 
 ```sh
-$ conan install <path to zond> --build
+$ conan install <path to zond> --build=missing
 $ cmake -GNinja <path to zond>
 $ ninja
 $ ninja test
