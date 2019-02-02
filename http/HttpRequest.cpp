@@ -32,3 +32,8 @@ string HttpRequest::uri() const
 {
 	return header->uri();
 }
+
+string HttpRequest::content() const
+{
+	return body;
+}

@@ -59,5 +59,6 @@ void ActiveScores::extend(const string &suffix)
 	const auto next = make_shared<SuffixScore>(mined, suffix);
 	if (ScoreValid(next, options)) {
 		mined = next;
+		cout << "ActiveScores: new suffix: " << ScoreString(mined).value() << endl;
 	}
 }

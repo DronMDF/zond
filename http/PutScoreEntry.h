@@ -10,10 +10,10 @@ class ActiveScores;
 
 class PutScoreEntry final : public Entry {
 public:
-	explicit PutScoreEntry(const std::shared_ptr<const ActiveScores> &scores);
+	explicit PutScoreEntry(const std::shared_ptr<ActiveScores> &scores);
 	std::unique_ptr<const Response> process(
 		const std::shared_ptr<const HttpRequest> &request
 	) const override;
 private:
-	const std::shared_ptr<const ActiveScores> scores;
+	const std::shared_ptr<ActiveScores> scores;
 };

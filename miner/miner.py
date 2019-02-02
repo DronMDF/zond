@@ -24,14 +24,16 @@ while True:
 		if tasks:
 			score = random.choice(tasks)['score']
 			start_time = datetime.now()
-			suffix = subprocess.check_output(['./zond-miner', score], timeout=60)
+			suffix = subprocess\
+				.check_output(['./zond-miner', score], timeout=60)\
+				.rstrip()
 			end_time = datetime.now()
 			print("%s: Mined: %s take %.2f sec" % (
 				end_time.isoformat(' '),
 				suffix,
 				(end_time - start_time).total_seconds()
 			))
-			requests.post(url + '/score', json={'suffix': suffix})
+			requests.put(url + '/score', json={'suffix': suffix})
 		else:
 			time.sleep(60)
 	except subprocess.TimeoutExpired:

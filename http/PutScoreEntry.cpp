@@ -6,19 +6,21 @@
 #include "PutScoreEntry.h"
 #include <nlohmann/json.hpp>
 #include "ActiveScores.h"
+#include "HttpRequest.h"
 #include "ContentResponse.h"
 
 using namespace std;
 
-PutScoreEntry::PutScoreEntry(const shared_ptr<const ActiveScores> &scores)
+PutScoreEntry::PutScoreEntry(const shared_ptr<ActiveScores> &scores)
 	: scores(scores)
 {
 }
 
 unique_ptr<const Response> PutScoreEntry::process(
-	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
+	const shared_ptr<const HttpRequest> &request
 ) const
 {
-	// @todo #203 Get body from request and append suffix to our score
+	const auto body = nlohmann::json::parse(request->content());
+	scores->extend(body.at("suffix"));
 	return make_unique<ContentResponse>(nlohmann::json::object());
 }
