@@ -17,6 +17,7 @@ public:
 
 	std::string method() const;
 	std::string uri() const;
+	std::string content() const;
 private:
 	const std::shared_ptr<const HttpHeader> header;
 	const std::string body;
