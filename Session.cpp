@@ -57,18 +57,24 @@ void Session::on_read_header(error_code ec, size_t size)
 	);
 	buffer.consume(size);
 
-	asio::async_read(
-		socket,
-		buffer,
-		asio::transfer_at_least(stoi(header->getField("Content-Length", "0"))),
-		bind(
-			&Session::on_read_body,
-			shared_from_this(),
-			placeholders::_1,
-			placeholders::_2,
-			header
-		)
-	);
+	const size_t body_size = stoi(header->getField("Content-Length", "0"));
+
+	if (buffer.size() >= body_size) {
+		on_read_body(ec, body_size, header);
+	} else {
+		asio::async_read(
+			socket,
+			buffer,
+			asio::transfer_at_least(body_size),
+			bind(
+				&Session::on_read_body,
+				shared_from_this(),
+				placeholders::_1,
+				placeholders::_2,
+				header
+			)
+		);
+	}
 }
 
 void Session::on_read_body(
