@@ -15,24 +15,21 @@ import subprocess
 
 url = 'http://localhost:4096'
 
+print("%s: Started" % datetime.now().isoformat(' '))
+
 while True:
 	try:
-		reply = requests.get(url + '/tasks')
-		if reply.status_code != 200:
-			raise RuntimeError("Get task error")
-		tasks = [t for t in reply.json()['tasks'] if t['type'] == 'mining']
+		strength = requests.get(url).json()['score']['strength']
+
+		tasks = requests.get(url + '/tasks').json()['tasks']
 		if tasks:
-			score = random.choice(tasks)['score']
-			start_time = datetime.now()
-			suffix = subprocess\
-				.check_output(['./zond-miner', score], timeout=60)\
-				.rstrip()
-			end_time = datetime.now()
-			print("%s: Mined: %s take %.2f sec" % (
-				end_time.isoformat(' '),
-				suffix,
-				(end_time - start_time).total_seconds()
-			))
+			score = random.choice([t for t in tasks if t['type'] == 'mining'])['score']
+			suffix = subprocess.check_output(
+				['./zond-miner', '--strength', str(strength), score],
+				timeout=60
+			).rstrip()
+			mined_time = datetime.now()
+			print("%s: Mined: %s" % (mined_time.isoformat(' '), suffix))
 			requests.put(url + '/score', json={'suffix': suffix})
 		else:
 			time.sleep(60)
