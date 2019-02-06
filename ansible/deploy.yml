@@ -1,0 +1,9 @@
+---
+- hosts: zond
+  vars:
+    project_name: zond
+  vars_files:
+    - /etc/ansible/{{project_name}}.yml
+  roles:
+    - prereq
+    - zond
