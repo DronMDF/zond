@@ -1,0 +1,54 @@
+---
+- name: Enable incoming connection
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: "{{item}}"
+    jump: ACCEPT
+  with_items:
+    - ssh
+    - 4096
+- name: Enable traffic for outgoing connection
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    source_port: "{{item}}"
+    destination_port: 1024:65535
+    jump: ACCEPT
+  with_items:
+    - http
+    - https
+    - 4096
+- name: Enable dns traffic
+  iptables:
+    chain: INPUT
+    protocol: udp
+    source_port: domain
+    jump: ACCEPT
+- name: Enable icmp echo
+  iptables:
+    chain: INPUT
+    protocol: icmp
+    icmp_type: "{{item}}"
+    jump: ACCEPT
+  with_items:
+    - echo-request
+    - echo-reply
+- name: Disable all other incoming packets
+  iptables:
+    chain: INPUT
+    policy: DROP
+- name: Save ruleset
+  shell: iptables-save > /etc/iptables.rules
+- name: Create group
+  group:
+    name: zond
+    state: present
+- name: Create user
+  user:
+    name: zond
+    shell: /bin/false
+    groups: zond
+    home: /var/lib/zond
+    state: present
+-
