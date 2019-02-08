@@ -1,2 +1,28 @@
-# @todo #201 build modules on target system from sources and install it
 ---
+- name: Install tools
+  apt:
+    name: "{{ package }}"
+  vars:
+    package:
+    - cmake
+    - git
+    - libssl-dev
+    - python3-pip
+- pip:
+    name: conan
+    executable: pip3
+- name: Fetch sources
+  git:
+    repo: 'https://github.com/DronMDF/zond.git'
+    dest: zond
+- name: Build
+  shell: |
+    conan remote add mdf https://api.bintray.com/conan/mdf/2out
+    conan remote add bincrafter https://api.bintray.com/conan/bincrafters/public-conan
+    cd zond
+    conan install . -s compiler.libcxx='libstdc++11' --build=missing
+    cmake .
+    make
+    make test
+    # @todo #225 Install binaries, rc scripts and default configs
+    make install
