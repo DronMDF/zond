@@ -24,5 +24,4 @@
     cmake .
     make
     make test
-    # @todo #225 Install binaries, rc scripts and default configs
     make install
