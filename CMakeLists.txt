@@ -27,6 +27,12 @@ TARGET_LINK_LIBRARIES(
 	${OPENSSL_LIBRARIES}
 )
 
+# @todo #227 Install rc scripts and default configs
+INSTALL(
+	TARGETS zond
+	RUNTIME DESTINATION bin
+)
+
 ADD_CUSTOM_TARGET(
 	style
 	COMMAND ${CMAKE_SOURCE_DIR}/style.sh
