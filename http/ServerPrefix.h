@@ -6,6 +6,7 @@
 #pragma once
 #include <memory>
 #include "Prefix.h"
+#include "Invoice.h"
 
 class Options;
 
@@ -20,6 +21,6 @@ private:
 	const std::chrono::system_clock::time_point _time;
 	const std::string _host;
 	const int _port;
-	const std::string _invoice;
+	const Invoice _invoice;
 };
 
