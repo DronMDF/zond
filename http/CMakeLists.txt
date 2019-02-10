@@ -19,6 +19,7 @@ ADD_LIBRARY(
 	HashString.cpp
 	HttpHeader.cpp
 	HttpRequest.cpp
+	Invoice.cpp
 	OptionInt.cpp
 	OptionSeconds.cpp
 	MethodCriterion.cpp

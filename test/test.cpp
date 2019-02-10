@@ -12,6 +12,7 @@
 #include "GetRemotesEntryTest.h"
 #include "GetVersionEntryTest.h"
 #include "HttpHeaderTest.h"
+#include "InvoiceTest.h"
 #include "MethodCriterionTest.h"
 #include "MultipleSourcesOptionsTest.h"
 #include "ParamResponseTest.h"
@@ -37,6 +38,7 @@ int main(int, char **)
 			make_shared<GetRemotesEntryTest>(),
 			make_shared<GetVersionEntryTest>(),
 			make_shared<HttpHeaderTest>(),
+			make_shared<InvoiceTest>(),
 			make_shared<MethodCriterionTest>(),
 			make_shared<MultipleSourcesOptionsTest>(),
 			make_shared<ParamResponseTest>(),

@@ -19,6 +19,7 @@ ADD_EXECUTABLE(
 	GetRemotesEntryTest.cpp
 	GetVersionEntryTest.cpp
 	HttpHeaderTest.cpp
+	InvoiceTest.cpp
 	MethodCriterionTest.cpp
 	MultipleSourcesOptionsTest.cpp
 	ParamResponseTest.cpp

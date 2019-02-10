@@ -13,8 +13,7 @@ ServerPrefix::ServerPrefix(const shared_ptr<const Options> &options)
 	: _time(chrono::system_clock::now()),
 	  _host(options->value("host")),
 	  _port(OptionInt(options, "port")),
-	  // @todo #136 Create invoice class
-	  _invoice(options->value("pubkey").substr(0, 8) + "@" + options->value("wallet"))
+	  _invoice(options)
 {
 }
 
@@ -35,5 +34,5 @@ int ServerPrefix::port() const
 
 string ServerPrefix::invoice() const
 {
-	return _invoice;
+	return _invoice.str();
 }

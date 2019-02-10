@@ -22,6 +22,7 @@ ActiveScoresTest::ActiveScoresTest()
 							"host", "example.com",
 							"port", "4096",
 							"pubkey", string(1024, 'A'),
+							"prefix-length", "8",
 							"wallet", "1234567812345678"
 						)
 					)

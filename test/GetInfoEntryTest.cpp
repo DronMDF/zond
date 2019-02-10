@@ -165,6 +165,7 @@ GetInfoEntryTest::GetInfoEntryTest()
 									"host", "host",
 									"port", "777",
 									"pubkey", "pppppppp",
+									"prefix-length", "8",
 									"wallet", "777"
 								)
 
