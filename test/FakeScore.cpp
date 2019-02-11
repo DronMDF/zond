@@ -4,27 +4,14 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "FakeScore.h"
-#include "../http/PredefinedOptions.h"
 #include "../http/ServerScore.h"
 #include "../http/SuffixScore.h"
+#include "FakeOptions.h"
 
 using namespace std;
 
 FakeScore::FakeScore(int rank)
-	: score(
-		make_score(
-			make_shared<ServerScore>(
-				make_shared<PredefinedOptions>(
-					"host", "example.com",
-					"port", "4096",
-					"pubkey", string(1024, 'A'),
-					"prefix-length", "8",
-					"wallet", "1234567812345678"
-				)
-			),
-			rank
-		)
-	)
+	: score(make_score(make_shared<ServerScore>(make_shared<FakeOptions>()), rank))
 {
 }
 
@@ -43,8 +30,5 @@ shared_ptr<const Score> FakeScore::make_score(const shared_ptr<const Score> &sco
 	if (rank == 0) {
 		return score;
 	}
-	return make_score(
-		make_shared<SuffixScore>(score, make_shared<PredefinedOptions>("strength", "3")),
-		rank - 1
-	);
+	return make_score(make_shared<SuffixScore>(score, make_shared<FakeOptions>()), rank - 1);
 }

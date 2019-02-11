@@ -7,12 +7,17 @@
 #include <memory>
 
 class Score;
+class Options;
 
 class ScoreHashString final {
 public:
-	explicit ScoreHashString(const std::shared_ptr<const Score> &score);
+	ScoreHashString(
+		const std::shared_ptr<const Score> &score,
+		const std::shared_ptr<const Options> &options
+	);
 
 	operator std::string() const;
 private:
 	const std::shared_ptr<const Score> score;
+	const std::shared_ptr<const Options> options;
 };

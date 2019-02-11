@@ -47,3 +47,17 @@ string StringPrefix::invoice() const
 	in >> time >> host >> port >> invoice;
 	return invoice;
 }
+
+string StringPrefix::prefix() const
+{
+	const auto inv = invoice();
+	const auto pos = inv.find('@');
+	return inv.substr(0, pos);
+}
+
+string StringPrefix::wallet() const
+{
+	const auto inv = invoice();
+	const auto pos = inv.find('@');
+	return inv.substr(pos + 1);
+}

@@ -11,14 +11,16 @@
 
 using namespace std;
 
-ScoreHashString::ScoreHashString(const shared_ptr<const Score> &score)
-	: score(score)
+ScoreHashString::ScoreHashString(
+	const shared_ptr<const Score> &score,
+	const shared_ptr<const Options> &options
+) : score(score), options(options)
 {
 }
 
 ScoreHashString::operator string() const
 {
-	string base = PrefixString(score->prefix()).value();
+	string base = PrefixString(score->prefix(), options).value();
 	for (const auto &s : score->suffixes()) {
 		base = HashString(base, s);
 	}

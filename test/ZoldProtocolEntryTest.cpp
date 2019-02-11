@@ -6,13 +6,13 @@
 #include "ZoldProtocolEntryTest.h"
 #include "../http/HttpHeader.h"
 #include "../http/HttpRequest.h"
-#include "../http/PredefinedOptions.h"
 #include "../http/Response.h"
 #include "../http/Score.h"
 #include "../http/Scores.h"
 #include "../http/ZoldProtocolEntry.h"
 #include "EntryRepr.h"
 #include "FakeEntry.h"
+#include "FakeOptions.h"
 #include "FakeScore.h"
 #include "FakeScores.h"
 
@@ -31,15 +31,14 @@ ZoldProtocolEntryTest::ZoldProtocolEntryTest()
 							"\r\n"
 						),
 						make_shared<FakeScores>(make_shared<FakeScore>()),
-						make_shared<PredefinedOptions>(
-							"protocol", "2",
-							"server-version", "0",
-							"server-repo", "repo"
-						)
+						make_shared<FakeOptions>()
 					),
 					make_shared<HttpRequest>("")
 				),
-				"Zold-Score: "
+				// @todo #230 Score part origin is not obvious.
+				"X-Zold-Score: 3 ",
+				" zold.io 1000 ",
+				" 1234567812345678"
 			)
 		)
 	)

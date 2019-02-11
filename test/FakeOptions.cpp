@@ -11,9 +11,16 @@ using namespace std;
 FakeOptions::FakeOptions()
 	: options(
 		make_shared<PredefinedOptions>(
+			"host", "zold.io",
 			"mining-threads", "1",
+			"port", "4096",
+			"prefix-length", "8",
 			"protocol", "2",
-			"strength", "8"
+			"pubkey", string(1024, 'A'),
+			"server-repo", "dronmdf/zond",
+			"server-version", "0.0.1",
+			"strength", "3",
+			"wallet", "1234567812345678"
 		)
 	)
 {

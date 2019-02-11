@@ -11,8 +11,10 @@
 
 using namespace std;
 
-GetTasksEntry::GetTasksEntry(const shared_ptr<const ActiveScores> &scores)
-	: scores(scores)
+GetTasksEntry::GetTasksEntry(
+	const shared_ptr<const ActiveScores> &scores,
+	const shared_ptr<const Options> &options
+) : scores(scores), options(options)
 {
 }
 
@@ -20,7 +22,7 @@ unique_ptr<const Response> GetTasksEntry::process(
 	const shared_ptr<const HttpRequest> &request [[gnu::unused]]
 ) const
 {
-	const string score = ScoreString(scores->back()).value();
+	const string score = ScoreString(scores->back(), options).value();
 	return make_unique<ContentResponse>(
 		nlohmann::json{
 			{ "tasks", {

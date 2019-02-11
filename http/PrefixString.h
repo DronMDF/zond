@@ -7,11 +7,16 @@
 #include <memory>
 
 class Prefix;
+class Options;
 
 class PrefixString final {
 public:
-	explicit PrefixString(const std::shared_ptr<const Prefix> &prefix);
+	PrefixString(
+		const std::shared_ptr<const Prefix> &prefix,
+		const std::shared_ptr<const Options> &options
+	);
 	std::string value() const;
 private:
 	const std::shared_ptr<const Prefix> prefix;
+	const std::shared_ptr<const Options> options;
 };

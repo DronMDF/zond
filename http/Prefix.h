@@ -14,4 +14,7 @@ public:
 	virtual std::string host() const = 0;
 	virtual int port() const = 0;
 	virtual std::string invoice() const = 0;
+	// invoice prefix
+	virtual std::string prefix() const = 0;
+	virtual std::string wallet() const = 0;
 };

@@ -98,7 +98,7 @@ int main(int argc, char **argv)
 					"GET",
 					make_shared<EqualCriterion>("/tasks")
 				),
-				make_shared<GetTasksEntry>(scores),
+				make_shared<GetTasksEntry>(scores, options),
 				// Post suffixes
 				make_shared<MethodCriterion>(
 					"PUT",

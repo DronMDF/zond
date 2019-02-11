@@ -10,15 +10,17 @@
 
 using namespace std;
 
-ScoreString::ScoreString(const shared_ptr<const Score> &score)
-	: score(score)
+ScoreString::ScoreString(
+	const shared_ptr<const Score> &score,
+	const shared_ptr<const Options> &options
+) : score(score), options(options)
 {
 }
 
 string ScoreString::value() const
 {
 	ostringstream repr;
-	repr << PrefixString(score->prefix()).value();
+	repr << PrefixString(score->prefix(), options).value();
 	for (const auto &suffix : score->suffixes()) {
 		repr << " " << suffix;
 	}

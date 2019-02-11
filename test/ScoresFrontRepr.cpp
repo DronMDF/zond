@@ -6,6 +6,7 @@
 #include "ScoresFrontRepr.h"
 #include "../http/Scores.h"
 #include "../http/ScoreString.h"
+#include "FakeOptions.h"
 
 using namespace std;
 
@@ -16,5 +17,5 @@ ScoresFrontRepr::ScoresFrontRepr(const shared_ptr<const Scores> &scores)
 
 string ScoresFrontRepr::asString() const
 {
-	return ScoreString(scores->front()).value();
+	return ScoreString(scores->front(), make_shared<FakeOptions>()).value();
 }

@@ -43,14 +43,16 @@ void ActiveScores::renew()
 {
 	const chrono::system_clock::duration ttl = OptionSeconds(options, "score-livetime");
 	if (active->prefix()->time() + ttl < chrono::system_clock::now()) {
-		cout << "ActiveScores: expired score: " << ScoreString(active).value() << endl;
+		cout << "ActiveScores: expired score: "
+			<< ScoreString(active, options).value() << endl;
 		active = mined;
 	}
 
 	const chrono::system_clock::duration ttm = OptionSeconds(options, "score-miningtime");
 	if (mined->prefix()->time() + ttm < chrono::system_clock::now()) {
 		mined = make_shared<ServerScore>(options);
-		cout << "ActiveScores: new score for mining: " << ScoreString(mined).value() << endl;
+		cout << "ActiveScores: new score for mining: "
+			<< ScoreString(mined, options).value() << endl;
 	}
 }
 
@@ -59,6 +61,6 @@ void ActiveScores::extend(const string &suffix)
 	const auto next = make_shared<SuffixScore>(mined, suffix);
 	if (ScoreValid(next, options)) {
 		mined = next;
-		cout << "ActiveScores: new suffix: " << ScoreString(mined).value() << endl;
+		cout << "ActiveScores: new suffix: " << ScoreString(mined, options).value() << endl;
 	}
 }

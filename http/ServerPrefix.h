@@ -17,6 +17,8 @@ public:
 	std::string host() const override;
 	int port() const override;
 	std::string invoice() const override;
+	std::string prefix() const override;
+	std::string wallet() const override;
 private:
 	const std::chrono::system_clock::time_point _time;
 	const std::string _host;
