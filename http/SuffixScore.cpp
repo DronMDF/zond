@@ -53,7 +53,7 @@ string SuffixScore::make_suffix(
 	const int strength = OptionInt(options, "strength");
 
 	const auto ct = chrono::system_clock::now() + timeout;
-	const auto base = string(ScoreHashString(score)) + " ";
+	const auto base = string(ScoreHashString(score, options)) + " ";
 
 	random_device rd;
 	default_random_engine re(rd());

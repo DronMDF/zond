@@ -36,3 +36,13 @@ string ServerPrefix::invoice() const
 {
 	return _invoice.str();
 }
+
+string ServerPrefix::prefix() const
+{
+	return _invoice.prefix();
+}
+
+string ServerPrefix::wallet() const
+{
+	return _invoice.wallet();
+}

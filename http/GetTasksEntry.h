@@ -7,13 +7,18 @@
 #include "Entry.h"
 
 class ActiveScores;
+class Options;
 
 class GetTasksEntry final : public Entry {
 public:
-	explicit GetTasksEntry(const std::shared_ptr<const ActiveScores> &scores);
+	GetTasksEntry(
+		const std::shared_ptr<const ActiveScores> &scores,
+		const std::shared_ptr<const Options> &options
+	);
 	std::unique_ptr<const Response> process(
 		const std::shared_ptr<const HttpRequest> &request
 	) const override;
 private:
 	const std::shared_ptr<const ActiveScores> scores;
+	const std::shared_ptr<const Options> options;
 };

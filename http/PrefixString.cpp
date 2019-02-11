@@ -6,25 +6,27 @@
 #include "PrefixString.h"
 #include <iomanip>
 #include <sstream>
+#include "OptionInt.h"
 #include "Prefix.h"
 
 using namespace std;
 
-PrefixString::PrefixString(const shared_ptr<const Prefix> &prefix)
-	: prefix(prefix)
+PrefixString::PrefixString(
+	const shared_ptr<const Prefix> &prefix,
+	const shared_ptr<const Options> &options
+) : prefix(prefix), options(options)
 {
 }
 
 string PrefixString::value() const
 {
-	ostringstream out;
 	const auto t = chrono::system_clock::to_time_t(prefix->time());
-	// @todo #126 gmtime is not threadsafe, but gmtime_r is noisely.
-	//  Need to find more elegant way to convert time_potint to string
-	const auto tm = *gmtime(&t);
-	out << put_time(&tm, "%FT%TZ") << " "
+	ostringstream out;
+	out << OptionInt(options, "strength") << " "
+		<< hex << t << " "
 		<< prefix->host() << " "
 		<< prefix->port() << " "
-		<< prefix->invoice();
+		<< prefix->prefix() << " "
+		<< prefix->wallet();
 	return out.str();
 }

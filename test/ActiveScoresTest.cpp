@@ -27,7 +27,7 @@ ActiveScoresTest::ActiveScoresTest()
 						)
 					)
 				),
-				" example.com 4096 AAAAAAAA@1234567812345678"
+				" example.com 1000 AAAAAAAA 1234567812345678"
 			)
 		)
 	)

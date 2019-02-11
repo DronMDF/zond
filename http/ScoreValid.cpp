@@ -28,7 +28,7 @@ ScoreValid::operator bool() const
 		return false;
 	}
 
-	string base = PrefixString(score->prefix()).value();
+	string base = PrefixString(score->prefix(), options).value();
 	for (const auto &s : score->suffixes()) {
 		base = HashString(base, s);
 		if (Strength(base) < OptionInt(options, "strength")) {

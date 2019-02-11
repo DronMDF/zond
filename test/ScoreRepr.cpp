@@ -5,6 +5,7 @@
 
 #include "ScoreRepr.h"
 #include "../http/ScoreString.h"
+#include "FakeOptions.h"
 
 using namespace std;
 
@@ -15,5 +16,5 @@ ScoreRepr::ScoreRepr(const shared_ptr<const Score> &score)
 
 string ScoreRepr::asString() const
 {
-	return ScoreString(score).value();
+	return ScoreString(score, make_shared<FakeOptions>()).value();
 }

@@ -14,14 +14,14 @@ StringScoreTest::StringScoreTest()
 	: TestSuite(
 		make_shared<TestNamed>(
 			"StringScore should correct parse time, in UTC",
-			make_shared<TestStartsWith>(
+			make_shared<TestEqual>(
 				make_shared<ScoreRepr>(
 					make_shared<StringScore>(
 						"2019-01-29T07:26:15Z localhost 4096 "
 						"publicke@ffffffffffffffff"
 					)
 				),
-				"2019-01-29T07:26:15Z "
+				"3 5c500017 localhost 1000 publicke ffffffffffffffff"
 			)
 		)
 	)

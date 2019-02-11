@@ -35,6 +35,6 @@ unique_ptr<const Response> ZoldProtocolEntry::process(
 		"X-Zold-Protocol", options->value("protocol"),
 		"X-Zold-Version", options->value("server-version"),
 		"X-Zold-Repo", options->value("server-repo"),
-		"X-Zold-Score", ScoreString(scores->front()).value()
+		"X-Zold-Score", ScoreString(scores->front(), options).value()
 	);
 }

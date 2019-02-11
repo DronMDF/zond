@@ -7,11 +7,16 @@
 #include <memory>
 
 class Score;
+class Options;
 
 class ScoreString final {
 public:
-	explicit ScoreString(const std::shared_ptr<const Score> &score);
+	ScoreString(
+		const std::shared_ptr<const Score> &score,
+		const std::shared_ptr<const Options> &options
+	);
 	std::string value() const;
 private:
 	const std::shared_ptr<const Score> score;
+	const std::shared_ptr<const Options> options;
 };
