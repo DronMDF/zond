@@ -13,6 +13,7 @@ ADD_EXECUTABLE(
 	EntryRepr.cpp
 	EqualCriterionTest.cpp
 	FakeEntry.cpp
+	FakeOptions.cpp
 	FakeScore.cpp
 	FakeScores.cpp
 	GetInfoEntryTest.cpp
