@@ -6,11 +6,20 @@
 #pragma once
 #include <memory>
 #include "../http/Options.h"
+#include "../http/PredefinedOptions.h"
 
 class FakeOptions final : public Options {
 public:
-	// @todo #194 Customuze some options in FakeOptions
+	explicit FakeOptions(const std::shared_ptr<const Options> &options);
+
+	template<class ... T>
+	FakeOptions(const std::string &name, T ... args)
+		: FakeOptions(std::make_shared<PredefinedOptions>(name, args...))
+	{
+	}
+
 	FakeOptions();
+
 	std::string value(const std::string &name) const override;
 	bool enabled(const std::string &name) const override;
 private:

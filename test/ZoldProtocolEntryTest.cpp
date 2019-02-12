@@ -30,15 +30,25 @@ ZoldProtocolEntryTest::ZoldProtocolEntryTest()
 							"HTTP/1.1 200 Ok\r\n"
 							"\r\n"
 						),
-						make_shared<FakeScores>(make_shared<FakeScore>()),
-						make_shared<FakeOptions>()
+						make_shared<FakeScores>(
+							make_shared<FakeScore>(
+								1,
+								make_shared<FakeOptions>(
+									"host", "host",
+									"port", "2048",
+									"strength", "2",
+									"wallet",
+									"2222333344445555"
+								)
+							)
+						),
+						make_shared<FakeOptions>("strength", "2")
 					),
 					make_shared<HttpRequest>("")
 				),
-				// @todo #230 Score part origin is not obvious.
-				"X-Zold-Score: 3 ",
-				" zold.io 1000 ",
-				" 1234567812345678"
+				"X-Zold-Score: 2 ",
+				" host 800 ",
+				" 2222333344445555 "
 			)
 		)
 	)

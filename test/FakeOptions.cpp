@@ -4,25 +4,33 @@
 // of the MIT license.  See the LICENSE file for details.
 
 #include "FakeOptions.h"
-#include "../http/PredefinedOptions.h"
+#include "../http/MultipleSourcesOptions.h"
 
 using namespace std;
 
-FakeOptions::FakeOptions()
+FakeOptions::FakeOptions(const std::shared_ptr<const Options> &options)
 	: options(
-		make_shared<PredefinedOptions>(
-			"host", "zold.io",
-			"mining-threads", "1",
-			"port", "4096",
-			"prefix-length", "8",
-			"protocol", "2",
-			"pubkey", string(1024, 'A'),
-			"server-repo", "dronmdf/zond",
-			"server-version", "0.0.1",
-			"strength", "3",
-			"wallet", "1234567812345678"
+		make_shared<MultipleSourcesOptions>(
+			options,
+			make_shared<PredefinedOptions>(
+				"host", "zold.io",
+				"mining-threads", "1",
+				"port", "4096",
+				"prefix-length", "8",
+				"protocol", "2",
+				"pubkey", string(1024, 'A'),
+				"server-repo", "dronmdf/zond",
+				"server-version", "0.0.1",
+				"strength", "3",
+				"wallet", "1234567812345678"
+			)
 		)
 	)
+{
+}
+
+FakeOptions::FakeOptions()
+	: FakeOptions(make_shared<PredefinedOptions>())
 {
 }
 
