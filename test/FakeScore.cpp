@@ -10,8 +10,13 @@
 
 using namespace std;
 
+FakeScore::FakeScore(int rank, const shared_ptr<const Options> &options)
+	: score(make_score(make_shared<ServerScore>(options), rank))
+{
+}
+
 FakeScore::FakeScore(int rank)
-	: score(make_score(make_shared<ServerScore>(make_shared<FakeOptions>()), rank))
+	: FakeScore(rank, make_shared<FakeOptions>())
 {
 }
 

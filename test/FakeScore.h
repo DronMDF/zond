@@ -6,8 +6,11 @@
 #pragma once
 #include "../http/Score.h"
 
+class Options;
+
 class FakeScore final : public Score {
 public:
+	FakeScore(int rank, const std::shared_ptr<const Options> &options);
 	explicit FakeScore(int rank = 0);
 	std::shared_ptr<const Prefix> prefix() const override;
 	std::list<std::string> suffixes() const override;
