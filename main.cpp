@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 			"mining-interval", "10",
 			"server-version", "0.1.0",
 			"server-repo", "dronmdf/zond",
+			"prefix-length", "8",
 			"protocol", "2",
 			"default-network", "zold",
 			"strength", "8",
