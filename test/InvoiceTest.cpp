@@ -5,7 +5,7 @@
 
 #include "InvoiceTest.h"
 #include "../http/Invoice.h"
-#include "../http/PredefinedOptions.h"
+#include "FakeOptions.h"
 
 using namespace oout;
 using namespace std;
@@ -18,13 +18,26 @@ InvoiceTest::InvoiceTest()
 				"qwertyuiopasdfghjklzxcvbnm",
 				make_shared<ReprCallable>(
 					bind(&Invoice::prefix, Invoice(
-						make_shared<PredefinedOptions>(
-							"wallet", "cc53e22229564de6",
+						make_shared<FakeOptions>(
 							"pubkey", "qwertyuiopasdfghjklzxcvbnm",
 							"prefix-length", "8"
 						)
 					))
 				)
+			)
+		),
+		make_shared<TestNamed>(
+			"Invoice should select prefix randomly from pubkey",
+			make_shared<TestEqual>(
+				make_shared<ReprCallable>(
+					bind(&Invoice::prefix, Invoice(
+						make_shared<FakeOptions>(
+							"pubkey", "a" + string(4096, 'b'),
+							"prefix-length", "8"
+						)
+					))
+				),
+				"bbbbbbbb"
 			)
 		)
 	)
